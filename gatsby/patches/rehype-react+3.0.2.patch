@@ -1,0 +1,71 @@
+patch-package
+--- a/node_modules/rehype-react/index.js
++++ b/node_modules/rehype-react/index.js
+@@ -1,11 +1,11 @@
+-'use strict';
++'use strict'
+ 
+ /* Dependencies. */
+-var has = require('has');
+-var toH = require('hast-to-hyperscript');
++var has = require('has')
++var toH = require('hast-to-hyperscript')
+ 
+ /* Expose `rehype-react`. */
+-module.exports = rehype2react;
++module.exports = rehype2react
+ 
+ /**
+  * Attach a react compiler.
+@@ -20,33 +20,41 @@ module.exports = rehype2react;
+  *   - `h()`.
+  */
+ function rehype2react(options) {
+-  var settings = options || {};
+-  var createElement = settings.createElement;
+-  var components = settings.components || {};
++  var settings = options || {}
++  var createElement = settings.createElement
++  var components = settings.components || {}
+ 
+-  this.Compiler = compiler;
++  this.Compiler = compiler
+ 
+   /* Compile HAST to React. */
+   function compiler(node) {
+     if (node.type === 'root') {
+       if (node.children.length === 1 && node.children[0].type === 'element') {
+-        node = node.children[0];
++        node = node.children[0]
+       } else {
+         node = {
+           type: 'element',
+           tagName: 'div',
+           properties: {},
+-          children: node.children
+-        };
++          children: node.children,
++        }
+       }
+     }
+ 
+-    return toH(h, node, settings.prefix);
++    return toH(h, node, settings.prefix)
+   }
+ 
+   /* Wrap `createElement` to pass components in. */
+   function h(name, props, children) {
+-    var component = has(components, name) ? components[name] : name;
+-    return createElement(component, props, children);
++    var component = has(components, name) ? components[name] : name
++    if (children) {
++      children = children.filter(
++        child => typeof child != 'string' || !/^\n*$/.test(child)
++      )
++      if (children.length == 0){
++        return null;
++      }
++    }
++    return createElement(component, props, children)
+   }
+ }

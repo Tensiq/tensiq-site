@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/remark-react/index.js
++++ b/node_modules/remark-react/index.js
+@@ -61,7 +61,7 @@ function remarkReact(options) {
+      * pretty lines for now:
+      * https://github.com/facebook/react/pull/7081
+      */
+-    if (children && TABLE_ELEMENTS.indexOf(component) !== -1) {
++    if (children) {
+       children = children.filter(function (child) {
+         return child !== '\n';
+       });
