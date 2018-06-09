@@ -20,47 +20,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   fill: {
-    flex: 1,
-    overflowX: 'visible',
-    overflowY: 'visible',
+    position: 'fixed',
+    width: '100%',
+    height: '100%',
   },
 });
 
-const scrollViewContent = () => (
-  <View>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-    <Text>Test</Text>
-  </View>
-)
-
-class TemplateWrapper extends React.PureComponent {
+class TemplateWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,49 +38,52 @@ class TemplateWrapper extends React.PureComponent {
   };
   render() {
     const { children } = this.props;
-    console.log("Test")
+    console.log('Test');
     return (
-      <View style={{ position: 'absolute', top:0, left:0, width: '100%', height: '100%' }}>
+      <View>
         <ScrollView
           style={styles.fill}
-          contentContainerStyle={{flex:1}}
+          contentContainerStyle={styles.scrollViewContent}
           scrollEventThrottle={1}
-          children={scrollViewContent()}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+            { listener: this.onScroll }
+          )}
+          children={children()}
         />
+        <Helmet
+          title="Gatsby Default Starter"
+          meta={[
+            { name: 'description', content: 'Sample' },
+            { name: 'keywords', content: 'sample, something' },
+          ]}
+        >
+          <style type="text/css">
+            {`
+                @font-face {
+                   font-family: FontAwesome;
+                   src: url(${iconFont});
+                }
+                @font-face {
+                  font-family: Tensiq;
+                  src: url(${tensiqFont});
+                }
+                @font-face {
+                  font-family: OpenSans;
+                  src: url(${openSansNormal}); 
+                  font-weight: 400;
+                }
+                @font-face {
+                  font-family: OpenSans;
+                  src: url(${openSansBold}); 
+                  font-weight: 700;
+                }
+              `}
+          </style>
+          <link rel="shortcut icon" type="image/png" href={favicon} />
+        </Helmet>
+        <Header />
       </View>
-      //        <Helmet
-      //          title="Gatsby Default Starter"
-      //          meta={[
-      //            { name: 'description', content: 'Sample' },
-      //            { name: 'keywords', content: 'sample, something' },
-      //          ]}
-      //        >
-      //          <style type="text/css">
-      //            {`
-      //          @font-face {
-      //             font-family: FontAwesome;
-      //             src: url(${iconFont});
-      //          }
-      //          @font-face {
-      //            font-family: Tensiq;
-      //            src: url(${tensiqFont});
-      //          }
-      //          @font-face {
-      //            font-family: OpenSans;
-      //            src: url(${openSansNormal}); 
-      //            font-weight: 400;
-      //          }
-      //          @font-face {
-      //            font-family: OpenSans;
-      //            src: url(${openSansBold}); 
-      //            font-weight: 700;
-      //          }
-      //        `}
-      //          </style>
-      //          <link rel="shortcut icon" type="image/png" href={favicon} />
-      //        </Helmet>
-      //        <Header />
-      //      </View>
     );
   }
 }

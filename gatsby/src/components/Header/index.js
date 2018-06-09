@@ -5,6 +5,10 @@ import { Animated, View, Text } from 'react-native';
 const Header = () => (
   <View
     style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
       backgroundColor: 'rebeccapurple',
       marginBottom: 20,
     }}
@@ -30,7 +34,12 @@ const Header = () => (
         >
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Text
-              style={{ fontFamily: 'Tensiq', paddingBottom: 4, fontSize: 48, color: '#f5f5f5ff' }}
+              style={{
+                fontFamily: 'Tensiq',
+                paddingBottom: 4,
+                fontSize: 48,
+                color: '#f5f5f5ff',
+              }}
             >
               a
             </Text>

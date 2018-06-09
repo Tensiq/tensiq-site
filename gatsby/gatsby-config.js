@@ -1,15 +1,17 @@
-const GraphQlJson = require(`graphql-type-json`)
+const GraphQlJson = require('graphql-type-json');
 
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
   },
   plugins: [
+    'gatsby-plugin-react-native-web',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-webpack-bundle-analyzer',
       options: {
         analyzerMode: 'static',
+        openAnalyzer: false,
         production: true,
         generateStatsFile: true,
         statsFilename: '../stats.json',
@@ -22,20 +24,20 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          `gatsby-remark-emoji-unicode`,
+          'gatsby-remark-emoji-unicode',
           {
             resolve: 'gatsby-remark-smartypants',
             options: {
               dashes: 'oldschool',
             },
           },
-          `gatsby-remark-smarttypo`,
+          'gatsby-remark-smarttypo',
           {
             resolve: 'gatsby-remark-generic-extensions',
             options: {
@@ -80,9 +82,8 @@ module.exports = {
               },
             },
           },
-          `gatsby-remark-squeeze-paragraphs`,
         ],
       },
     },
   ],
-}
+};

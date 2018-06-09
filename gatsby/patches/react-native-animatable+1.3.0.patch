@@ -1,22 +1,19 @@
 patch-package
 --- a/node_modules/react-native-animatable/registry.js
 +++ b/node_modules/react-native-animatable/registry.js
-@@ -15,10 +15,12 @@ export function getAnimationNames() {
- }
+@@ -16,9 +16,11 @@ export function getAnimationNames() {
  
  export function initializeRegistryWithDefinitions(definitions) {
--  Object.keys(definitions).forEach(animationName => {
+   Object.keys(definitions).forEach(animationName => {
 -    registerAnimation(
 -      animationName,
 -      createAnimation(definitions[animationName]),
 -    );
--  });
-+  if (animationName !== '__esModule') {
-+    Object.keys(definitions).forEach(animationName => {
++    if (animationName !== '__esModule') {
 +      registerAnimation(
 +        animationName,
 +        createAnimation(definitions[animationName]),
 +      );
-+    });
-+  }
++    }
+   });
  }
