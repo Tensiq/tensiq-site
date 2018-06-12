@@ -1,94 +1,123 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import Link from '../RippleLink';
 import PropTypes from 'prop-types';
 import { Animated, Platform, View, Text, StyleSheet } from 'react-native';
+import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
+import { ThemeContext } from '../ThemeProvider';
+
+const uiTheme = {};
 
 const Header = ({ height, opacity }) => (
-  <Animated.View style={[styles.header, { height }]}>
-    <View style={[styles.barColor, { opacity }]} />
-    <View
-      style={{
-        alignSelf: 'center',
-        width: '100%',
-        maxWidth: 960,
-        padding: 20,
-      }}
-    >
-      <View style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-            <Text
-              style={{
-                fontFamily: 'Tensiq',
-                paddingBottom: 4,
-                fontSize: 48,
-                color: '#f5f5f5ff',
-              }}
-            >
-              a
-            </Text>
-            <Text
-              style={{
-                fontFamily: 'OpenSans',
-                fontSize: 32,
-                fontWeight: 'bold',
-                color: '#f5f5f5ff',
-              }}
-            >
-              Tensiq
-            </Text>
+  <ThemeContext.Consumer>
+    {theme => (
+      <ThemeProvider uiTheme={uiTheme}>
+        <Animated.View style={[styles.header, { height }]}>
+          <View style={[styles.barColor, { opacity }]} />
+          <View
+            style={{
+              position: 'relative',
+              top: 0,
+              left: 0,
+              right: 0,
+              alignSelf: 'center',
+              width: '100%',
+              maxWidth: 960,
+              paddingHorizontal: theme.sp(2),
+              paddingVertical: theme.sp(4),
+            }}
+          >
             <View
-              style={{
-                flex: 1,
-                justifyContent: 'flex-end',
-                flexDirection: 'row',
-              }}
+              style={{ alignItems: 'center', flexDirection: 'row', margin: 0 }}
             >
-              <Text
+              <Link to="/">
+                <Text
+                  style={{
+                    fontFamily: 'Tensiq',
+                    paddingBottom: theme.sp(1),
+                    fontSize: 48,
+                    color: '#f5f5f5ff',
+                  }}
+                >
+                  a
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: 'OpenSans',
+                    fontSize: 32,
+                    fontWeight: 'bold',
+                    color: '#f5f5f5ff',
+                    paddingRight: theme.sp(1),
+                    textDecorationLine: 'none',
+                  }}
+                >
+                  Tensiq
+                </Text>
+              </Link>
+              <View
                 style={{
-                  fontFamily: 'OpenSans',
-                  fontSize: 24,
-                  fontWeight: 'normal',
-                  color: '#f5f5f5ff',
-                  paddingHorizontal: 15,
+                  flex: 1,
+                  height: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end',
+                  flexDirection: 'row',
+                  paddingHorizontal: theme.sp(4),
                 }}
               >
-                Services
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'OpenSans',
-                  fontSize: 24,
-                  fontWeight: 'normal',
-                  color: '#f5f5f5ff',
-                  paddingHorizontal: 15,
-                }}
-              >
-                About
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'OpenSans',
-                  fontSize: 24,
-                  fontWeight: 'normal',
-                  color: '#f5f5f5ff',
-                  paddingHorizontal: 15,
-                }}
-              >
-                Contact
-              </Text>
+                <View style={{ height: '100%', marginHorizontal: 2 }}>
+                  <Link to="/">
+                    <Text
+                      style={{
+                        fontFamily: 'OpenSans',
+                        fontSize: 24,
+                        fontWeight: 'normal',
+                        color: '#f5f5f5ff',
+                        paddingHorizontal: theme.sp(1),
+                        paddingVertical: theme.sp(2),
+                      }}
+                    >
+                      Services
+                    </Text>
+                  </Link>
+                </View>
+                <View style={{ height: '100%', marginHorizontal: 2 }}>
+                  <Link to="/about">
+                    <Text
+                      style={{
+                        fontFamily: 'OpenSans',
+                        fontSize: 24,
+                        fontWeight: 'normal',
+                        color: '#f5f5f5ff',
+                        paddingHorizontal: theme.sp(1),
+                        paddingVertical: theme.sp(2),
+                      }}
+                    >
+                      About
+                    </Text>
+                  </Link>
+                </View>
+                <View style={{ height: '100%', marginHorizontal: 2 }}>
+                  <Link to="/">
+                    <Text
+                      style={{
+                        fontFamily: 'OpenSans',
+                        fontSize: 24,
+                        fontWeight: 'normal',
+                        color: '#f5f5f5ff',
+                        paddingHorizontal: theme.sp(1),
+                        paddingVertical: theme.sp(2),
+                      }}
+                    >
+                      Contact
+                    </Text>
+                  </Link>
+                </View>
+              </View>
             </View>
           </View>
-        </Link>
-      </View>
-    </View>
-  </Animated.View>
+        </Animated.View>
+      </ThemeProvider>
+    )}
+  </ThemeContext.Consumer>
 );
 
 Header.propTypes = {
@@ -105,7 +134,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 100,
     backgroundColor: 'transparent',
     justifyContent: 'center',
     ...Platform.select({

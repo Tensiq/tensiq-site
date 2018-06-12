@@ -1,41 +1,33 @@
-import React from 'react'
+import React from 'react';
 
-import { withMultiContext } from 'with-context'
-import { ThemeContext, ResponsiveContext } from '../../utils/context'
+import { View, StyleSheet } from 'react-native';
 
-import { View, StyleSheet } from 'react-native'
-
-const RowContext = React.createContext()
-
-export const withResponsiveRow = withMultiContext({
-  theme: ThemeContext,
-  responsive: ResponsiveContext,
-  row: RowContext,
-})
+export const RowContext = React.createContext();
 
 const styles = StyleSheet.create({
   row: {
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-})
+});
 
 export default class Row extends React.PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       size: props.size > 0 ? props.size : 12,
-    }
+    };
   }
   render() {
     const {
       state,
       props: { style, children },
-    } = this
+    } = this;
     return (
-      <View {...this.props} style={[styles.row, style]}>
+      <View {...this.props} style={[styles.row]}>
         <RowContext.Provider value={state}>{children}</RowContext.Provider>
       </View>
-    )
+    );
   }
 }

@@ -1,37 +1,36 @@
-import React from 'react'
+import React from 'react';
 
-import { withResponsiveRow } from './Row'
+import { RowContext } from './Row';
+import { ThemeContext } from '../ThemeProvider';
 
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  col: {
+  row: {
     flexDirection: 'column',
   },
-})
+});
 
 const withDirection = key =>
   ['', 'Top', 'Bottom', 'Left', 'Right', 'Horizontal', 'Vertical'].map(
-    value => key + value
-  )
+    value => key + value,
+  );
 
 const getProp = key =>
   key[0] +
   []
     .concat(key.match(/[A-Z]/g))
     .join('')
-    .toLowerCase()
+    .toLowerCase();
 
 const props = {
   padding: {
     direction: true,
-    convert: ({ value, props }) =>
-      spaceToPixel(value, props.theme.styles.spaces),
+    convert: ({ value, props }) => spaceToPixel(value, props.theme.spaces),
   },
   margin: {
     direction: true,
-    convert: ({ value, props }) =>
-      spaceToPixel(value, props.theme.styles.spaces),
+    convert: ({ value, props }) => spaceToPixel(value, props.theme.spaces),
   },
   width: {
     direction: false,
@@ -41,107 +40,99 @@ const props = {
     direction: false,
     convert: ({ value }) => value,
   },
-}
+  display: {
+    direction: false,
+    convert: ({ value }) => value,
+  },
+};
 
 const getPropMap = () => {
-  const propMap = {}
+  const propMap = {};
   Object.keys(props).forEach(key => {
     if (props[key].direction) {
       withDirection(key).forEach(keyWithDir => {
         propMap[getProp(keyWithDir)] = {
           name: keyWithDir,
           convert: props[key].convert,
-        }
-      })
+        };
+      });
     } else {
       propMap[key] = {
         name: key,
         convert: props[key].convert,
-      }
+      };
     }
-  })
-  return propMap
-}
+  });
+  return propMap;
+};
 
-const spaceToPixel = (value, spaces) => spaces[parseInt(value)]
-const gridToPercent = (value, max) => parseInt(value) * 100 / max + '%'
+const spaceToPixel = (value, spaces) => spaces[parseInt(value)];
+const gridToPercent = (value, max) => parseInt(value) * 100 / max + '%';
 
 // styleArray: { m:[1,1,2], p:[2,2,4], pt:[1], width:[1,1,3,4] }
 // test -> getStyleSheets({w:[1,2,3],p:[1,2,3],pl:[3,2],mr:[4,3,2,1]})
 const getStyleSheets = props => {
-  const {
-    theme: { styles },
-  } = props
-  if (styles === undefined || styles.breakpoints === undefined) {
-    return null
-  }
-  const propMap = getPropMap()
+  const propMap = getPropMap();
   const propsToMap = Object.keys(props).filter(
-    key => Object.keys(propMap).indexOf(key) >= 0
-  )
-  const styleSheets = []
-  for (var key = 0; key < styles.breakpoints.length; key++) {
-    styleSheets[key] = {}
+    key => Object.keys(propMap).indexOf(key) >= 0,
+  );
+  const styleSheets = [];
+  for (var key = 0; key < props.theme.breakpoints.length; key++) {
+    styleSheets[key] = {};
     propsToMap.forEach(styleKey => {
-      const prop = propMap[styleKey]
+      const prop = propMap[styleKey];
       const value =
         props[styleKey][key] === undefined
           ? undefined
-          : prop.convert({ value: props[styleKey][key], props })
+          : prop.convert({ value: props[styleKey][key], props });
       styleSheets[key][prop.name] =
-        value === undefined ? styleSheets[key - 1][prop.name] : value
-    })
+        value === undefined ? styleSheets[key - 1][prop.name] : value;
+    });
   }
-  return styleSheets
-}
+  return styleSheets;
+};
 
-@withResponsiveRow
 export default class Column extends React.PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
   }
-  updateStyleSheet() {
-    if (this.styles === undefined) {
-      const styleSheetData = getStyleSheets(this.props)
-      this.styles =
-          styleSheetData != null ? StyleSheet.create(styleSheetData) : undefined
+  getStyleSheet = (size, theme) => {
+    if (this.styleSheets === undefined) {
+      const props = {
+        ...this.props,
+        theme,
+        row: {
+          size,
+        },
+      };
+      this.styleSheets = getStyleSheets(props);
     }
-  }
-  componentDidMount() {
-    this.updateStyleSheet()
-  }
-  componentDidUpdate() {
-    this.updateStyleSheet()
-  }
-  getStyle = breakpoint => {
-    if (this.styles === undefined) {
-      return null
-    }
-    return this.styles[breakpoint]
-  }
+    return this.styleSheets;
+  };
   render() {
-    const { responsive, textId, wordCount, ...props } = this.props
-
-    var children = this.props.children
-    if (textId && !children && responsive.text && responsive.text[textId]) {
-      const elements = []
-      Object.keys(responsive.text[textId].text)
-        .filter(value => value > responsive.breakpoint)
-        .forEach(bp => elements.push(...responsive.text[textId].text[bp]))
-      children = <Text>{elements}</Text>
-    } else {
-      children = React.Children.map(this.props.children, child =>
-        React.cloneElement(child, { textId, wordCount })
-      )
-    }
-
+    // console.log(this.props.width[0]);
+    const { children } = this.props;
     return (
-      <View
-        style={[styles.col, this.getStyle(responsive.breakpoint)]}
-        {...props}
-      >
-        {children}
-      </View>
-    )
+      <RowContext.Consumer>
+        {({ size }) => (
+          <ThemeContext.Consumer>
+            {theme => {
+              console.log(this.getStyleSheet(size, theme));
+              return (
+                <View
+                  style={[
+                    styles.row,
+                    this.getStyleSheet(size, theme)[theme.breakpoint],
+                  ]}
+                  {...this.props}
+                >
+                  {children}
+                </View>
+              );
+            }}
+          </ThemeContext.Consumer>
+        )}
+      </RowContext.Consumer>
+    );
   }
 }
