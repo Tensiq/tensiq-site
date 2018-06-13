@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import Color from 'color';
 
 export { default as colors } from './colors';
-export { default as elevations } from './elevation';
+// export { default as elevations } from './elevation';
 
 export const radiis = [0, 2, 4];
 
@@ -13,8 +13,19 @@ export const fontweights = {
 };
 
 export const fonts = {
-  normal: {},
+  normal: {
+    fontFamily: 'OpenSans',
+    fontWeight: fontweights.regular,
+  },
+  bold: {
+    fontFamily: 'OpenSans',
+    fontWeight: fontweights.bold,
+  },
   mono: {},
+  tensiq: {
+    fontFamily: 'Tensiq',
+    fontWeight: fontweights.regular,
+  },
   // fontFamily: 'Roboto' }
 };
 
@@ -67,8 +78,120 @@ export const fontsizes = [
 ];
 export const fs = value => fontsizes[Math.min(value, fontsizes.length)];
 
+export const shadow = Platform.select({
+  default: {
+    shadowColor: '#00000088',
+    shadowRadius: 30,
+  },
+  android: {
+    elevation: 6,
+  },
+});
+
 const styles = {
-  header: {
+  headerOuterContainer: {
+    normal: StyleSheet.create({
+      0: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...Platform.select({
+          default: {
+            paddingBottom: 10,
+          },
+          web: {
+            paddingBottom: 8,
+          },
+        }),
+      },
+    }),
+  },
+  headerInnerContainer: {
+    normal: StyleSheet.create({
+      0: {
+        width: '100%',
+        maxWidth: 960,
+        height: '100%',
+        flex: 1,
+        flexDirection: 'row',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: sp(2),
+      },
+    }),
+  },
+  headerColor: {
+    normal: StyleSheet.create({
+      0: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        flex: 1,
+        backgroundColor: '#3a3a3aff',
+        opacity: 0,
+        ...shadow,
+      },
+    }),
+  },
+  footerOuterContainer: {
+    normal: StyleSheet.create({
+      0: {
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 35,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+        ...Platform.select({
+          default: {
+            paddingBottom: 10,
+          },
+          web: {
+            paddingBottom: 8,
+          },
+        }),
+      },
+    }),
+  },
+  footerColor: {
+    normal: StyleSheet.create({
+      0: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        flex: 1,
+        backgroundColor: '#3a3a3aff',
+        opacity: 1,
+        ...shadow,
+      },
+    }),
+  },
+  footerInnerContainer: {
+    normal: StyleSheet.create({
+      0: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        maxWidth: 960,
+        height: '100%',
+        flex: 1,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: sp(2),
+      },
+    }),
+  },
+  textHeader: {
     1: StyleSheet.create({
       0: {
         ...fonts.normal,

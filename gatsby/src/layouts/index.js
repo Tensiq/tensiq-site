@@ -8,6 +8,7 @@ import openSansNormal from '../fonts/OpenSans-Regular.ttf';
 import openSansBold from '../fonts/OpenSans-Bold.ttf';
 import favicon from '../images/favicon.png';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const HEADER_MAX_HEIGHT = 120;
 const HEADER_MIN_HEIGHT = 60;
@@ -78,6 +79,7 @@ class TemplateWrapper extends React.PureComponent {
           </ScrollView>
         </View>
         <Header height={headerHeight} opacity={this.state.opacity} />
+        <Footer />
         <Helmet
           title="Gatsby Default Starter"
           meta={[

@@ -71,7 +71,7 @@ export default class ThemeProvider extends React.PureComponent {
         width,
         breakpoint: this.getBreakpoint(width),
       });
-      console.log('width:', width, 'bp:', this.getBreakpoint(width));
+      // console.log('width:', width, 'bp:', this.getBreakpoint(width));
     }
     // console.log('width:', width, 'bp:', this.getBreakpoint(width));
   };

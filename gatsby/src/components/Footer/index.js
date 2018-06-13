@@ -1,14 +1,14 @@
 import React from 'react';
 import Link from '../RippleLink';
 import PropTypes from 'prop-types';
-import { Animated, Platform, View, Text, StyleSheet } from 'react-native';
+import { Platform, Animated, View, Text, StyleSheet } from 'react-native';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import { ThemeContext } from '../ThemeProvider';
 import Box from '../Grid/Box';
 
 const uiTheme = {};
 
-class Header extends React.PureComponent {
+class Footer extends React.PureComponent {
   state = {
     fade: new Animated.Value(0),
   };
@@ -24,73 +24,45 @@ class Header extends React.PureComponent {
   }
   render() {
     const { fade } = this.state;
-    const { height, opacity } = this.props;
     return (
       <ThemeContext.Consumer>
-        {theme => {
-          // console.log(theme);
-          // console.log(theme.style({ element: 'headerContainer' }));
-          return (
-            <ThemeProvider uiTheme={uiTheme}>
-              <Animated.View
-                style={[
-                  theme.style({ element: 'headerOuterContainer' }),
-                  { height, opacity: fade },
-                ]}
+        {theme => (
+          <ThemeProvider uiTheme={uiTheme}>
+            <Animated.View style={{ opacity: fade }}>
+              <Box
+                style={theme.style({ element: 'footerOuterContainer' })}
+                display={['flex', , 'none']}
               >
-                <View
-                  style={[theme.style({ element: 'headerColor' }), { opacity }]}
-                />
-                <View style={theme.style({ element: 'headerInnerContainer' })}>
-                  <Link to="/">
-                    <View
-                      style={{
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                        paddingBottom: theme.sp(1),
-                      }}
-                    >
-                      <Text
-                        style={{
-                          ...theme.fonts.tensiq,
-                          paddingBottom: theme.sp(1),
-                          fontSize: 48,
-                          color: '#f5f5f5ff',
-                        }}
-                      >
-                        a
-                      </Text>
-                      <Text
-                        style={{
-                          ...theme.fonts.normal,
-                          fontSize: 32,
-                          fontWeight: theme.fontweights.bold,
-                          color: '#f5f5f5ff',
-                          paddingRight: theme.sp(1),
-                          textDecorationLine: 'none',
-                        }}
-                      >
-                        Tensiq
-                      </Text>
-                    </View>
-                  </Link>
-                  <Box
+                <View style={theme.style({ element: 'footerColor' })} />
+                <View style={theme.style({ element: 'footerInnerContainer' })}>
+                  <View
                     style={{
                       flex: 1,
                       height: '100%',
                       alignItems: 'center',
-                      justifyContent: 'flex-end',
+                      justifyContent: 'space-around',
                       flexDirection: 'row',
-                      paddingHorizontal: theme.sp(4),
                     }}
-                    display={['none', , 'flex']}
                   >
-                    <View style={{ height: '100%', marginHorizontal: 2 }}>
-                      <Link to="/">
+                    <View
+                      style={{
+                        flex: 1,
+                        marginHorizontal: 2,
+                      }}
+                    >
+                      <Link
+                        to="/"
+                        contentStyle={{
+                          flex: 1,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
                         <Text
                           style={{
                             ...theme.fonts.normal,
-                            fontSize: 24,
+                            fontSize: 16,
+                            fontWeight: theme.fontweights.bold,
                             color: '#f5f5f5ff',
                             paddingHorizontal: theme.sp(1),
                             paddingVertical: theme.sp(2),
@@ -100,12 +72,26 @@ class Header extends React.PureComponent {
                         </Text>
                       </Link>
                     </View>
-                    <View style={{ height: '100%', marginHorizontal: 2 }}>
-                      <Link to="/about">
+                    <View
+                      style={{
+                        flex: 1,
+                        marginHorizontal: 2,
+                      }}
+                    >
+                      <Link
+                        to="/about"
+                        contentStyle={{
+                          flex: 1,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
                         <Text
                           style={{
                             ...theme.fonts.normal,
-                            fontSize: 24,
+                            fontSize: 16,
+                            fontWeight: theme.fontweights.bold,
+                            textAlign: 'center',
                             color: '#f5f5f5ff',
                             paddingHorizontal: theme.sp(1),
                             paddingVertical: theme.sp(2),
@@ -115,12 +101,25 @@ class Header extends React.PureComponent {
                         </Text>
                       </Link>
                     </View>
-                    <View style={{ height: '100%', marginHorizontal: 2 }}>
-                      <Link to="/contact">
+                    <View
+                      style={{
+                        flex: 1,
+                        marginHorizontal: 2,
+                      }}
+                    >
+                      <Link
+                        to="/contact"
+                        contentStyle={{
+                          flex: 1,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
                         <Text
                           style={{
                             ...theme.fonts.normal,
-                            fontSize: 24,
+                            fontSize: 16,
+                            fontWeight: theme.fontweights.bold,
                             color: '#f5f5f5ff',
                             paddingHorizontal: theme.sp(1),
                             paddingVertical: theme.sp(2),
@@ -130,18 +129,18 @@ class Header extends React.PureComponent {
                         </Text>
                       </Link>
                     </View>
-                  </Box>
+                  </View>
                 </View>
-              </Animated.View>
-            </ThemeProvider>
-          );
-        }}
+              </Box>
+            </Animated.View>
+          </ThemeProvider>
+        )}
       </ThemeContext.Consumer>
     );
   }
 }
 
-Header.propTypes = {
+Footer.propTypes = {
   height: PropTypes.object,
   opacity: PropTypes.number,
 };
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
     height: '100%',
     flex: 1,
     backgroundColor: '#3a3a3aff',
-    opacity: 0,
+    opacity: 1,
   },
   bar: {
     alignSelf: 'center',
@@ -202,4 +201,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default Footer;

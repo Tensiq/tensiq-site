@@ -9,7 +9,7 @@ class RippleLink extends React.PureComponent {
     super(props);
   }
   render() {
-    const { to, style, children } = this.props;
+    const { to, style, contentStyle, children } = this.props;
     const linkStyle = {
       color: 'white',
       textDecoration: 'none',
@@ -29,6 +29,7 @@ class RippleLink extends React.PureComponent {
               flexDirection: 'row',
               alignItems: 'center',
               paddingHorizontal: 10,
+              ...contentStyle,
             }}
           >
             {children}
