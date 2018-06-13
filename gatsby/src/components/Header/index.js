@@ -42,38 +42,44 @@ class Header extends React.PureComponent {
                   style={[theme.style({ element: 'headerColor' }), { opacity }]}
                 />
                 <View style={theme.style({ element: 'headerInnerContainer' })}>
-                  <Link to="/">
-                    <View
-                      style={{
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                        paddingBottom: theme.sp(1),
-                      }}
-                    >
-                      <Text
+                  <View
+                    style={theme.style({
+                      element: 'headerLinkOuterContainer',
+                    })}
+                  >
+                    <Link to="/">
+                      <View
                         style={{
-                          ...theme.fonts.tensiq,
+                          alignItems: 'center',
+                          flexDirection: 'row',
                           paddingBottom: theme.sp(1),
-                          fontSize: 48,
-                          color: '#f5f5f5ff',
                         }}
                       >
-                        a
-                      </Text>
-                      <Text
-                        style={{
-                          ...theme.fonts.normal,
-                          fontSize: 32,
-                          fontWeight: theme.fontweights.bold,
-                          color: '#f5f5f5ff',
-                          paddingRight: theme.sp(1),
-                          textDecorationLine: 'none',
-                        }}
-                      >
-                        Tensiq
-                      </Text>
-                    </View>
-                  </Link>
+                        <Text
+                          style={{
+                            ...theme.fonts.tensiq,
+                            paddingBottom: theme.sp(1),
+                            fontSize: 48,
+                            color: '#f5f5f5ff',
+                          }}
+                        >
+                          a
+                        </Text>
+                        <Text
+                          style={{
+                            ...theme.fonts.normal,
+                            fontSize: 32,
+                            fontWeight: theme.fontweights.bold,
+                            color: '#f5f5f5ff',
+                            paddingRight: theme.sp(1),
+                            textDecorationLine: 'none',
+                          }}
+                        >
+                          Tensiq
+                        </Text>
+                      </View>
+                    </Link>
+                  </View>
                   <Box
                     style={{
                       flex: 1,
@@ -85,7 +91,11 @@ class Header extends React.PureComponent {
                     }}
                     display={['none', , 'flex']}
                   >
-                    <View style={{ height: '100%', marginHorizontal: 2 }}>
+                    <View
+                      style={theme.style({
+                        element: 'headerLinkOuterContainer',
+                      })}
+                    >
                       <Link to="/">
                         <Text
                           style={{
@@ -100,7 +110,11 @@ class Header extends React.PureComponent {
                         </Text>
                       </Link>
                     </View>
-                    <View style={{ height: '100%', marginHorizontal: 2 }}>
+                    <View
+                      style={theme.style({
+                        element: 'headerLinkOuterContainer',
+                      })}
+                    >
                       <Link to="/about">
                         <Text
                           style={{
@@ -115,7 +129,11 @@ class Header extends React.PureComponent {
                         </Text>
                       </Link>
                     </View>
-                    <View style={{ height: '100%', marginHorizontal: 2 }}>
+                    <View
+                      style={theme.style({
+                        element: 'headerLinkOuterContainer',
+                      })}
+                    >
                       <Link to="/contact">
                         <Text
                           style={{

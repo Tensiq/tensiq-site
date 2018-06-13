@@ -36,99 +36,46 @@ class Footer extends React.PureComponent {
                 <View style={theme.style({ element: 'footerColor' })} />
                 <View style={theme.style({ element: 'footerInnerContainer' })}>
                   <View
-                    style={{
-                      flex: 1,
-                      height: '100%',
-                      alignItems: 'center',
-                      justifyContent: 'space-around',
-                      flexDirection: 'row',
-                    }}
+                    style={theme.style({ element: 'footerLinkOuterContainer' })}
                   >
-                    <View
-                      style={{
-                        flex: 1,
-                        marginHorizontal: 2,
-                      }}
+                    <Link
+                      to="/"
+                      contentStyle={theme.style({
+                        element: 'footerLinkContent',
+                      })}
                     >
-                      <Link
-                        to="/"
-                        contentStyle={{
-                          flex: 1,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <Text
-                          style={{
-                            ...theme.fonts.normal,
-                            fontSize: 16,
-                            fontWeight: theme.fontweights.bold,
-                            color: '#f5f5f5ff',
-                            paddingHorizontal: theme.sp(1),
-                            paddingVertical: theme.sp(2),
-                          }}
-                        >
-                          Services
-                        </Text>
-                      </Link>
-                    </View>
-                    <View
-                      style={{
-                        flex: 1,
-                        marginHorizontal: 2,
-                      }}
+                      <Text style={theme.style({ element: 'footerLinkText' })}>
+                        Services
+                      </Text>
+                    </Link>
+                  </View>
+                  <View
+                    style={theme.style({ element: 'footerLinkOuterContainer' })}
+                  >
+                    <Link
+                      to="/about"
+                      contentStyle={theme.style({
+                        element: 'footerLinkContent',
+                      })}
                     >
-                      <Link
-                        to="/about"
-                        contentStyle={{
-                          flex: 1,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <Text
-                          style={{
-                            ...theme.fonts.normal,
-                            fontSize: 16,
-                            fontWeight: theme.fontweights.bold,
-                            textAlign: 'center',
-                            color: '#f5f5f5ff',
-                            paddingHorizontal: theme.sp(1),
-                            paddingVertical: theme.sp(2),
-                          }}
-                        >
-                          About
-                        </Text>
-                      </Link>
-                    </View>
-                    <View
-                      style={{
-                        flex: 1,
-                        marginHorizontal: 2,
-                      }}
+                      <Text style={theme.style({ element: 'footerLinkText' })}>
+                        About
+                      </Text>
+                    </Link>
+                  </View>
+                  <View
+                    style={theme.style({ element: 'footerLinkOuterContainer' })}
+                  >
+                    <Link
+                      to="/contact"
+                      contentStyle={theme.style({
+                        element: 'footerLinkContent',
+                      })}
                     >
-                      <Link
-                        to="/contact"
-                        contentStyle={{
-                          flex: 1,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <Text
-                          style={{
-                            ...theme.fonts.normal,
-                            fontSize: 16,
-                            fontWeight: theme.fontweights.bold,
-                            color: '#f5f5f5ff',
-                            paddingHorizontal: theme.sp(1),
-                            paddingVertical: theme.sp(2),
-                          }}
-                        >
-                          Contact
-                        </Text>
-                      </Link>
-                    </View>
+                      <Text style={theme.style({ element: 'footerLinkText' })}>
+                        Contact
+                      </Text>
+                    </Link>
                   </View>
                 </View>
               </Box>

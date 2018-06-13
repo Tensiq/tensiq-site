@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import Color from 'color';
 
-export { default as colors } from './colors';
+import colors from './colors';
 // export { default as elevations } from './elevation';
 
 export const radiis = [0, 2, 4];
@@ -89,6 +89,43 @@ export const shadow = Platform.select({
 });
 
 const styles = {
+  headerLinkOuterContainer: {
+    normal: StyleSheet.create({
+      0: {
+        marginHorizontal: 2,
+        justifyContent: 'center',
+      },
+    }),
+  },
+  footerLinkOuterContainer: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+        marginHorizontal: 2,
+      },
+    }),
+  },
+  footerLinkContent: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    }),
+  },
+  footerLinkText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: 16,
+        fontWeight: fontweights.bold,
+        color: colors('text'),
+        paddingHorizontal: sp(1),
+        paddingVertical: sp(2),
+      },
+    }),
+  },
   headerOuterContainer: {
     normal: StyleSheet.create({
       0: {
@@ -133,7 +170,7 @@ const styles = {
         width: '100%',
         height: '100%',
         flex: 1,
-        backgroundColor: '#3a3a3aff',
+        backgroundColor: colors('header'),
         opacity: 0,
         ...shadow,
       },
@@ -169,7 +206,7 @@ const styles = {
         width: '100%',
         height: '100%',
         flex: 1,
-        backgroundColor: '#3a3a3aff',
+        backgroundColor: colors('footer'),
         opacity: 1,
         ...shadow,
       },
@@ -186,7 +223,9 @@ const styles = {
         height: '100%',
         flex: 1,
         alignSelf: 'center',
-        justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'row',
         paddingHorizontal: sp(2),
       },
     }),
@@ -477,6 +516,7 @@ const theme = {
   styles,
   fonts,
   fontweights,
+  colors,
 };
 
 export default theme;

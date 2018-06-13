@@ -1,8 +1,9 @@
-import Color from 'color'
+import Color from 'color';
 
 const colors = {
-  table: 'grey',
-  info: '#7743CE'
-}
+  header: '#3a3a3aff',
+  footer: '#3a3a3aff',
+  text: '#f5f5f5ff',
+};
 
-export default color => Color(colors[color])
+export default color => Color(colors[color]);

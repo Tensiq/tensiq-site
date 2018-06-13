@@ -13,23 +13,18 @@ class RippleLink extends React.PureComponent {
     const linkStyle = {
       color: 'white',
       textDecoration: 'none',
-      height: '100%',
       ...style,
     };
     return (
       <Link to={to} style={linkStyle}>
-        <RippleFeedback
-          style={{ height: '100%' }}
-          delayPressIn={50}
-          color="#f5f5f580"
-        >
+        <RippleFeedback delayPressIn={50} color="#f5f5f580">
           <View
             style={{
               height: '100%',
               flexDirection: 'row',
               alignItems: 'center',
+              justifyContent: 'center',
               paddingHorizontal: 10,
-              ...contentStyle,
             }}
           >
             {children}
