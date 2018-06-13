@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Animated, Platform, View, Text, StyleSheet } from 'react-native';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import { ThemeContext } from '../ThemeProvider';
+import Box from '../Grid/Box';
 
 const uiTheme = {};
 
@@ -15,45 +16,59 @@ const Header = ({ height, opacity }) => (
           <View style={[styles.barColor, { opacity }]} />
           <View
             style={{
-              position: 'relative',
+              position: 'absolute',
               top: 0,
               left: 0,
-              right: 0,
+              width: '100%',
+              height: '100%',
+              flex: 1,
               alignSelf: 'center',
+              justifyContent: 'center',
               width: '100%',
               maxWidth: 960,
               paddingHorizontal: theme.sp(2),
-              paddingVertical: theme.sp(4),
             }}
           >
-            <View
-              style={{ alignItems: 'center', flexDirection: 'row', margin: 0 }}
+            <Box
+              style={{
+                alignItems: 'center',
+                flexDirection: 'row',
+              }}
+              justifyContent={['center', , 'flex-start']}
             >
               <Link to="/">
-                <Text
+                <View
                   style={{
-                    fontFamily: 'Tensiq',
+                    alignItems: 'center',
+                    flexDirection: 'row',
                     paddingBottom: theme.sp(1),
-                    fontSize: 48,
-                    color: '#f5f5f5ff',
                   }}
                 >
-                  a
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: 'OpenSans',
-                    fontSize: 32,
-                    fontWeight: 'bold',
-                    color: '#f5f5f5ff',
-                    paddingRight: theme.sp(1),
-                    textDecorationLine: 'none',
-                  }}
-                >
-                  Tensiq
-                </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Tensiq',
+                      paddingBottom: theme.sp(1),
+                      fontSize: 48,
+                      color: '#f5f5f5ff',
+                    }}
+                  >
+                    a
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'OpenSans',
+                      fontSize: 32,
+                      fontWeight: 'bold',
+                      color: '#f5f5f5ff',
+                      paddingRight: theme.sp(1),
+                      textDecorationLine: 'none',
+                    }}
+                  >
+                    Tensiq
+                  </Text>
+                </View>
               </Link>
-              <View
+              <Box
                 style={{
                   flex: 1,
                   height: '100%',
@@ -62,6 +77,7 @@ const Header = ({ height, opacity }) => (
                   flexDirection: 'row',
                   paddingHorizontal: theme.sp(4),
                 }}
+                display={['none', , 'flex']}
               >
                 <View style={{ height: '100%', marginHorizontal: 2 }}>
                   <Link to="/">
@@ -111,8 +127,8 @@ const Header = ({ height, opacity }) => (
                     </Text>
                   </Link>
                 </View>
-              </View>
-            </View>
+              </Box>
+            </Box>
           </View>
         </Animated.View>
       </ThemeProvider>

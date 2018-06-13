@@ -2,8 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Row from '../components/Grid/Row';
-import Column from '../components/Grid/Column';
+import Box from '../components/Grid/Box';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -20,6 +19,7 @@ const styles = StyleSheet.create({
   blockContent: {
     width: '100%',
     maxWidth: 960,
+    flexWrap: 'wrap',
     flexDirection: 'row',
   },
   text: {
@@ -81,91 +81,92 @@ class IndexPage extends React.Component {
           style={[styles.block, { paddingTop: 75 + HEADER_MAX_HEIGHT }]}
         >
           <View style={styles.blockContent}>
-            <Row size={12}>
-              <Column
-                width={[12, 12, 12, 6, 6]}
-                pb={[6, 6, 6, 0, 0]}
-                display={['none', , 'flex']}
+            <Box
+              width={[1, 1, 1, 1 / 2, 1 / 2]}
+              pb={[6, 6, 6, 0, 0]}
+              display={['none', , 'flex']}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingVertical: 20,
+                  paddingHorizontal: 20,
+                }}
               >
-                <View
+                <LinearGradient
+                  start={{ x: 0.0, y: 0.25 }}
+                  end={{ x: 1.0, y: 0.9 }}
+                  colors={['#e8dae9ff', '#b0d6f9ff']}
                   style={{
-                    flex: 1,
+                    ...shadow,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    paddingVertical: 20,
-                    paddingRight: 10,
+                    width: 100,
+                    height: 50,
+                    backgroundColor: '#f5f5f5ff',
                   }}
                 >
-                  <LinearGradient
-                    start={{ x: 0.0, y: 0.25 }}
-                    end={{ x: 1.0, y: 0.9 }}
-                    colors={['#e8dae9ff', '#b0d6f9ff']}
-                    style={{
-                      ...shadow,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: 100,
-                      height: 50,
-                      backgroundColor: '#f5f5f5ff',
-                    }}
-                  >
-                    <Text style={styles.text3}>Git</Text>
-                  </LinearGradient>
-                  <LinearGradient
-                    start={{ x: 0.0, y: 0.25 }}
-                    end={{ x: 1.0, y: 0.9 }}
-                    colors={['#e8dae9ff', '#b0d6f9ff']}
-                    style={{
-                      ...shadow,
-                      marginTop: 10,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: 100,
-                      height: 50,
-                      backgroundColor: '#f5f5f5ff',
-                    }}
-                  >
-                    <Text style={styles.text3}>Project</Text>
-                  </LinearGradient>
-                  <LinearGradient
-                    start={{ x: 0.0, y: 0.25 }}
-                    end={{ x: 1.0, y: 0.9 }}
-                    colors={['#e8dae9ff', '#b0d6f9ff']}
-                    style={{
-                      ...shadow,
-                      marginTop: 10,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: 100,
-                      height: 50,
-                      backgroundColor: '#f5f5f5ff',
-                    }}
-                  >
-                    <Text style={styles.text3}>Target</Text>
-                  </LinearGradient>
-                </View>
-              </Column>
-              <Column width={[12, 12, 12, 6, 6]} pt={[6, 6, 6, 0, 0]}>
-                <View
+                  <Text style={styles.text3}>Git</Text>
+                </LinearGradient>
+                <LinearGradient
+                  start={{ x: 0.0, y: 0.25 }}
+                  end={{ x: 1.0, y: 0.9 }}
+                  colors={['#e8dae9ff', '#b0d6f9ff']}
                   style={{
-                    flex: 1,
+                    ...shadow,
+                    marginTop: 10,
                     justifyContent: 'center',
-                    paddingVertical: 20,
-                    paddingLeft: 10,
+                    alignItems: 'center',
+                    width: 100,
+                    height: 50,
+                    backgroundColor: '#f5f5f5ff',
                   }}
                 >
-                  <Text style={styles.text}>
-                    Open up src/App.js to start working on your app!
-                  </Text>
-                  <Text style={styles.text}>
-                    Changes you make will automatically reload.
-                  </Text>
-                  <Text style={styles.text}>
-                    Shake your phone to open the developer menu.
-                  </Text>
-                </View>
-              </Column>
-            </Row>
+                  <Text style={styles.text3}>Project</Text>
+                </LinearGradient>
+                <LinearGradient
+                  start={{ x: 0.0, y: 0.25 }}
+                  end={{ x: 1.0, y: 0.9 }}
+                  colors={['#e8dae9ff', '#b0d6f9ff']}
+                  style={{
+                    ...shadow,
+                    marginTop: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: 100,
+                    height: 50,
+                    backgroundColor: '#f5f5f5ff',
+                  }}
+                >
+                  <Text style={styles.text3}>Target</Text>
+                </LinearGradient>
+              </View>
+            </Box>
+            <Box
+              width={[1, 1, 1, 1 / 2, 1 / 2]}
+              pt={[6, 6, 6, 0, 0]}
+              alignItems={['center', , , 'flex-start']}
+            >
+              <View
+                style={{
+                  justifyContent: 'center',
+                  paddingVertical: 20,
+                  paddingHorizontal: 20,
+                }}
+              >
+                <Text style={styles.text}>
+                  Open up src/App.js to start working on your app!
+                </Text>
+                <Text style={styles.text}>
+                  Changes you make will automatically reload.
+                </Text>
+                <Text style={styles.text}>
+                  Shake your phone to open the developer menu.
+                </Text>
+              </View>
+            </Box>
           </View>
         </LinearGradient>
         <LinearGradient
@@ -428,24 +429,3 @@ class IndexPage extends React.Component {
 }
 
 export default IndexPage;
-
-export const query = graphql`
-  query IndexQuery {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
-          }
-          fields {
-            slug
-          }
-          excerpt
-        }
-      }
-    }
-  }
-`;

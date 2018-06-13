@@ -1,15 +1,7 @@
 import React from 'react';
-
-import { RowContext } from './Row';
+import PropTypes from 'prop-types';
 import { ThemeContext } from '../ThemeProvider';
-
 import { View, StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'column',
-  },
-});
 
 const withDirection = key =>
   ['', 'Top', 'Bottom', 'Left', 'Right', 'Horizontal', 'Vertical'].map(
@@ -23,26 +15,38 @@ const getProp = key =>
     .join('')
     .toLowerCase();
 
+const spaceToPixel = ({ value, props }) => props.theme.spaces[parseInt(value)];
+const plain = ({ value }) => value;
+const toPercent = ({ value }) => value * 100 + '%';
+
 const props = {
   padding: {
     direction: true,
-    convert: ({ value, props }) => spaceToPixel(value, props.theme.spaces),
+    convert: spaceToPixel,
   },
   margin: {
     direction: true,
-    convert: ({ value, props }) => spaceToPixel(value, props.theme.spaces),
+    convert: spaceToPixel,
   },
   width: {
     direction: false,
-    convert: ({ value, props }) => gridToPercent(value, props.row.size),
+    convert: toPercent,
   },
   color: {
     direction: false,
-    convert: ({ value }) => value,
+    convert: plain,
   },
   display: {
     direction: false,
-    convert: ({ value }) => value,
+    convert: plain,
+  },
+  alignItems: {
+    direction: false,
+    convert: plain,
+  },
+  justifyContent: {
+    direction: false,
+    convert: plain,
   },
 };
 
@@ -65,9 +69,6 @@ const getPropMap = () => {
   });
   return propMap;
 };
-
-const spaceToPixel = (value, spaces) => spaces[parseInt(value)];
-const gridToPercent = (value, max) => parseInt(value) * 100 / max + '%';
 
 // styleArray: { m:[1,1,2], p:[2,2,4], pt:[1], width:[1,1,3,4] }
 // test -> getStyleSheets({w:[1,2,3],p:[1,2,3],pl:[3,2],mr:[4,3,2,1]})
@@ -92,18 +93,15 @@ const getStyleSheets = props => {
   return styleSheets;
 };
 
-export default class Column extends React.PureComponent {
+export default class Box extends React.PureComponent {
   constructor(props) {
     super(props);
   }
-  getStyleSheet = (size, theme) => {
+  getStyleSheet = theme => {
     if (this.styleSheets === undefined) {
       const props = {
         ...this.props,
         theme,
-        row: {
-          size,
-        },
       };
       this.styleSheets = getStyleSheets(props);
     }
@@ -111,28 +109,26 @@ export default class Column extends React.PureComponent {
   };
   render() {
     // console.log(this.props.width[0]);
-    const { children } = this.props;
+    const { children, style } = this.props;
     return (
-      <RowContext.Consumer>
-        {({ size }) => (
-          <ThemeContext.Consumer>
-            {theme => {
-              console.log(this.getStyleSheet(size, theme));
-              return (
-                <View
-                  style={[
-                    styles.row,
-                    this.getStyleSheet(size, theme)[theme.breakpoint],
-                  ]}
-                  {...this.props}
-                >
-                  {children}
-                </View>
-              );
-            }}
-          </ThemeContext.Consumer>
-        )}
-      </RowContext.Consumer>
+      <ThemeContext.Consumer>
+        {theme => {
+          // console.log(this.getStyleSheet(theme));
+          return (
+            <View
+              {...this.props}
+              style={[style, this.getStyleSheet(theme)[theme.breakpoint]]}
+            >
+              {children}
+            </View>
+          );
+        }}
+      </ThemeContext.Consumer>
     );
   }
 }
+
+Box.propTypes = {
+  children: PropTypes.any,
+  style: PropTypes.any,
+};
