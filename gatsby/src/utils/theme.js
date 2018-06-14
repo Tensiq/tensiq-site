@@ -1,8 +1,7 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import Color from 'color';
 
-import colors from './colors';
+import color, { gradient } from './colors';
 // export { default as elevations } from './elevation';
 
 export const radiis = [0, 2, 4];
@@ -28,6 +27,9 @@ export const fonts = {
   },
   // fontFamily: 'Roboto' }
 };
+
+export const headerHeightMax = 120;
+export const headerHeightMin = 60;
 
 // 1em = 16px
 const EM = 16;
@@ -88,12 +90,155 @@ export const shadow = Platform.select({
   },
 });
 
+const rawStyles = {
+  contentBlock: {
+    normal: {
+      width: '100%',
+      paddingVertical: 75,
+      flexDirection: 'row',
+      justifyContent: 'center',
+    },
+  },
+  contentBlockInnerContainer: {
+    normal: {
+      flex: 1,
+      paddingVertical: 20,
+      paddingHorizontal: 20,
+    },
+  },
+};
+
+const props = {
+  contentBlockBoxLeftText: {
+    width: [1, 1, 1, 1 / 2, 1 / 2],
+    pb: [6, 6, 6, 0, 0],
+    alignItems: ['center', null, null, 'flex-end'],
+  },
+  contentBlockBoxLeftImage: {
+    width: [1, 1, 1, 1 / 2, 1 / 2],
+    pb: [6, 6, 6, 0, 0],
+    alignItems: ['center'],
+  },
+  contentBlockBoxRightText: {
+    width: [1, 1, 1, 1 / 2, 1 / 2],
+    pt: [6, 6, 6, 0, 0],
+    alignItems: ['center', null, null, 'flex-start'],
+  },
+  contentBlockBoxRightImage: {
+    width: [1, 1, 1, 1 / 2, 1 / 2],
+    pt: [6, 6, 6, 0, 0],
+    alignItems: ['center'],
+  },
+};
+
 const styles = {
+  contentBlock: {
+    normal: StyleSheet.create({
+      0: rawStyles.contentBlock.normal,
+    }),
+    first: StyleSheet.create({
+      0: {
+        ...rawStyles.contentBlock.normal,
+        paddingTop:
+          rawStyles.contentBlock.normal.paddingVertical + headerHeightMax,
+      },
+    }),
+  },
+  contentBlockInnerContainer: {
+    normal: {
+      0: {
+        ...rawStyles.contentBlockInnerContainer.normal,
+      },
+    },
+    leftCentered: {
+      0: {
+        ...rawStyles.contentBlockInnerContainer.normal,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+      },
+    },
+    rightCentered: {
+      0: {
+        ...rawStyles.contentBlockInnerContainer.normal,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+      },
+    },
+    allCentered: {
+      0: {
+        flex: 1,
+        ...rawStyles.contentBlockInnerContainer.normal,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    },
+  },
+  contentBlockOuterContainer: {
+    normal: {
+      0: {
+        width: '100%',
+        maxWidth: 960,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+      },
+    },
+  },
   headerLinkOuterContainer: {
     normal: StyleSheet.create({
       0: {
         marginHorizontal: 2,
         justifyContent: 'center',
+      },
+    }),
+  },
+  headerLogoContent: {
+    normal: StyleSheet.create({
+      0: {
+        paddingBottom: sp(1),
+      },
+    }),
+  },
+  headerLogoIcon: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.tensiq,
+        paddingBottom: sp(1),
+        fontSize: 48,
+        color: color('text'),
+      },
+    }),
+  },
+  headerLogoText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: 32,
+        fontWeight: fontweights.bold,
+        color: color('text'),
+        paddingRight: sp(1),
+      },
+    }),
+  },
+  headerMenuContainer: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        flexDirection: 'row',
+        paddingHorizontal: sp(4),
+      },
+    }),
+  },
+  headerLinkText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: 24,
+        color: '#f5f5f5ff',
+        paddingHorizontal: sp(1),
+        paddingVertical: sp(2),
       },
     }),
   },
@@ -120,7 +265,7 @@ const styles = {
         ...fonts.normal,
         fontSize: 16,
         fontWeight: fontweights.bold,
-        color: colors('text'),
+        color: color('text'),
         paddingHorizontal: sp(1),
         paddingVertical: sp(2),
       },
@@ -170,7 +315,7 @@ const styles = {
         width: '100%',
         height: '100%',
         flex: 1,
-        backgroundColor: colors('header'),
+        backgroundColor: color('header'),
         opacity: 0,
         ...shadow,
       },
@@ -206,7 +351,7 @@ const styles = {
         width: '100%',
         height: '100%',
         flex: 1,
-        backgroundColor: colors('footer'),
+        backgroundColor: color('footer'),
         opacity: 1,
         ...shadow,
       },
@@ -514,9 +659,13 @@ const theme = {
   fontsizes,
   fs,
   styles,
+  props,
   fonts,
   fontweights,
-  colors,
+  color,
+  gradient,
+  headerHeightMax,
+  headerHeightMin,
 };
 
 export default theme;

@@ -87,7 +87,9 @@ const getStyleSheets = props => {
           ? undefined
           : prop.convert({ value: props[styleKey][key], props });
       styleSheets[key][prop.name] =
-        value === undefined ? styleSheets[key - 1][prop.name] : value;
+        value === undefined || value === null
+          ? styleSheets[key - 1][prop.name]
+          : value;
     });
   }
   return styleSheets;

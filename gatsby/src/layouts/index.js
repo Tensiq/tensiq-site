@@ -9,10 +9,9 @@ import openSansBold from '../fonts/OpenSans-Bold.ttf';
 import favicon from '../images/favicon.png';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { headerHeightMax, headerHeightMin } from '../utils/theme';
 
-const HEADER_MAX_HEIGHT = 120;
-const HEADER_MIN_HEIGHT = 60;
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+const headerScrollDistance = headerHeightMax - headerHeightMin;
 
 const styles = StyleSheet.create({
   scrollViewContent: {
@@ -38,7 +37,7 @@ class TemplateWrapper extends React.PureComponent {
       },
     } = e;
     const value = Math.min(
-      Math.max(0, 1 / HEADER_SCROLL_DISTANCE / 4 * scrollYParam),
+      Math.max(0, 1 / headerScrollDistance / 4 * scrollYParam),
       1,
     );
     this.setState(prevState => ({
@@ -51,8 +50,8 @@ class TemplateWrapper extends React.PureComponent {
     // const headerHeight =
     //   HEADER_MAX_HEIGHT - HEADER_SCROLL_DISTANCE * this.state.height;
     const headerHeight = this.state.scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+      inputRange: [0, headerScrollDistance],
+      outputRange: [headerHeightMax, headerHeightMin],
       extrapolate: 'clamp',
     });
     const { children } = this.props;
