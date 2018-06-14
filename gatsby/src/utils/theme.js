@@ -4,7 +4,7 @@ import { Platform, StyleSheet } from 'react-native';
 import color, { gradient } from './colors';
 // export { default as elevations } from './elevation';
 
-export const radiis = [0, 2, 4];
+export const radiis = [0, 2, 4, 8, 16];
 
 export const fontweights = {
   regular: '400',
@@ -29,7 +29,7 @@ export const fonts = {
 };
 
 export const headerHeightMax = 120;
-export const headerHeightMin = 60;
+export const headerHeightMin = 50;
 
 // 1em = 16px
 const EM = 16;
@@ -45,7 +45,6 @@ export const lh = value =>
 
 const GS = 8;
 export const spaces = [
-  0,
   1 / 2 * GS,
   1 * GS,
   2 * GS,
@@ -66,17 +65,16 @@ export const spaces = [
 ];
 export const sp = value => spaces[value];
 
-const FI = 2;
 export const fontsizes = [
-  EM - 2 * FI,
-  EM - 1 * FI,
-  EM,
-  EM + 2 * FI,
-  EM + 4 * FI,
-  EM + 3 * FI,
-  EM + 4 * FI,
-  EM + 5 * FI,
-  EM + 6 * FI,
+  0.75 * EM,
+  0.875 * EM,
+  1.0 * EM,
+  1.25 * EM,
+  1.5 * EM,
+  1.75 * EM,
+  2.0 * EM,
+  2.5 * EM,
+  3.0 * EM,
 ];
 export const fs = value => fontsizes[Math.min(value, fontsizes.length)];
 
@@ -94,9 +92,10 @@ const rawStyles = {
   contentBlock: {
     normal: {
       width: '100%',
-      paddingVertical: 75,
+      paddingVertical: sp(4),
       flexDirection: 'row',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
     },
   },
   contentBlockInnerContainer: {
@@ -109,6 +108,9 @@ const rawStyles = {
 };
 
 const props = {
+  headerInnerContainer: {
+    justifyContent: ['center', null, 'space-between'],
+  },
   contentBlockBoxLeftText: {
     width: [1, 1, 1, 1 / 2, 1 / 2],
     pb: [6, 6, 6, 0, 0],
@@ -132,6 +134,55 @@ const props = {
 };
 
 const styles = {
+  teaserBlock: {
+    normal: StyleSheet.create({ 0: {} }),
+  },
+  teaserTitleText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.bold,
+        fontSize: fs(5),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+    }),
+  },
+  teaserText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+    }),
+  },
+  teaserButtonContainer: {
+    normal: StyleSheet.create({
+      0: {
+        ...shadow,
+        marginTop: sp(3),
+        width: 21 * sp(1),
+        height: 5 * sp(1),
+        overflow: 'hidden',
+        borderRadius: radiis[2],
+      },
+    }),
+  },
+  teaserButtonText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        fontWeight: fontweights.bold,
+        color: color('darkText'),
+        paddingRight: sp(0),
+      },
+    }),
+  },
+  teaserButtonContent: { normal: StyleSheet.create({ 0: { flex: 1 } }) },
   contentBlock: {
     normal: StyleSheet.create({
       0: rawStyles.contentBlock.normal,
@@ -139,8 +190,7 @@ const styles = {
     first: StyleSheet.create({
       0: {
         ...rawStyles.contentBlock.normal,
-        paddingTop:
-          rawStyles.contentBlock.normal.paddingVertical + headerHeightMax,
+        paddingTop: headerHeightMax,
       },
     }),
   },
@@ -183,10 +233,20 @@ const styles = {
       },
     },
   },
+  headerLogoLinkOuterContainer: {
+    normal: StyleSheet.create({
+      0: {
+        height: 50,
+        marginHorizontal: sp(1),
+        justifyContent: 'center',
+      },
+    }),
+  },
   headerLinkOuterContainer: {
     normal: StyleSheet.create({
       0: {
-        marginHorizontal: 2,
+        width: 100,
+        height: 50,
         justifyContent: 'center',
       },
     }),
@@ -194,7 +254,16 @@ const styles = {
   headerLogoContent: {
     normal: StyleSheet.create({
       0: {
-        paddingBottom: sp(1),
+        ...Platform.select({
+          default: {
+            paddingBottom: 0,
+          },
+          web: {
+            paddingHorizontal: sp(1),
+            paddingTop: sp(0),
+            paddingBottom: sp(1),
+          },
+        }),
       },
     }),
   },
@@ -202,9 +271,9 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         ...fonts.tensiq,
-        paddingBottom: sp(1),
-        fontSize: 48,
-        color: color('text'),
+        paddingBottom: sp(0),
+        fontSize: fs(8),
+        color: color('lightText'),
       },
     }),
   },
@@ -212,22 +281,22 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         ...fonts.normal,
-        fontSize: 32,
+        fontSize: fs(6),
         fontWeight: fontweights.bold,
-        color: color('text'),
-        paddingRight: sp(1),
+        color: color('lightText'),
+        paddingRight: sp(0),
       },
     }),
   },
   headerMenuContainer: {
     normal: StyleSheet.create({
       0: {
-        flex: 1,
         height: '100%',
         alignItems: 'center',
         justifyContent: 'flex-end',
         flexDirection: 'row',
-        paddingHorizontal: sp(4),
+        marginLeft: sp(3),
+        marginRight: sp(4),
       },
     }),
   },
@@ -235,10 +304,10 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         ...fonts.normal,
-        fontSize: 24,
+        fontSize: fs(3),
         color: '#f5f5f5ff',
-        paddingHorizontal: sp(1),
-        paddingVertical: sp(2),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
       },
     }),
   },
@@ -246,7 +315,7 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         flex: 1,
-        marginHorizontal: 2,
+        marginHorizontal: 0,
       },
     }),
   },
@@ -263,11 +332,11 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         ...fonts.normal,
-        fontSize: 16,
-        fontWeight: fontweights.bold,
-        color: color('text'),
-        paddingHorizontal: sp(1),
-        paddingVertical: sp(2),
+        fontSize: fs(3),
+        fontWeight: fontweights.normal,
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(1),
       },
     }),
   },
@@ -283,10 +352,10 @@ const styles = {
         alignItems: 'center',
         ...Platform.select({
           default: {
-            paddingBottom: 10,
+            paddingBottom: sp(0),
           },
           web: {
-            paddingBottom: 8,
+            paddingBottom: 0,
           },
         }),
       },
@@ -301,8 +370,9 @@ const styles = {
         flex: 1,
         flexDirection: 'row',
         alignSelf: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: sp(2),
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 0,
       },
     }),
   },
@@ -333,10 +403,10 @@ const styles = {
         justifyContent: 'center',
         ...Platform.select({
           default: {
-            paddingBottom: 10,
+            paddingBottom: sp(0),
           },
           web: {
-            paddingBottom: 8,
+            paddingBottom: sp(0),
           },
         }),
       },
@@ -371,7 +441,7 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        paddingHorizontal: sp(2),
+        paddingHorizontal: sp(1),
       },
     }),
   },
@@ -379,7 +449,7 @@ const styles = {
     1: StyleSheet.create({
       0: {
         ...fonts.normal,
-        marginTop: 6,
+        marginTop: sp(0),
         fontWeight: fontweights.bold,
         fontSize: fs(4),
       },
@@ -388,7 +458,7 @@ const styles = {
       0: {
         ...fonts.normal,
         fontWeight: fontweights.bold,
-        marginTop: sp(3),
+        marginTop: sp(2),
         fontSize: fs(2),
       },
     }),
@@ -420,7 +490,7 @@ const styles = {
       4: { flex: 1, flexDirection: 'row', marginTop: sp(5) },
     }),
     text: StyleSheet.create({
-      0: { ...fonts.normal, marginTop: sp(0) },
+      0: { ...fonts.normal, marginTop: 0 },
     }),
   },
   text: {

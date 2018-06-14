@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import Link from '../components/RippleLink';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Box from '../components/Grid/Box';
@@ -85,80 +85,59 @@ class IndexPage extends React.Component {
                       element: 'contentBlockOuterContainer',
                     })}
                   >
-                    <Box {...theme.props.contentBlockBoxLeftImage}>
-                      <View
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockInnerContainer',
+                      })}
+                    >
+                      <Text
                         style={theme.style({
-                          element: 'contentBlockInnerContainer',
-                          type: 'allCentered',
+                          element: 'teaserTitleText',
                         })}
                       >
-                        <LinearGradient
-                          start={{ x: 0.0, y: 0.25 }}
-                          end={{ x: 1.0, y: 0.9 }}
-                          colors={['#e8dae9ff', '#b0d6f9ff']}
-                          style={{
-                            ...shadow,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 100,
-                            height: 50,
-                            backgroundColor: '#f5f5f5ff',
-                          }}
-                        >
-                          <Text style={styles.text3}>Git</Text>
-                        </LinearGradient>
-                        <LinearGradient
-                          start={{ x: 0.0, y: 0.25 }}
-                          end={{ x: 1.0, y: 0.9 }}
-                          colors={['#e8dae9ff', '#b0d6f9ff']}
-                          style={{
-                            ...shadow,
-                            marginTop: 10,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 100,
-                            height: 50,
-                            backgroundColor: '#f5f5f5ff',
-                          }}
-                        >
-                          <Text style={styles.text3}>Project</Text>
-                        </LinearGradient>
-                        <LinearGradient
-                          start={{ x: 0.0, y: 0.25 }}
-                          end={{ x: 1.0, y: 0.9 }}
-                          colors={['#e8dae9ff', '#b0d6f9ff']}
-                          style={{
-                            ...shadow,
-                            marginTop: 10,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 100,
-                            height: 50,
-                            backgroundColor: '#f5f5f5ff',
-                          }}
-                        >
-                          <Text style={styles.text3}>Target</Text>
-                        </LinearGradient>
-                      </View>
-                    </Box>
-                    <Box {...theme.props.contentBlockBoxRightText}>
-                      <View
+                        Let's build awesome things together...
+                      </Text>
+                      <Text
                         style={theme.style({
-                          element: 'contentBlockInnerContainer',
-                          type: 'leftCentered',
+                          element: 'teaserText',
                         })}
                       >
-                        <Text style={styles.text}>
-                          Open up src/App.js to start working on your app!
-                        </Text>
-                        <Text style={styles.text}>
-                          Changes you make will automatically reload.
-                        </Text>
-                        <Text style={styles.text}>
-                          Shake your phone to open the developer menu.
-                        </Text>
+                        We master the bridge between cutting-edge technology and
+                        secure, resilient, performant solutions.
+                      </Text>
+                      <View
+                        style={theme.style({
+                          element: 'teaserButtonContainer',
+                        })}
+                      >
+                        <Link
+                          to="/"
+                          style={{ flex: 1 }}
+                          contentStyle={theme.style({
+                            element: 'teaserButtonContent',
+                          })}
+                          rippleColor={theme.color('rippleTeaserButton')}
+                        >
+                          <LinearGradient
+                            {...theme.gradient('lightBlock')}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}
+                          >
+                            <Text
+                              style={theme.style({
+                                element: 'teaserButtonText',
+                              })}
+                            >
+                              Get In Touch
+                            </Text>
+                          </LinearGradient>
+                        </Link>
                       </View>
-                    </Box>
+                    </View>
                   </View>
                 </LinearGradient>
                 <LinearGradient

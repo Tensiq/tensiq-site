@@ -38,10 +38,13 @@ class Header extends React.PureComponent {
                 <View
                   style={[theme.style({ element: 'headerColor' }), { opacity }]}
                 />
-                <View style={theme.style({ element: 'headerInnerContainer' })}>
+                <Box
+                  style={theme.style({ element: 'headerInnerContainer' })}
+                  {...theme.props.headerInnerContainer}
+                >
                   <View
                     style={theme.style({
-                      element: 'headerLinkOuterContainer',
+                      element: 'headerLogoLinkOuterContainer',
                     })}
                   >
                     <Link
@@ -115,7 +118,7 @@ class Header extends React.PureComponent {
                       </Link>
                     </View>
                   </Box>
-                </View>
+                </Box>
               </Animated.View>
             </ThemeProvider>
           );

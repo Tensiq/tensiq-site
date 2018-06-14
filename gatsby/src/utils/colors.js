@@ -3,7 +3,8 @@ import Color from 'color';
 const colors = {
   header: '#3a3a3aff',
   footer: '#3a3a3aff',
-  text: '#f5f5f5ff',
+  lightText: '#f5f5f5ff',
+  darkText: '#2b2b2bff',
   rippleHeader: '#f5f5f580',
   rippleFooter: '#f5f5f580',
 };

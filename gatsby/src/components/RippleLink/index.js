@@ -7,6 +7,8 @@ import RippleFeedback from 'react-native-material-ui/src/RippleFeedback';
 const linkStyle = {
   color: 'white',
   textDecoration: 'none',
+  height: '100%',
+  width: '100%',
 };
 
 const styles = StyleSheet.create({
@@ -15,7 +17,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 10,
   },
 });
 
