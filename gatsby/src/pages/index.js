@@ -4,6 +4,8 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Box from '../components/Grid/Box';
 import { ThemeContext } from '../components/ThemeProvider';
+import Img from 'gatsby-image';
+import { Header1 } from '../components/PageHeader';
 
 const styles = StyleSheet.create({
   block: {
@@ -67,6 +69,8 @@ const shadow = Platform.select({
 
 class IndexPage extends React.Component {
   render() {
+    const { data } = this.props;
+    console.log(data);
     return (
       <View>
         <ThemeContext.Consumer>
@@ -144,82 +148,86 @@ class IndexPage extends React.Component {
                   {...theme.gradient('lightBlock')}
                   style={[theme.style({ element: 'contentBlock' })]}
                 >
-                  <View style={styles.blockContent}>
+                  <View
+                    style={theme.style({
+                      element: 'contentBlockOuterContainer',
+                    })}
+                  >
                     <View
-                      style={{
-                        flex: 1,
-                        justifyContent: 'center',
-                        alignItems: 'flex-end',
-                        paddingVertical: 20,
-                        paddingRight: 10,
-                      }}
+                      style={[
+                        theme.style({
+                          element: 'contentBlockInnerContainer',
+                        }),
+                      ]}
                     >
-                      <Text style={styles.text2}>
-                        Open up src/App.js to start working on your app!
-                      </Text>
-                      <Text style={styles.text2}>
-                        Changes you make will automatically reload.
-                      </Text>
-                      <Text style={styles.text2}>
-                        Shake your phone to open the developer menu.
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        flex: 1,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        paddingVertical: 20,
-                        paddingRight: 10,
-                      }}
-                    >
-                      <LinearGradient
-                        start={{ x: 0.25, y: 0.0 }}
-                        end={{ x: 0.5, y: 1.0 }}
-                        colors={['#7c7c7cff', '#2b2b2bff']}
+                      <View
                         style={{
-                          ...shadow,
+                          flex: 1,
+                          flexDirection: 'row',
+                          flexWrap: 'wrap',
                           justifyContent: 'center',
-                          alignItems: 'center',
-                          width: 100,
-                          height: 50,
-                          backgroundColor: '#3a3a3aff',
                         }}
                       >
-                        <Text style={styles.text4}>Git</Text>
-                      </LinearGradient>
-                      <LinearGradient
-                        start={{ x: 0.25, y: 0.0 }}
-                        end={{ x: 0.5, y: 1.0 }}
-                        colors={['#7c7c7cff', '#2b2b2bff']}
-                        style={{
-                          ...shadow,
-                          marginTop: 10,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          width: 100,
-                          height: 50,
-                          backgroundColor: '#3a3a3aff',
-                        }}
-                      >
-                        <Text style={styles.text4}>Project</Text>
-                      </LinearGradient>
-                      <LinearGradient
-                        start={{ x: 0.25, y: 0.0 }}
-                        end={{ x: 0.5, y: 1.0 }}
-                        colors={['#7c7c7cff', '#2b2b2bff']}
-                        style={{
-                          ...shadow,
-                          marginTop: 10,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          width: 100,
-                          height: 50,
-                          backgroundColor: '#3a3a3aff',
-                        }}
-                      >
-                        <Text style={styles.text4}>Target</Text>
-                      </LinearGradient>
+                        <Box
+                          style={theme.style({ element: 'contentColumn3' })}
+                          {...theme.props.contentColumn3}
+                        >
+                          <View style={{ height: 70 }}>
+                            <Header1 theme={theme}>
+                              Modern Mobile & Web Apps
+                            </Header1>
+                          </View>
+                          <Img
+                            sizes={
+                              data.imgModernMobileWebApps.childImageSharp.sizes
+                            }
+                          />
+                          <Text>
+                            Responsive mobile-first native and Progressive Web
+                            Apps with high quality UI components and cloud
+                            service integration like Firebase powered by React
+                            Native, React Native Web,Gatsby.js and Node.js.
+                          </Text>
+                        </Box>
+                        <Box
+                          style={theme.style({ element: 'contentColumn3' })}
+                          {...theme.props.contentColumn3}
+                        >
+                          <View style={{ height: 70 }}>
+                            <Header1 theme={theme}>
+                              Cross-Platform 2D Games
+                            </Header1>
+                          </View>
+                          <Img
+                            sizes={
+                              data.imgCrossPlatform2dGames.childImageSharp.sizes
+                            }
+                          />
+                          <Text>
+                            Beautiful, cross-platform games designed in Inkscape
+                            and Gimp and build with the highly extensible Godot
+                            Engine backed by an commercial friendly MIT licence.
+                          </Text>
+                        </Box>
+                        <Box
+                          style={[theme.style({ element: 'contentColumn3' })]}
+                          {...theme.props.contentColumn3}
+                        >
+                          <View style={{ height: 70 }}>
+                            <Header1 theme={theme}>Data Analysis</Header1>
+                          </View>
+                          <Img
+                            sizes={data.imgDataAnalysis.childImageSharp.sizes}
+                          />
+                          <Text>
+                            Interactive analysis of data from cloud APIs,
+                            Databases and common filetypes with Python, Pandas,
+                            NumPy and SciPy in Jupyter notebooks resulting in
+                            visual presentations and interaction with ipywidget
+                            and Matplotlib.
+                          </Text>
+                        </Box>
+                      </View>
                     </View>
                   </View>
                 </LinearGradient>
@@ -400,3 +408,33 @@ class IndexPage extends React.Component {
 }
 
 export default IndexPage;
+
+export const query = graphql`
+  query GatsbyImageSampleQuery {
+    imgModernMobileWebApps: file(
+      relativePath: { eq: "images/modern-mobile-web-apps.png" }
+    ) {
+      childImageSharp {
+        sizes(maxWidth: 960) {
+          ...GatsbyImageSharpSizes_withWebp
+        }
+      }
+    }
+    imgCrossPlatform2dGames: file(
+      relativePath: { eq: "images/cross-platform-2d-games.png" }
+    ) {
+      childImageSharp {
+        sizes(maxWidth: 960) {
+          ...GatsbyImageSharpSizes_withWebp
+        }
+      }
+    }
+    imgDataAnalysis: file(relativePath: { eq: "images/data-analysis.png" }) {
+      childImageSharp {
+        sizes(maxWidth: 960) {
+          ...GatsbyImageSharpSizes_withWebp
+        }
+      }
+    }
+  }
+`;

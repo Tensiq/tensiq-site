@@ -92,7 +92,7 @@ const rawStyles = {
   contentBlock: {
     normal: {
       width: '100%',
-      paddingVertical: sp(4),
+      paddingVertical: sp(3),
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
@@ -101,13 +101,19 @@ const rawStyles = {
   contentBlockInnerContainer: {
     normal: {
       flex: 1,
-      paddingVertical: 20,
-      paddingHorizontal: 20,
+      paddingVertical: sp(3),
+      paddingHorizontal: sp(3),
     },
   },
 };
 
 const props = {
+  contentColumn3: {
+    width: [1, 1, 1 / 2, 1 / 3, 1 / 3],
+  },
+  contentColumn3Last: {
+    width: [1, 1, 1, 1 / 3, 1 / 3],
+  },
   headerInnerContainer: {
     justifyContent: ['center', null, 'space-between'],
   },
@@ -134,6 +140,24 @@ const props = {
 };
 
 const styles = {
+  contentColumn3: {
+    normal: StyleSheet.create({
+      0: {
+        maxWidth: 960 / 3,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+      },
+    }),
+  },
+  contentColumn3Last: {
+    normal: StyleSheet.create({
+      0: {
+        maxWidth: 960 / 3,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+      },
+    }),
+  },
   teaserBlock: {
     normal: StyleSheet.create({ 0: {} }),
   },
@@ -449,6 +473,7 @@ const styles = {
     1: StyleSheet.create({
       0: {
         ...fonts.normal,
+        color: color('darkText').string(),
         marginTop: sp(0),
         fontWeight: fontweights.bold,
         fontSize: fs(4),

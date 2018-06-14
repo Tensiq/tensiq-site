@@ -15,7 +15,7 @@ const getProp = key =>
     .join('')
     .toLowerCase();
 
-const spaceToPixel = ({ value, props }) => props.theme.spaces[parseInt(value)];
+const spaceToPixel = ({ value, props }) => props.theme.sp(parseInt(value));
 const plain = ({ value }) => value;
 const toPercent = ({ value }) => value * 100 + '%';
 
@@ -115,7 +115,7 @@ export default class Box extends React.PureComponent {
     return (
       <ThemeContext.Consumer>
         {theme => {
-          // console.log(this.getStyleSheet(theme));
+          console.log(this.getStyleSheet(theme));
           return (
             <View
               {...this.props}
