@@ -94,8 +94,8 @@ const rawStyles = {
       width: '100%',
       paddingVertical: sp(4),
       flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   },
   contentBlockInnerContainer: {
