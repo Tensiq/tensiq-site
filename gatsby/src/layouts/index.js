@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Animated, View, ScrollView, Text, StyleSheet } from 'react-native';
-import iconFont from '../fonts/FontAwesome.ttf';
+import iconFont from '../fonts/fa-solid-900.ttf';
 import tensiqFont from '../fonts/Tensiq.ttf';
 import openSansNormal from '../fonts/OpenSans-Regular.ttf';
 import openSansBold from '../fonts/OpenSans-Bold.ttf';

@@ -92,7 +92,8 @@ const rawStyles = {
   contentBlock: {
     normal: {
       width: '100%',
-      paddingVertical: sp(3),
+      paddingTop: sp(1),
+      paddingBottom: sp(3),
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
@@ -101,18 +102,36 @@ const rawStyles = {
   contentBlockInnerContainer: {
     normal: {
       flex: 1,
+      flexDirection: 'row',
       paddingVertical: sp(3),
       paddingHorizontal: sp(3),
+    },
+    tight: {
+      flex: 1,
+      flexDirection: 'row',
+      paddingVertical: sp(2),
+      paddingHorizontal: sp(2),
+    },
+    slim: {
+      flex: 1,
+      flexDirection: 'row',
+      paddingVertical: sp(1),
+      paddingHorizontal: sp(1),
     },
   },
 };
 
 const props = {
+  rocketIconLeft: {
+    display: ['none', null, 'flex'],
+  },
+  rocketIconCenter: {
+    display: ['flex', null, 'none'],
+  },
   contentColumn3: {
     width: [1, 1, 1 / 2, 1 / 3, 1 / 3],
-  },
-  contentColumn3Last: {
-    width: [1, 1, 1, 1 / 3, 1 / 3],
+    pr: [0, 0, 3, 3, 3],
+    mb: [3, 3, 0],
   },
   headerInnerContainer: {
     justifyContent: ['center', null, 'space-between'],
@@ -140,22 +159,33 @@ const props = {
 };
 
 const styles = {
+  teaserIcon: {
+    normal: StyleSheet.create({
+      0: {
+        fontSize: 140,
+        color: color('lightText'),
+      },
+      1: {
+        fontSize: 180,
+        color: color('lightText'),
+      },
+      4: {
+        fontSize: 140,
+        color: color('lightText'),
+      },
+    }),
+  },
   contentColumn3: {
     normal: StyleSheet.create({
       0: {
-        maxWidth: 960 / 3,
         flexDirection: 'column',
         justifyContent: 'flex-start',
       },
     }),
   },
-  contentColumn3Last: {
+  contentColumnTitle: {
     normal: StyleSheet.create({
-      0: {
-        maxWidth: 960 / 3,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-      },
+      2: { height: 70 },
     }),
   },
   teaserBlock: {
@@ -221,6 +251,12 @@ const styles = {
   contentBlockInnerContainer: {
     normal: {
       0: {
+        ...rawStyles.contentBlockInnerContainer.slim,
+      },
+      1: {
+        ...rawStyles.contentBlockInnerContainer.tight,
+      },
+      2: {
         ...rawStyles.contentBlockInnerContainer.normal,
       },
     },
@@ -476,7 +512,7 @@ const styles = {
         color: color('darkText').string(),
         marginTop: sp(0),
         fontWeight: fontweights.bold,
-        fontSize: fs(4),
+        fontSize: fs(5),
       },
     }),
     2: StyleSheet.create({
@@ -484,7 +520,7 @@ const styles = {
         ...fonts.normal,
         fontWeight: fontweights.bold,
         marginTop: sp(2),
-        fontSize: fs(2),
+        fontSize: fs(4),
       },
     }),
     3: StyleSheet.create({
@@ -492,7 +528,7 @@ const styles = {
         ...fonts.normal,
         marginTop: 6,
         fontWeight: fontweights.bold,
-        fontSize: fs(1),
+        fontSize: fs(3),
       },
     }),
   },
@@ -522,51 +558,27 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         ...fonts.normal,
-        fontSize: 14,
-        paddingVertical: 4,
-        lineHeight: lh(1),
-      },
-      1: {
-        ...fonts.normal,
-        fontSize: 14,
-        paddingVertical: 4,
-        lineHeight: lh(2),
-      },
-      2: {
-        ...fonts.normal,
-        fontSize: 14,
+        fontSize: fs(2),
         paddingVertical: 4,
         lineHeight: lh(3),
-      },
-      3: {
-        ...fonts.normal,
-        fontSize: 14,
-        paddingVertical: 4,
-        lineHeight: lh(4),
-      },
-      4: {
-        ...fonts.normal,
-        fontSize: 14,
-        paddingVertical: 4,
-        lineHeight: lh(5),
       },
     }),
     em: StyleSheet.create({
       0: {
         ...fonts.normal,
-        fontSize: 14,
         fontStyle: 'italic',
+        fontSize: fs(2),
         paddingVertical: 4,
-        lineHeight: lh(1),
+        lineHeight: lh(3),
       },
     }),
     strong: StyleSheet.create({
       0: {
         ...fonts.normal,
-        fontSize: 14,
         fontWeight: fontweights.bold,
+        fontSize: fs(2),
         paddingVertical: 4,
-        lineHeight: lh(1),
+        lineHeight: lh(3),
       },
     }),
   },

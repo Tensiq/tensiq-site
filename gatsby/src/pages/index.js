@@ -5,7 +5,16 @@ import LinearGradient from 'react-native-linear-gradient';
 import Box from '../components/Grid/Box';
 import { ThemeContext } from '../components/ThemeProvider';
 import Img from 'gatsby-image';
-import { Header1 } from '../components/PageHeader';
+import { Header1, Header2 } from '../components/PageHeader';
+import { TextNormal, TextStrong } from '../components/Text';
+
+import { createIconSet } from 'react-native-vector-icons';
+const glyphMap = { rocket: parseInt('f135', 16) };
+const Icon = createIconSet(glyphMap, 'FontAwesome');
+
+const rocketIcon = theme => (
+  <Icon name="rocket" style={theme.style({ element: 'teaserIcon' })} />
+);
 
 const styles = StyleSheet.create({
   block: {
@@ -89,59 +98,79 @@ class IndexPage extends React.Component {
                       element: 'contentBlockOuterContainer',
                     })}
                   >
-                    <View
+                    <Box
                       style={theme.style({
                         element: 'contentBlockInnerContainer',
                       })}
                     >
-                      <Text
-                        style={theme.style({
-                          element: 'teaserTitleText',
-                        })}
+                      <Box
+                        style={{
+                          paddingTop: theme.sp(1),
+                          marginRight: theme.sp(4),
+                        }}
+                        {...theme.props.rocketIconLeft}
                       >
-                        Let's build awesome things together...
-                      </Text>
-                      <Text
-                        style={theme.style({
-                          element: 'teaserText',
-                        })}
-                      >
-                        We master the bridge between cutting-edge technology and
-                        secure, resilient, performant solutions.
-                      </Text>
-                      <View
-                        style={theme.style({
-                          element: 'teaserButtonContainer',
-                        })}
-                      >
-                        <Link
-                          to="/"
-                          style={{ flex: 1 }}
-                          contentStyle={theme.style({
-                            element: 'teaserButtonContent',
+                        {rocketIcon(theme)}
+                      </Box>
+                      <View style={{ flex: 1 }}>
+                        <Text
+                          style={theme.style({
+                            element: 'teaserTitleText',
                           })}
-                          rippleColor={theme.color('rippleTeaserButton')}
                         >
-                          <LinearGradient
-                            {...theme.gradient('lightBlock')}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                            }}
+                          Let's build awesome things together...
+                        </Text>
+                        <Box
+                          style={{
+                            marginVertical: theme.sp(3),
+                            alignItems: 'center',
+                          }}
+                          {...theme.props.rocketIconCenter}
+                        >
+                          {rocketIcon(theme)}
+                        </Box>
+                        <Text
+                          style={theme.style({
+                            element: 'teaserText',
+                          })}
+                        >
+                          We master the bridge between cutting-edge technology
+                          and secure, resilient, performant solutions.
+                        </Text>
+                        <View
+                          style={theme.style({
+                            element: 'teaserButtonContainer',
+                          })}
+                        >
+                          <Link
+                            to="/"
+                            style={{ flex: 1 }}
+                            contentStyle={theme.style({
+                              element: 'teaserButtonContent',
+                            })}
+                            rippleColor={theme.color('rippleTeaserButton')}
                           >
-                            <Text
-                              style={theme.style({
-                                element: 'teaserButtonText',
-                              })}
+                            <LinearGradient
+                              {...theme.gradient('lightBlock')}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                              }}
                             >
-                              Get In Touch
-                            </Text>
-                          </LinearGradient>
-                        </Link>
+                              <Text
+                                style={theme.style({
+                                  element: 'teaserButtonText',
+                                })}
+                              >
+                                Get In Touch
+                              </Text>
+                            </LinearGradient>
+                          </Link>
+                        </View>
                       </View>
-                    </View>
+                    </Box>
                   </View>
                 </LinearGradient>
                 <LinearGradient
@@ -158,8 +187,10 @@ class IndexPage extends React.Component {
                         theme.style({
                           element: 'contentBlockInnerContainer',
                         }),
+                        { flexDirection: 'column' },
                       ]}
                     >
+                      <Header1 theme={theme}>Services</Header1>
                       <View
                         style={{
                           flex: 1,
@@ -172,59 +203,89 @@ class IndexPage extends React.Component {
                           style={theme.style({ element: 'contentColumn3' })}
                           {...theme.props.contentColumn3}
                         >
-                          <View style={{ height: 70 }}>
-                            <Header1 theme={theme}>
+                          <View
+                            style={theme.style({
+                              element: 'contentColumnTitle',
+                            })}
+                          >
+                            <Header2 theme={theme}>
                               Modern Mobile & Web Apps
-                            </Header1>
+                            </Header2>
                           </View>
                           <Img
                             sizes={
                               data.imgModernMobileWebApps.childImageSharp.sizes
                             }
                           />
-                          <Text>
+                          <TextNormal theme={theme}>
                             Responsive mobile-first native and Progressive Web
                             Apps with high quality UI components and cloud
-                            service integration like Firebase powered by React
-                            Native, React Native Web,Gatsby.js and Node.js.
-                          </Text>
+                            service integration like{' '}
+                            <TextStrong theme={theme}>Firebase</TextStrong>{' '}
+                            powered by{' '}
+                            <TextStrong theme={theme}>React Native</TextStrong>,{' '}
+                            <TextStrong theme={theme}>
+                              React Native Web
+                            </TextStrong>,{' '}
+                            <TextStrong theme={theme}>Gatsby.js </TextStrong>
+                            and <TextStrong theme={theme}>Node.js</TextStrong>.
+                          </TextNormal>
                         </Box>
                         <Box
                           style={theme.style({ element: 'contentColumn3' })}
                           {...theme.props.contentColumn3}
                         >
-                          <View style={{ height: 70 }}>
-                            <Header1 theme={theme}>
+                          <View
+                            style={theme.style({
+                              element: 'contentColumnTitle',
+                            })}
+                          >
+                            <Header2 theme={theme}>
                               Cross-Platform 2D Games
-                            </Header1>
+                            </Header2>
                           </View>
                           <Img
                             sizes={
                               data.imgCrossPlatform2dGames.childImageSharp.sizes
                             }
                           />
-                          <Text>
-                            Beautiful, cross-platform games designed in Inkscape
-                            and Gimp and build with the highly extensible Godot
-                            Engine backed by an commercial friendly MIT licence.
+                          <Text style={theme.style({ element: 'text' })}>
+                            Beautiful, cross-platform games designed in{' '}
+                            <TextStrong theme={theme}>Inkscape</TextStrong> and{' '}
+                            <TextStrong theme={theme}>Gimp</TextStrong> and
+                            build with the highly extensible{' '}
+                            <TextStrong theme={theme}>Godot Engine</TextStrong>{' '}
+                            backed by an commercial friendly MIT licence.
                           </Text>
                         </Box>
                         <Box
                           style={[theme.style({ element: 'contentColumn3' })]}
                           {...theme.props.contentColumn3}
                         >
-                          <View style={{ height: 70 }}>
-                            <Header1 theme={theme}>Data Analysis</Header1>
+                          <View
+                            style={theme.style({
+                              element: 'contentColumnTitle',
+                            })}
+                          >
+                            <Header2 theme={theme}>Data Analysis</Header2>
                           </View>
                           <Img
                             sizes={data.imgDataAnalysis.childImageSharp.sizes}
                           />
-                          <Text>
+                          <Text style={theme.style({ element: 'text' })}>
                             Interactive analysis of data from cloud APIs,
-                            Databases and common filetypes with Python, Pandas,
-                            NumPy and SciPy in Jupyter notebooks resulting in
-                            visual presentations and interaction with ipywidget
-                            and Matplotlib.
+                            Databases and common filetypes with{' '}
+                            <TextStrong theme={theme}>Python</TextStrong>,{' '}
+                            <TextStrong theme={theme}>Pandas</TextStrong>,
+                            <TextStrong theme={theme}>
+                              NumPy
+                            </TextStrong> and{' '}
+                            <TextStrong theme={theme}>SciPy</TextStrong> in{' '}
+                            <TextStrong theme={theme}>
+                              Jupyter notebooks
+                            </TextStrong>{' '}
+                            resulting in visual presentations and interaction
+                            with ipywidget and Matplotlib.
                           </Text>
                         </Box>
                       </View>
