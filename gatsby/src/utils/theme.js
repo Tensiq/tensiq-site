@@ -182,6 +182,14 @@ const styles = {
       },
     }),
   },
+  githubIcon: {
+    normal: StyleSheet.create({
+      0: {
+        fontSize: fs(2),
+        color: color('lightText'),
+      },
+    }),
+  },
   goIcon: {
     normal: StyleSheet.create({
       0: {

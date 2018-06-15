@@ -9573,7 +9573,7 @@ react-native-material-design-styles@^0.2.6:
 
 react-native-material-ui@arrkiin/react-native-material-ui#react-native-web:
   version "1.22.2"
-  resolved "https://codeload.github.com/arrkiin/react-native-material-ui/tar.gz/b9bc0d32f99184e1165e7c6c1f1b03e4e08f5f85"
+  resolved "https://codeload.github.com/arrkiin/react-native-material-ui/tar.gz/791839074e7e925b43896a03212e6e7fb9a1700f"
   dependencies:
     color "2.0.1"
     prop-types "^15.5.10"

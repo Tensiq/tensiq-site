@@ -1,0 +1,6 @@
+patch-package
+new file mode 100644
+--- /dev/null
++++ b/node_modules/react-native-web-linear-gradient/.babelrc
+@@ -0,0 +1 @@
++{}

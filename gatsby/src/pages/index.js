@@ -16,16 +16,24 @@ const glyphMap = {
   rocket: parseInt('f135', 16),
   users: parseInt('f0c0', 16),
   heartbeat: parseInt('f21e', 16),
-  utensils: parseInt('f2e7', 16),
+  toolbox: parseInt('f552', 16),
   'arrow-circle-right': parseInt('f0a9', 16),
+  heart: parseInt('f004',16),
 };
+
+const brandGlyphMap = {
+  react: parseInt('f41b', 16),
+  github: parseInt('f09b', 16),
+};
+
 const Icon = createIconSet(glyphMap, 'FontAwesome');
+const BrandIcon = createIconSet(brandGlyphMap, 'FontAwesomeBrands');
 
 const rocketIcon = theme => (
   <Icon name="rocket" style={theme.style({ element: 'teaserIcon' })} />
 );
 
-const staffIcon = theme => (
+const crewIcon = theme => (
   <Icon name="users" style={theme.style({ element: 'aboutIcon' })} />
 );
 
@@ -34,11 +42,23 @@ const mindIcon = theme => (
 );
 
 const toolsIcon = theme => (
-  <Icon name="utensils" style={theme.style({ element: 'aboutIcon' })} />
+  <Icon name="toolbox" style={theme.style({ element: 'aboutIcon' })} />
 );
 
 const goIcon = theme => (
   <Icon name="arrow-circle-right" style={theme.style({ element: 'goIcon' })} />
+);
+
+const heartIcon = theme => (
+    <Icon name="heart" style={theme.style({ element: 'githubIcon' })} />
+  );
+
+const reactIcon = theme => (
+  <BrandIcon name="react" style={theme.style({ element: 'githubIcon' })} />
+);
+
+const githubIcon = theme => (
+  <BrandIcon name="github" style={theme.style({ element: 'githubIcon' })} />
 );
 
 const styles = StyleSheet.create({
@@ -371,10 +391,7 @@ class IndexPage extends React.Component {
                           >
                             <Card
                               onPress={() =>
-                                setTimeout(
-                                  () => navigateTo('/about#staff'),
-                                  400,
-                                )
+                                setTimeout(() => navigateTo('/about#crew'), 400)
                               }
                               style={{
                                 container: {
@@ -395,7 +412,7 @@ class IndexPage extends React.Component {
                                   }}
                                   pointerEvents="none"
                                 >
-                                  {staffIcon(theme)}
+                                  {crewIcon(theme)}
                                 </View>
                                 <View
                                   style={theme.style({
@@ -404,7 +421,7 @@ class IndexPage extends React.Component {
                                   pointerEvents="none"
                                 >
                                   <Header2 centered="true" theme={theme}>
-                                    Staff
+                                    Crew
                                   </Header2>
                                 </View>
                                 <View
@@ -474,7 +491,7 @@ class IndexPage extends React.Component {
                                   })}
                                 >
                                   <TextNormal theme={theme}>
-                                    All things in live start with why. Feel what
+                                    All things in life start with why. Feel what
                                     powers our minds.
                                   </TextNormal>
                                 </View>
@@ -524,7 +541,7 @@ class IndexPage extends React.Component {
                                   })}
                                 >
                                   <Header2 centered="true" theme={theme}>
-                                    Engine
+                                    Tools
                                   </Header2>
                                 </View>
                                 <View
@@ -561,14 +578,48 @@ class IndexPage extends React.Component {
                       style={[
                         styles.blockContent,
                         {
-                          justifyContent: 'center',
-                          paddingBottom: theme.sp(10),
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          paddingBottom: theme.sp(1),
                         },
                       ]}
                     >
-                      <Header2 light="true" centered="true" theme={theme}>
-                        Footnotes
-                      </Header2>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Copyright © 2018 Tensiq OÜ. All rights reserved.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Built with {heartIcon(theme)} in Tallinn, Estonia.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Crafted with Gatsby.js and {reactIcon(theme)} Native Web.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Powered with {githubIcon(theme)} on Netlify.
+                      </TextNormal>
                     </View>
                   </View>
                 </View>
