@@ -395,7 +395,8 @@ const styles = {
       0: {
         ...fonts.tensiq,
         paddingBottom: sp(0),
-        fontSize: fs(8),
+        paddingRight: sp(1),
+        fontSize: fs(7),
         color: color('lightText'),
       },
     }),

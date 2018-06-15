@@ -18,7 +18,7 @@ const glyphMap = {
   heartbeat: parseInt('f21e', 16),
   toolbox: parseInt('f552', 16),
   'arrow-circle-right': parseInt('f0a9', 16),
-  heart: parseInt('f004',16),
+  heart: parseInt('f004', 16),
 };
 
 const brandGlyphMap = {
@@ -26,8 +26,27 @@ const brandGlyphMap = {
   github: parseInt('f09b', 16),
 };
 
+const customGlyphMap = {
+  tensiq: 't',
+  netlify: 'n',
+  gatsby: 'g',
+};
+
 const Icon = createIconSet(glyphMap, 'FontAwesome');
 const BrandIcon = createIconSet(brandGlyphMap, 'FontAwesomeBrands');
+const CustomIcon = createIconSet(customGlyphMap, 'Tensiq');
+
+const tensiqIcon = theme => (
+  <CustomIcon name="tensiq" style={theme.style({ element: 'githubIcon' })} />
+);
+
+const netlifyIcon = theme => (
+  <CustomIcon name="netlify" style={theme.style({ element: 'githubIcon' })} />
+);
+
+const gatsbyIcon = theme => (
+  <CustomIcon name="gatsby" style={theme.style({ element: 'githubIcon' })} />
+);
 
 const rocketIcon = theme => (
   <Icon name="rocket" style={theme.style({ element: 'teaserIcon' })} />
@@ -50,8 +69,8 @@ const goIcon = theme => (
 );
 
 const heartIcon = theme => (
-    <Icon name="heart" style={theme.style({ element: 'githubIcon' })} />
-  );
+  <Icon name="heart" style={theme.style({ element: 'githubIcon' })} />
+);
 
 const reactIcon = theme => (
   <BrandIcon name="react" style={theme.style({ element: 'githubIcon' })} />
@@ -570,8 +589,11 @@ class IndexPage extends React.Component {
                   </LinearGradient>
                   <View
                     style={[
-                      styles.block,
-                      { backgroundColor: theme.color('footnotes') },
+                      {
+                        paddingTop: theme.sp(3),
+                        paddingBottom: theme.sp(7),
+                        backgroundColor: theme.color('footnotes'),
+                      },
                     ]}
                   >
                     <View
@@ -580,6 +602,7 @@ class IndexPage extends React.Component {
                         {
                           flexDirection: 'column',
                           alignItems: 'center',
+                          paddingHorizontal: theme.sp(2),
                           paddingBottom: theme.sp(1),
                         },
                       ]}
@@ -587,15 +610,27 @@ class IndexPage extends React.Component {
                       <TextNormal
                         theme={theme}
                         style={{
+                          textAlign: 'center',
                           paddingVertical: theme.sp(0),
                           color: theme.color('lightText'),
                         }}
                       >
-                        Copyright © 2018 Tensiq OÜ. All rights reserved.
+                        Copyright © 2018 {tensiqIcon(theme)} Tensiq OÜ.
                       </TextNormal>
                       <TextNormal
                         theme={theme}
                         style={{
+                          textAlign: 'center',
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        All rights reserved.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          textAlign: 'center',
                           paddingVertical: theme.sp(0),
                           color: theme.color('lightText'),
                         }}
@@ -605,20 +640,24 @@ class IndexPage extends React.Component {
                       <TextNormal
                         theme={theme}
                         style={{
+                          textAlign: 'center',
                           paddingVertical: theme.sp(0),
                           color: theme.color('lightText'),
                         }}
                       >
-                        Crafted with Gatsby.js and {reactIcon(theme)} Native Web.
+                        Crafted with {gatsbyIcon(theme)} Gatsby.js and{' '}
+                        {reactIcon(theme)} React Native Web.
                       </TextNormal>
                       <TextNormal
                         theme={theme}
                         style={{
+                          textAlign: 'center',
                           paddingVertical: theme.sp(0),
                           color: theme.color('lightText'),
                         }}
                       >
-                        Powered with {githubIcon(theme)} on Netlify.
+                        Organized on {githubIcon(theme)} Github and deployed on{' '}
+                        {netlifyIcon(theme)} Netlify.
                       </TextNormal>
                     </View>
                   </View>

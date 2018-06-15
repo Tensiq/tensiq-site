@@ -5,6 +5,17 @@ import { Animated, View, Text } from 'react-native';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import { ThemeContext } from '../ThemeProvider';
 import Box from '../Grid/Box';
+import { createIconSet } from 'react-native-vector-icons';
+
+const glyphMap = {
+  tensiq: 't',
+};
+
+const Icon = createIconSet(glyphMap, 'Tensiq');
+
+const tensiqIcon = theme => (
+  <Icon name="tensiq" style={theme.style({ element: 'headerLogoIcon' })} />
+);
 
 class Header extends React.PureComponent {
   state = {
@@ -52,9 +63,7 @@ class Header extends React.PureComponent {
                       })}
                       rippleColor={theme.color('rippleHeader')}
                     >
-                      <Text style={theme.style({ element: 'headerLogoIcon' })}>
-                        a
-                      </Text>
+                      {tensiqIcon(theme)}
                       <Text style={theme.style({ element: 'headerLogoText' })}>
                         Tensiq
                       </Text>
