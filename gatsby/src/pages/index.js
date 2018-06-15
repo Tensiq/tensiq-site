@@ -252,7 +252,7 @@ class IndexPage extends React.Component {
                           <Text style={theme.style({ element: 'text' })}>
                             Beautiful, cross-platform games designed in{' '}
                             <TextStrong theme={theme}>Inkscape</TextStrong> and{' '}
-                            <TextStrong theme={theme}>Gimp</TextStrong> and
+                            <TextStrong theme={theme}>Gimp</TextStrong> and{' '}
                             build with the highly extensible{' '}
                             <TextStrong theme={theme}>Godot Engine</TextStrong>{' '}
                             backed by an commercial friendly MIT licence.
@@ -276,10 +276,8 @@ class IndexPage extends React.Component {
                             Interactive analysis of data from cloud APIs,
                             Databases and common filetypes with{' '}
                             <TextStrong theme={theme}>Python</TextStrong>,{' '}
-                            <TextStrong theme={theme}>Pandas</TextStrong>,
-                            <TextStrong theme={theme}>
-                              NumPy
-                            </TextStrong> and{' '}
+                            <TextStrong theme={theme}>Pandas</TextStrong>,{' '}
+                            <TextStrong theme={theme}>NumPy</TextStrong> and{' '}
                             <TextStrong theme={theme}>SciPy</TextStrong> in{' '}
                             <TextStrong theme={theme}>
                               Jupyter notebooks
