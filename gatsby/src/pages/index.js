@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '../components/RippleLink';
+import { navigateTo } from 'gatsby-link';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Box from '../components/Grid/Box';
@@ -9,13 +10,14 @@ import { Header1, Header2 } from '../components/PageHeader';
 import { TextNormal, TextStrong } from '../components/Text';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import Card from 'react-native-material-ui/src/Card';
-
 import { createIconSet } from 'react-native-vector-icons';
+
 const glyphMap = {
   rocket: parseInt('f135', 16),
   users: parseInt('f0c0', 16),
   heartbeat: parseInt('f21e', 16),
   utensils: parseInt('f2e7', 16),
+  'arrow-circle-right': parseInt('f0a9', 16),
 };
 const Icon = createIconSet(glyphMap, 'FontAwesome');
 
@@ -33,6 +35,10 @@ const mindIcon = theme => (
 
 const toolsIcon = theme => (
   <Icon name="utensils" style={theme.style({ element: 'aboutIcon' })} />
+);
+
+const goIcon = theme => (
+  <Icon name="arrow-circle-right" style={theme.style({ element: 'goIcon' })} />
 );
 
 const styles = StyleSheet.create({
@@ -98,7 +104,7 @@ const shadow = Platform.select({
 class IndexPage extends React.Component {
   render() {
     const { data } = this.props;
-    console.log(data);
+    // console.log(data);
     return (
       <View>
         <ThemeProvider uiTheme={{}}>
@@ -338,7 +344,7 @@ class IndexPage extends React.Component {
                           },
                         ]}
                       >
-                        <Header1 light centered theme={theme}>
+                        <Header1 light="true" centered="true" theme={theme}>
                           Who is flying this rocket?
                         </Header1>
                         <Box
@@ -364,6 +370,12 @@ class IndexPage extends React.Component {
                             {...theme.props.contentColumn3}
                           >
                             <Card
+                              onPress={() =>
+                                setTimeout(
+                                  () => navigateTo('/about#staff'),
+                                  400,
+                                )
+                              }
                               style={{
                                 container: {
                                   flex: 1,
@@ -373,6 +385,7 @@ class IndexPage extends React.Component {
                               <LinearGradient
                                 style={{ flex: 1 }}
                                 {...theme.gradient('lightBlock')}
+                                pointerEvents="none"
                               >
                                 <View
                                   style={{
@@ -380,28 +393,38 @@ class IndexPage extends React.Component {
                                     width: '100%',
                                     alignItems: 'center',
                                   }}
+                                  pointerEvents="none"
                                 >
                                   {staffIcon(theme)}
                                 </View>
                                 <View
                                   style={theme.style({
-                                    element: 'contentColumnTitle',
+                                    element: 'cardTitle',
                                   })}
+                                  pointerEvents="none"
                                 >
-                                  <Header2 centered theme={theme}>
+                                  <Header2 centered="true" theme={theme}>
                                     Staff
                                   </Header2>
                                 </View>
                                 <View
-                                  style={{
-                                    paddingHorizontal: theme.sp(2),
-                                    marginBottom: theme.sp(4),
-                                  }}
+                                  style={theme.style({
+                                    element: 'cardTextBody',
+                                  })}
+                                  pointerEvents="none"
                                 >
                                   <TextNormal theme={theme}>
                                     Greate people create great products. Let us
                                     show you who we are.
                                   </TextNormal>
+                                </View>
+                                <View
+                                  style={theme.style({
+                                    element: 'cardGoIcon',
+                                  })}
+                                  pointerEvents="none"
+                                >
+                                  {goIcon(theme)}
                                 </View>
                               </LinearGradient>
                             </Card>
@@ -411,6 +434,12 @@ class IndexPage extends React.Component {
                             {...theme.props.contentColumn3}
                           >
                             <Card
+                              onPress={() =>
+                                setTimeout(
+                                  () => navigateTo('/about#mission'),
+                                  400,
+                                )
+                              }
                               style={{
                                 container: {
                                   flex: 1,
@@ -432,23 +461,29 @@ class IndexPage extends React.Component {
                                 </View>
                                 <View
                                   style={theme.style({
-                                    element: 'contentColumnTitle',
+                                    element: 'cardTitle',
                                   })}
                                 >
-                                  <Header2 centered theme={theme}>
+                                  <Header2 centered="true" theme={theme}>
                                     Mission
                                   </Header2>
                                 </View>
                                 <View
-                                  style={{
-                                    paddingHorizontal: theme.sp(2),
-                                    marginBottom: theme.sp(4),
-                                  }}
+                                  style={theme.style({
+                                    element: 'cardTextBody',
+                                  })}
                                 >
                                   <TextNormal theme={theme}>
-                                    Greate people create great products. Let us
-                                    show you who we are.
+                                    All things in live start with why. Feel what
+                                    powers our minds.
                                   </TextNormal>
+                                </View>
+                                <View
+                                  style={theme.style({
+                                    element: 'cardGoIcon',
+                                  })}
+                                >
+                                  {goIcon(theme)}
                                 </View>
                               </LinearGradient>
                             </Card>
@@ -458,6 +493,12 @@ class IndexPage extends React.Component {
                             {...theme.props.contentColumn3}
                           >
                             <Card
+                              onPress={() =>
+                                setTimeout(
+                                  () => navigateTo('/about#tools'),
+                                  400,
+                                )
+                              }
                               style={{
                                 container: {
                                   flex: 1,
@@ -479,23 +520,29 @@ class IndexPage extends React.Component {
                                 </View>
                                 <View
                                   style={theme.style({
-                                    element: 'contentColumnTitle',
+                                    element: 'cardTitle',
                                   })}
                                 >
-                                  <Header2 centered theme={theme}>
+                                  <Header2 centered="true" theme={theme}>
                                     Engine
                                   </Header2>
                                 </View>
                                 <View
-                                  style={{
-                                    paddingHorizontal: theme.sp(2),
-                                    marginBottom: theme.sp(4),
-                                  }}
+                                  style={theme.style({
+                                    element: 'cardTextBody',
+                                  })}
                                 >
                                   <TextNormal theme={theme}>
-                                    Greate people create great products. Let us
-                                    show you who we are.
+                                    Awesome products need great tools. We show
+                                    you what we use.
                                   </TextNormal>
+                                </View>
+                                <View
+                                  style={theme.style({
+                                    element: 'cardGoIcon',
+                                  })}
+                                >
+                                  {goIcon(theme)}
                                 </View>
                               </LinearGradient>
                             </Card>
@@ -504,91 +551,26 @@ class IndexPage extends React.Component {
                       </View>
                     </View>
                   </LinearGradient>
-                  <LinearGradient
-                    start={{ x: 0.0, y: 0.25 }}
-                    end={{ x: 1.0, y: 0.9 }}
-                    colors={['#e8dae9ff', '#b0d6f9ff']}
-                    style={styles.block}
+                  <View
+                    style={[
+                      styles.block,
+                      { backgroundColor: theme.color('footnotes') },
+                    ]}
                   >
-                    <View style={styles.blockContent}>
-                      <View
-                        style={{
-                          flex: 1,
+                    <View
+                      style={[
+                        styles.blockContent,
+                        {
                           justifyContent: 'center',
-                          alignItems: 'flex-end',
-                          paddingVertical: 20,
-                          paddingRight: 10,
-                        }}
-                      >
-                        <Text style={styles.text2}>
-                          Open up src/App.js to start working on your app!
-                        </Text>
-                        <Text style={styles.text2}>
-                          Changes you make will automatically reload.
-                        </Text>
-                        <Text style={styles.text2}>
-                          Shake your phone to open the developer menu.
-                        </Text>
-                      </View>
-                      <View
-                        style={{
-                          flex: 1,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          paddingVertical: 20,
-                          paddingRight: 10,
-                        }}
-                      >
-                        <LinearGradient
-                          start={{ x: 0.25, y: 0.0 }}
-                          end={{ x: 0.5, y: 1.0 }}
-                          colors={['#7c7c7cff', '#2b2b2bff']}
-                          style={{
-                            ...shadow,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 100,
-                            height: 50,
-                            backgroundColor: '#3a3a3aff',
-                          }}
-                        >
-                          <Text style={styles.text4}>Git</Text>
-                        </LinearGradient>
-                        <LinearGradient
-                          start={{ x: 0.25, y: 0.0 }}
-                          end={{ x: 0.5, y: 1.0 }}
-                          colors={['#7c7c7cff', '#2b2b2bff']}
-                          style={{
-                            ...shadow,
-                            marginTop: 10,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 100,
-                            height: 50,
-                            backgroundColor: '#3a3a3aff',
-                          }}
-                        >
-                          <Text style={styles.text4}>Project</Text>
-                        </LinearGradient>
-                        <LinearGradient
-                          start={{ x: 0.25, y: 0.0 }}
-                          end={{ x: 0.5, y: 1.0 }}
-                          colors={['#7c7c7cff', '#2b2b2bff']}
-                          style={{
-                            ...shadow,
-                            marginTop: 10,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 100,
-                            height: 50,
-                            backgroundColor: '#3a3a3aff',
-                          }}
-                        >
-                          <Text style={styles.text4}>Target</Text>
-                        </LinearGradient>
-                      </View>
+                          paddingBottom: theme.sp(10),
+                        },
+                      ]}
+                    >
+                      <Header2 light="true" centered="true" theme={theme}>
+                        Footnotes
+                      </Header2>
                     </View>
-                  </LinearGradient>
+                  </View>
                 </View>
               );
             }}

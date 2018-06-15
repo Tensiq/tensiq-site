@@ -115,7 +115,7 @@ export default class Box extends React.PureComponent {
     return (
       <ThemeContext.Consumer>
         {theme => {
-          console.log(this.getStyleSheet(theme));
+          // console.log(this.getStyleSheet(theme));
           return (
             <View
               {...this.props}

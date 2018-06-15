@@ -159,6 +159,37 @@ const props = {
 };
 
 const styles = {
+  cardTitle: {
+    normal: StyleSheet.create({
+      0: { height: 70 },
+    }),
+  },
+  cardTextBody: {
+    normal: StyleSheet.create({
+      0: {
+        paddingHorizontal: sp(5),
+      },
+    }),
+  },
+  cardGoIcon: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        marginBottom: sp(3),
+        paddingHorizontal: sp(3),
+      },
+    }),
+  },
+  goIcon: {
+    normal: StyleSheet.create({
+      0: {
+        fontSize: fs(7),
+        color: color('darkText'),
+      },
+    }),
+  },
   aboutIcon: {
     normal: StyleSheet.create({
       0: {

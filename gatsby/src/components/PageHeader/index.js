@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
 
 const getChildrenWithStyle = (style, children) => {
