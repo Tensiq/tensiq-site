@@ -159,6 +159,14 @@ const props = {
 };
 
 const styles = {
+  aboutIcon: {
+    normal: StyleSheet.create({
+      0: {
+        fontSize: 70,
+        color: color('darkText'),
+      },
+    }),
+  },
   teaserIcon: {
     normal: StyleSheet.create({
       0: {
@@ -183,6 +191,15 @@ const styles = {
       },
     }),
   },
+  contentCard3: {
+    normal: StyleSheet.create({
+      0: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        maxWidth: 280,
+      },
+    }),
+  },
   contentColumnTitle: {
     normal: StyleSheet.create({
       2: { height: 70 },
@@ -196,6 +213,13 @@ const styles = {
       0: {
         ...fonts.bold,
         fontSize: fs(5),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+      1: {
+        ...fonts.bold,
+        fontSize: fs(7),
         color: color('lightText'),
         paddingHorizontal: sp(0),
         paddingVertical: sp(0),
@@ -506,31 +530,46 @@ const styles = {
     }),
   },
   textHeader: {
-    1: StyleSheet.create({
-      0: {
-        ...fonts.normal,
-        color: color('darkText').string(),
-        marginTop: sp(0),
-        fontWeight: fontweights.bold,
-        fontSize: fs(5),
-      },
-    }),
-    2: StyleSheet.create({
-      0: {
-        ...fonts.normal,
-        fontWeight: fontweights.bold,
-        marginTop: sp(2),
-        fontSize: fs(4),
-      },
-    }),
-    3: StyleSheet.create({
-      0: {
-        ...fonts.normal,
-        marginTop: 6,
-        fontWeight: fontweights.bold,
-        fontSize: fs(3),
-      },
-    }),
+    1: props => {
+      const { light, centered } = props;
+      const textColor = light ? 'lightText' : 'darkText';
+      return StyleSheet.create({
+        0: {
+          textAlign: centered ? 'center' : 'left',
+          color: color(textColor).string(),
+          ...fonts.normal,
+          marginTop: sp(0),
+          fontWeight: fontweights.bold,
+          fontSize: fs(7),
+        },
+      });
+    },
+    2: props => {
+      const { light, centered } = props;
+      const textColor = light ? 'lightText' : 'darkText';
+      return StyleSheet.create({
+        0: {
+          textAlign: centered ? 'center' : 'left',
+          color: color(textColor).string(),
+          fontWeight: fontweights.bold,
+          marginTop: sp(2),
+          fontSize: fs(4),
+        },
+      });
+    },
+    3: props => {
+      const { light, centered } = props;
+      const textColor = light ? 'lightText' : 'darkText';
+      return StyleSheet.create({
+        0: {
+          textAlign: centered ? 'center' : 'left',
+          color: color(textColor).string(),
+          marginTop: 6,
+          fontWeight: fontweights.bold,
+          fontSize: fs(3),
+        },
+      });
+    },
   },
   list: {
     normal: StyleSheet.create({

@@ -6,8 +6,6 @@ import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.rea
 import { ThemeContext } from '../ThemeProvider';
 import Box from '../Grid/Box';
 
-const uiTheme = {};
-
 class Header extends React.PureComponent {
   state = {
     fade: new Animated.Value(0),
@@ -28,7 +26,7 @@ class Header extends React.PureComponent {
           // console.log(theme);
           // console.log(theme.style({ element: 'headerContainer' }));
           return (
-            <ThemeProvider uiTheme={uiTheme}>
+            <ThemeProvider uiTheme={{}}>
               <Animated.View
                 style={[
                   theme.style({ element: 'headerOuterContainer' }),
