@@ -80,66 +80,6 @@ const githubIcon = theme => (
   <BrandIcon name="github" style={theme.style({ element: 'githubIcon' })} />
 );
 
-const styles = StyleSheet.create({
-  block: {
-    width: '100%',
-    paddingVertical: 75,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  blockContent: {
-    width: '100%',
-    maxWidth: 960,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-  text: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#f5f5f5ff',
-    paddingVertical: 4,
-  },
-  text2: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#303030ff',
-    paddingVertical: 4,
-  },
-  text3: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#102144ff',
-  },
-  text4: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#f5f5f5ff',
-  },
-  linearGradient: {
-    margin: 10,
-    flex: 1,
-    justifyContent: 'center',
-    paddingVertical: 2,
-    paddingHorizontal: 15,
-    borderRadius: 5,
-  },
-});
-
-const shadow = Platform.select({
-  default: {
-    shadowColor: '#00000088',
-    shadowRadius: 30,
-  },
-  android: {
-    elevation: 6,
-  },
-});
-
 class IndexPage extends React.Component {
   render() {
     const { data } = this.props;
@@ -410,67 +350,6 @@ class IndexPage extends React.Component {
                           >
                             <Card
                               onPress={() =>
-                                setTimeout(() => navigateTo('/about#crew'), 400)
-                              }
-                              style={{
-                                container: {
-                                  flex: 1,
-                                },
-                              }}
-                            >
-                              <LinearGradient
-                                style={{ flex: 1 }}
-                                {...theme.gradient('lightBlock')}
-                                pointerEvents="none"
-                              >
-                                <View
-                                  style={{
-                                    marginTop: theme.sp(4),
-                                    width: '100%',
-                                    alignItems: 'center',
-                                  }}
-                                  pointerEvents="none"
-                                >
-                                  {crewIcon(theme)}
-                                </View>
-                                <View
-                                  style={theme.style({
-                                    element: 'cardTitle',
-                                  })}
-                                  pointerEvents="none"
-                                >
-                                  <Header2 centered="true" theme={theme}>
-                                    Crew
-                                  </Header2>
-                                </View>
-                                <View
-                                  style={theme.style({
-                                    element: 'cardTextBody',
-                                  })}
-                                  pointerEvents="none"
-                                >
-                                  <TextNormal theme={theme}>
-                                    Greate people create great products. Let us
-                                    show you who we are.
-                                  </TextNormal>
-                                </View>
-                                <View
-                                  style={theme.style({
-                                    element: 'cardGoIcon',
-                                  })}
-                                  pointerEvents="none"
-                                >
-                                  {goIcon(theme)}
-                                </View>
-                              </LinearGradient>
-                            </Card>
-                          </Box>
-                          <Box
-                            style={theme.style({ element: 'contentCard3' })}
-                            {...theme.props.contentColumn3}
-                          >
-                            <Card
-                              onPress={() =>
                                 setTimeout(
                                   () => navigateTo('/about#mission'),
                                   400,
@@ -479,6 +358,7 @@ class IndexPage extends React.Component {
                               style={{
                                 container: {
                                   flex: 1,
+                                  marginBottom: theme.sp(3),
                                 },
                               }}
                             >
@@ -530,6 +410,69 @@ class IndexPage extends React.Component {
                           >
                             <Card
                               onPress={() =>
+                                setTimeout(() => navigateTo('/about#crew'), 400)
+                              }
+                              style={{
+                                container: {
+                                  flex: 1,
+                                  marginBottom: theme.sp(3),
+                                },
+                              }}
+                            >
+                              <LinearGradient
+                                style={{ flex: 1 }}
+                                {...theme.gradient('lightBlock')}
+                                pointerEvents="none"
+                              >
+                                <View
+                                  style={{
+                                    marginTop: theme.sp(4),
+                                    width: '100%',
+                                    alignItems: 'center',
+                                  }}
+                                  pointerEvents="none"
+                                >
+                                  {crewIcon(theme)}
+                                </View>
+                                <View
+                                  style={theme.style({
+                                    element: 'cardTitle',
+                                  })}
+                                  pointerEvents="none"
+                                >
+                                  <Header2 centered="true" theme={theme}>
+                                    Crew
+                                  </Header2>
+                                </View>
+                                <View
+                                  style={theme.style({
+                                    element: 'cardTextBody',
+                                  })}
+                                  pointerEvents="none"
+                                >
+                                  <TextNormal theme={theme}>
+                                    Greate people create great products. Let us
+                                    show you who we are.
+                                  </TextNormal>
+                                </View>
+                                <View
+                                  style={theme.style({
+                                    element: 'cardGoIcon',
+                                  })}
+                                  pointerEvents="none"
+                                >
+                                  {goIcon(theme)}
+                                </View>
+                              </LinearGradient>
+                            </Card>
+                          </Box>
+
+                          <Box
+                            style={theme.style({ element: 'contentCard3' })}
+                            {...theme.props.contentColumn3}
+                          >
+                            <Card
+                              onPress={() =>
                                 setTimeout(
                                   () => navigateTo('/about#tools'),
                                   400,
@@ -538,6 +481,7 @@ class IndexPage extends React.Component {
                               style={{
                                 container: {
                                   flex: 1,
+                                  marginBottom: theme.sp(3),
                                 },
                               }}
                             >
@@ -593,12 +537,12 @@ class IndexPage extends React.Component {
                         paddingTop: theme.sp(3),
                         paddingBottom: theme.sp(7),
                         backgroundColor: theme.color('footnotes'),
+                        alignItems: 'center',
                       },
                     ]}
                   >
                     <View
                       style={[
-                        styles.blockContent,
                         {
                           flexDirection: 'column',
                           alignItems: 'center',
@@ -674,13 +618,13 @@ class IndexPage extends React.Component {
 export default IndexPage;
 
 export const query = graphql`
-  query GatsbyImageSampleQuery {
+  query IndexImageQuery {
     imgModernMobileWebApps: file(
       relativePath: { eq: "images/modern-mobile-web-apps.png" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
-          ...GatsbyImageSharpSizes_withWebp
+          ...GatsbyImageSharpSizes_withWebp_noBase64
         }
       }
     }
@@ -689,14 +633,14 @@ export const query = graphql`
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
-          ...GatsbyImageSharpSizes_withWebp
+          ...GatsbyImageSharpSizes_withWebp_noBase64
         }
       }
     }
     imgDataAnalysis: file(relativePath: { eq: "images/data-analysis.png" }) {
       childImageSharp {
         sizes(maxWidth: 960) {
-          ...GatsbyImageSharpSizes_withWebp
+          ...GatsbyImageSharpSizes_withWebp_noBase64
         }
       }
     }

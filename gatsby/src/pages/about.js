@@ -1,431 +1,369 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import Link from '../components/RippleLink';
+import { navigateTo } from 'gatsby-link';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Box from '../components/Grid/Box';
+import { ThemeContext } from '../components/ThemeProvider';
+import Img from 'gatsby-image';
+import { Header1, Header2 } from '../components/PageHeader';
+import { TextNormal, TextStrong } from '../components/Text';
+import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
+import Card from 'react-native-material-ui/src/Card';
+import { createIconSet } from 'react-native-vector-icons';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+const glyphMap = {
+  rocket: parseInt('f135', 16),
+  users: parseInt('f0c0', 16),
+  heartbeat: parseInt('f21e', 16),
+  toolbox: parseInt('f552', 16),
+  'arrow-circle-right': parseInt('f0a9', 16),
+  heart: parseInt('f004', 16),
+};
 
-const HEADER_MAX_HEIGHT = 120;
+const brandGlyphMap = {
+  react: parseInt('f41b', 16),
+  github: parseInt('f09b', 16),
+};
 
-const styles = StyleSheet.create({
-  block: {
-    width: '100%',
-    paddingVertical: 75,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  blockContent: {
-    width: '100%',
-    maxWidth: 960,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-  text: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#f5f5f5ff',
-    paddingVertical: 4,
-  },
-  text2: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#303030ff',
-    paddingVertical: 4,
-  },
-  text3: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#102144ff',
-  },
-  text4: {
-    fontFamily: 'Open Sans',
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#f5f5f5ff',
-  },
-  linearGradient: {
-    margin: 10,
-    flex: 1,
-    justifyContent: 'center',
-    paddingVertical: 2,
-    paddingHorizontal: 15,
-    borderRadius: 5,
-  },
-});
+const customGlyphMap = {
+  tensiq: 't',
+  netlify: 'n',
+  gatsby: 'g',
+};
 
-const myIcon = <Icon name="rocket" size={30} color="#900" />;
+const Icon = createIconSet(glyphMap, 'FontAwesome');
+const BrandIcon = createIconSet(brandGlyphMap, 'FontAwesomeBrands');
+const CustomIcon = createIconSet(customGlyphMap, 'Tensiq');
 
-const shadow = Platform.select({
-  default: {
-    shadowColor: '#00000088',
-    shadowRadius: 30,
-  },
-  android: {
-    elevation: 6,
-  },
-});
+const tensiqIcon = theme => (
+  <CustomIcon name="tensiq" style={theme.style({ element: 'githubIcon' })} />
+);
 
-class IndexPage extends React.Component {
+const netlifyIcon = theme => (
+  <CustomIcon name="netlify" style={theme.style({ element: 'githubIcon' })} />
+);
+
+const gatsbyIcon = theme => (
+  <CustomIcon name="gatsby" style={theme.style({ element: 'githubIcon' })} />
+);
+
+const crewIcon = (theme, type = 'normal') => (
+  <Icon name="users" style={theme.style({ element: 'headerIcon', type })} />
+);
+
+const missionIcon = (theme, type = 'normal') => (
+  <Icon name="heartbeat" style={theme.style({ element: 'headerIcon', type })} />
+);
+
+const toolsIcon = (theme, type = 'normal') => (
+  <Icon name="toolbox" style={theme.style({ element: 'headerIcon', type })} />
+);
+
+const goIcon = theme => (
+  <Icon name="arrow-circle-right" style={theme.style({ element: 'goIcon' })} />
+);
+
+const heartIcon = theme => (
+  <Icon name="heart" style={theme.style({ element: 'githubIcon' })} />
+);
+
+const reactIcon = theme => (
+  <BrandIcon name="react" style={theme.style({ element: 'githubIcon' })} />
+);
+
+const githubIcon = theme => (
+  <BrandIcon name="github" style={theme.style({ element: 'githubIcon' })} />
+);
+
+class AboutPage extends React.Component {
   render() {
+    const { data } = this.props;
+    // console.log(data);
     return (
       <View>
-        <LinearGradient
-          start={{ x: 0.0, y: 0.25 }}
-          end={{ x: 1.0, y: 0.9 }}
-          colors={['#632e96ff', '#125aa5ff', '#48c4d9ff']}
-          style={[styles.block, { paddingTop: 75 + HEADER_MAX_HEIGHT }]}
-        >
-          <View style={styles.blockContent}>
-            <Box
-              width={[1, 1, 1, 1 / 2, 1 / 2]}
-              pb={[6, 6, 6, 0, 0]}
-              display={['none', , 'flex']}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  paddingVertical: 20,
-                  paddingHorizontal: 20,
-                }}
-              >
-                <LinearGradient
-                  start={{ x: 0.0, y: 0.25 }}
-                  end={{ x: 1.0, y: 0.9 }}
-                  colors={['#e8dae9ff', '#b0d6f9ff']}
-                  style={{
-                    ...shadow,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: 100,
-                    height: 50,
-                    backgroundColor: '#f5f5f5ff',
-                  }}
-                >
-                  <Text style={styles.text3}>Git</Text>
-                </LinearGradient>
-                <LinearGradient
-                  start={{ x: 0.0, y: 0.25 }}
-                  end={{ x: 1.0, y: 0.9 }}
-                  colors={['#e8dae9ff', '#b0d6f9ff']}
-                  style={{
-                    ...shadow,
-                    marginTop: 10,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: 100,
-                    height: 50,
-                    backgroundColor: '#f5f5f5ff',
-                  }}
-                >
-                  <Text style={styles.text3}>Project</Text>
-                </LinearGradient>
-                <LinearGradient
-                  start={{ x: 0.0, y: 0.25 }}
-                  end={{ x: 1.0, y: 0.9 }}
-                  colors={['#e8dae9ff', '#b0d6f9ff']}
-                  style={{
-                    ...shadow,
-                    marginTop: 10,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: 100,
-                    height: 50,
-                    backgroundColor: '#f5f5f5ff',
-                  }}
-                >
-                  <Text style={styles.text3}>Target</Text>
-                </LinearGradient>
-              </View>
-            </Box>
-            <Box
-              width={[1, 1, 1, 1 / 2, 1 / 2]}
-              pt={[6, 6, 6, 0, 0]}
-              alignItems={['center', , , 'flex-start']}
-            >
-              <View
-                style={{
-                  justifyContent: 'center',
-                  paddingVertical: 20,
-                  paddingHorizontal: 20,
-                }}
-              >
-                <Text style={styles.text}>
-                  Open up src/App.js to start working on your app!
-                </Text>
-                <Text style={styles.text}>
-                  Changes you make will automatically reload.
-                </Text>
-                <Text style={styles.text}>
-                  Shake your phone to open the developer menu.
-                </Text>
-              </View>
-            </Box>
-          </View>
-        </LinearGradient>
-        <LinearGradient
-          start={{ x: 0.0, y: 0.25 }}
-          end={{ x: 1.0, y: 0.9 }}
-          colors={['#e8dae9ff', '#b0d6f9ff']}
-          style={styles.block}
-        >
-          <View style={styles.blockContent}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'flex-end',
-                paddingVertical: 20,
-                paddingRight: 10,
-              }}
-            >
-              <Text style={styles.text2}>
-                Open up src/App.js to start working on your app!
-              </Text>
-              <Text style={styles.text2}>
-                Changes you make will automatically reload.
-              </Text>
-              <Text style={styles.text2}>
-                Shake your phone to open the developer menu.
-              </Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingVertical: 20,
-                paddingRight: 10,
-              }}
-            >
-              <LinearGradient
-                start={{ x: 0.25, y: 0.0 }}
-                end={{ x: 0.5, y: 1.0 }}
-                colors={['#7c7c7cff', '#2b2b2bff']}
-                style={{
-                  ...shadow,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#3a3a3aff',
-                }}
-              >
-                <Text style={styles.text4}>Git</Text>
-              </LinearGradient>
-              <LinearGradient
-                start={{ x: 0.25, y: 0.0 }}
-                end={{ x: 0.5, y: 1.0 }}
-                colors={['#7c7c7cff', '#2b2b2bff']}
-                style={{
-                  ...shadow,
-                  marginTop: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#3a3a3aff',
-                }}
-              >
-                <Text style={styles.text4}>Project</Text>
-              </LinearGradient>
-              <LinearGradient
-                start={{ x: 0.25, y: 0.0 }}
-                end={{ x: 0.5, y: 1.0 }}
-                colors={['#7c7c7cff', '#2b2b2bff']}
-                style={{
-                  ...shadow,
-                  marginTop: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#3a3a3aff',
-                }}
-              >
-                <Text style={styles.text4}>Target</Text>
-              </LinearGradient>
-            </View>
-          </View>
-        </LinearGradient>
-        <LinearGradient
-          start={{ x: 0.0, y: 0.25 }}
-          end={{ x: 1.0, y: 0.9 }}
-          colors={['#632e96ff', '#125aa5ff', '#48c4d9ff']}
-          style={[styles.block, { paddingTop: 75 }]}
-        >
-          <View style={styles.blockContent}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingVertical: 20,
-                paddingRight: 10,
-              }}
-            >
-              <LinearGradient
-                start={{ x: 0.0, y: 0.25 }}
-                end={{ x: 1.0, y: 0.9 }}
-                colors={['#e8dae9ff', '#b0d6f9ff']}
-                style={{
-                  ...shadow,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#f5f5f5ff',
-                }}
-              >
-                <Text style={styles.text3}>Git</Text>
-              </LinearGradient>
-              <LinearGradient
-                start={{ x: 0.0, y: 0.25 }}
-                end={{ x: 1.0, y: 0.9 }}
-                colors={['#e8dae9ff', '#b0d6f9ff']}
-                style={{
-                  ...shadow,
-                  marginTop: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#f5f5f5ff',
-                }}
-              >
-                <Text style={styles.text3}>Project</Text>
-              </LinearGradient>
-              <LinearGradient
-                start={{ x: 0.0, y: 0.25 }}
-                end={{ x: 1.0, y: 0.9 }}
-                colors={['#e8dae9ff', '#b0d6f9ff']}
-                style={{
-                  ...shadow,
-                  marginTop: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#f5f5f5ff',
-                }}
-              >
-                <Text style={styles.text3}>Target</Text>
-              </LinearGradient>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                paddingVertical: 20,
-                paddingLeft: 10,
-              }}
-            >
-              <Text style={styles.text}>
-                Open up src/App.js to start working on your app!
-              </Text>
-              <Text style={styles.text}>
-                Changes you make will automatically reload.
-              </Text>
-              <Text style={styles.text}>
-                Shake your phone to open the developer menu.
-              </Text>
-            </View>
-          </View>
-        </LinearGradient>
-        <LinearGradient
-          start={{ x: 0.0, y: 0.25 }}
-          end={{ x: 1.0, y: 0.9 }}
-          colors={['#e8dae9ff', '#b0d6f9ff']}
-          style={styles.block}
-        >
-          <View style={styles.blockContent}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'flex-end',
-                paddingVertical: 20,
-                paddingRight: 10,
-              }}
-            >
-              <Text style={styles.text2}>
-                Open up src/App.js to start working on your app!
-              </Text>
-              <Text style={styles.text2}>
-                Changes you make will automatically reload.
-              </Text>
-              <Text style={styles.text2}>
-                Shake your phone to open the developer menu.
-              </Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingVertical: 20,
-                paddingRight: 10,
-              }}
-            >
-              <LinearGradient
-                start={{ x: 0.25, y: 0.0 }}
-                end={{ x: 0.5, y: 1.0 }}
-                colors={['#7c7c7cff', '#2b2b2bff']}
-                style={{
-                  ...shadow,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#3a3a3aff',
-                }}
-              >
-                <Text style={styles.text4}>Git</Text>
-              </LinearGradient>
-              <LinearGradient
-                start={{ x: 0.25, y: 0.0 }}
-                end={{ x: 0.5, y: 1.0 }}
-                colors={['#7c7c7cff', '#2b2b2bff']}
-                style={{
-                  ...shadow,
-                  marginTop: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#3a3a3aff',
-                }}
-              >
-                <Text style={styles.text4}>Project</Text>
-              </LinearGradient>
-              <LinearGradient
-                start={{ x: 0.25, y: 0.0 }}
-                end={{ x: 0.5, y: 1.0 }}
-                colors={['#7c7c7cff', '#2b2b2bff']}
-                style={{
-                  ...shadow,
-                  marginTop: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 100,
-                  height: 50,
-                  backgroundColor: '#3a3a3aff',
-                }}
-              >
-                <Text style={styles.text4}>Target</Text>
-              </LinearGradient>
-            </View>
-          </View>
-        </LinearGradient>
+        <ThemeProvider uiTheme={{}}>
+          <ThemeContext.Consumer>
+            {theme => {
+              return (
+                <View>
+                  <LinearGradient
+                    {...theme.gradient('darkBlock1')}
+                    style={theme.style({
+                      element: 'contentBlock',
+                      type: 'first',
+                    })}
+                  >
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Box
+                          style={{
+                            paddingTop: theme.sp(1),
+                            marginRight: theme.sp(4),
+                          }}
+                          {...theme.props.headerIconLeft}
+                        >
+                          {missionIcon(theme)}
+                        </Box>
+                        <View style={{ flex: 1 }}>
+                          <Text
+                            style={theme.style({
+                              element: 'teaserTitleText',
+                            })}
+                          >
+                            Mission
+                          </Text>
+                          <Box
+                            style={{
+                              marginVertical: theme.sp(2),
+                              alignItems: 'center',
+                            }}
+                            {...theme.props.headerIconCenter}
+                          >
+                            {missionIcon(theme)}
+                          </Box>
+                          <Text
+                            style={theme.style({
+                              element: 'teaserText',
+                            })}
+                          >
+                            All things in life start with why. Feel what powers
+                            our minds and thus fuels this company.
+                          </Text>
+                        </View>
+                      </Box>
+                    </View>
+                  </LinearGradient>
+                  <LinearGradient
+                    {...theme.gradient('lightBlock')}
+                    style={theme.style({
+                      element: 'contentBlock',
+                    })}
+                  >
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Box
+                          style={{
+                            paddingTop: theme.sp(1),
+                            marginRight: theme.sp(4),
+                          }}
+                          {...theme.props.headerIconLeft}
+                        >
+                          {crewIcon(theme, 'dark')}
+                        </Box>
+                        <View style={{ flex: 1 }}>
+                          <Text
+                            style={theme.style({
+                              element: 'teaserTitleText',
+                              type: 'dark',
+                            })}
+                          >
+                            Crew
+                          </Text>
+                          <Box
+                            style={{
+                              marginVertical: theme.sp(2),
+                              alignItems: 'center',
+                            }}
+                            {...theme.props.headerIconCenter}
+                          >
+                            {crewIcon(theme, 'dark')}
+                          </Box>
+                          <Text
+                            style={theme.style({
+                              element: 'teaserText',
+                              type: 'dark',
+                            })}
+                          >
+                            Great people create great products. This is our crew
+                            to fly this rocket-ship...
+                          </Text>
+                        </View>
+                      </Box>
+                    </View>
+                  </LinearGradient>
+                  <LinearGradient
+                    {...theme.gradient('darkBlock2')}
+                    style={theme.style({
+                      element: 'contentBlock',
+                    })}
+                  >
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Box
+                          style={{
+                            paddingTop: theme.sp(1),
+                            marginRight: theme.sp(4),
+                          }}
+                          {...theme.props.headerIconLeft}
+                        >
+                          {toolsIcon(theme)}
+                        </Box>
+                        <View style={{ flex: 1 }}>
+                          <Text
+                            style={theme.style({
+                              element: 'teaserTitleText',
+                            })}
+                          >
+                            Tools
+                          </Text>
+                          <Box
+                            style={{
+                              marginVertical: theme.sp(2),
+                              alignItems: 'center',
+                            }}
+                            {...theme.props.headerIconCenter}
+                          >
+                            {toolsIcon(theme)}
+                          </Box>
+                          <Text
+                            style={theme.style({
+                              element: 'teaserText',
+                            })}
+                          >
+                            Awesome products need great tools. We show you which
+                            great products we love and use...
+                          </Text>
+                        </View>
+                      </Box>
+                    </View>
+                  </LinearGradient>
+                  <View
+                    style={[
+                      {
+                        paddingTop: theme.sp(3),
+                        paddingBottom: theme.sp(7),
+                        backgroundColor: theme.color('footnotes'),
+                        alignItems: 'center',
+                      },
+                    ]}
+                  >
+                    <View
+                      style={[
+                        {
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          paddingHorizontal: theme.sp(2),
+                          paddingBottom: theme.sp(1),
+                        },
+                      ]}
+                    >
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          textAlign: 'center',
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Copyright © 2018 {tensiqIcon(theme)} Tensiq OÜ.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          textAlign: 'center',
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        All rights reserved.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          textAlign: 'center',
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Built with {heartIcon(theme)} in Tallinn, Estonia.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          textAlign: 'center',
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Crafted with {gatsbyIcon(theme)} Gatsby.js and{' '}
+                        {reactIcon(theme)} React Native Web.
+                      </TextNormal>
+                      <TextNormal
+                        theme={theme}
+                        style={{
+                          textAlign: 'center',
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        Organized on {githubIcon(theme)} Github and deployed on{' '}
+                        {netlifyIcon(theme)} Netlify.
+                      </TextNormal>
+                    </View>
+                  </View>
+                </View>
+              );
+            }}
+          </ThemeContext.Consumer>
+        </ThemeProvider>
       </View>
     );
   }
 }
 
-export default IndexPage;
+export default AboutPage;
+
+export const query = graphql`
+  query AboutImageQuery {
+    imgModernMobileWebApps: file(
+      relativePath: { eq: "images/modern-mobile-web-apps.png" }
+    ) {
+      childImageSharp {
+        sizes(maxWidth: 960) {
+          ...GatsbyImageSharpSizes_withWebp_noBase64
+        }
+      }
+    }
+    imgCrossPlatform2dGames: file(
+      relativePath: { eq: "images/cross-platform-2d-games.png" }
+    ) {
+      childImageSharp {
+        sizes(maxWidth: 960) {
+          ...GatsbyImageSharpSizes_withWebp_noBase64
+        }
+      }
+    }
+    imgDataAnalysis: file(relativePath: { eq: "images/data-analysis.png" }) {
+      childImageSharp {
+        sizes(maxWidth: 960) {
+          ...GatsbyImageSharpSizes_withWebp_noBase64
+        }
+      }
+    }
+  }
+`;

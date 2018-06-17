@@ -128,6 +128,12 @@ const props = {
   rocketIconCenter: {
     display: ['flex', null, 'none'],
   },
+  headerIconLeft: {
+    display: ['none', 'flex'],
+  },
+  headerIconCenter: {
+    display: ['flex', 'none'],
+  },
   contentColumn3: {
     width: [1, 1, 1 / 2, 1 / 3, 1 / 3],
     pr: [0, 0, 3, 3, 3],
@@ -206,6 +212,36 @@ const styles = {
       },
     }),
   },
+  headerIcon: {
+    normal: StyleSheet.create({
+      0: {
+        fontSize: 100,
+        color: color('lightText'),
+      },
+      1: {
+        fontSize: 100,
+        color: color('lightText'),
+      },
+      4: {
+        fontSize: 100,
+        color: color('lightText'),
+      },
+    }),
+    dark: StyleSheet.create({
+        0: {
+          fontSize: 100,
+          color: color('darkText'),
+        },
+        1: {
+          fontSize: 100,
+          color: color('darkText'),
+        },
+        4: {
+          fontSize: 100,
+          color: color('darkText'),
+        },
+      }),
+  },
   teaserIcon: {
     normal: StyleSheet.create({
       0: {
@@ -264,6 +300,22 @@ const styles = {
         paddingVertical: sp(0),
       },
     }),
+    dark: StyleSheet.create({
+        0: {
+          ...fonts.bold,
+          fontSize: fs(5),
+          color: color('darkText'),
+          paddingHorizontal: sp(0),
+          paddingVertical: sp(0),
+        },
+        1: {
+          ...fonts.bold,
+          fontSize: fs(7),
+          color: color('darkText'),
+          paddingHorizontal: sp(0),
+          paddingVertical: sp(0),
+        },
+      }),
   },
   teaserText: {
     normal: StyleSheet.create({
@@ -273,8 +325,19 @@ const styles = {
         color: color('lightText'),
         paddingHorizontal: sp(0),
         paddingVertical: sp(0),
+        width: '83%',
       },
     }),
+    dark: StyleSheet.create({
+        0: {
+          ...fonts.normal,
+          fontSize: fs(3),
+          color: color('darkText'),
+          paddingHorizontal: sp(0),
+          paddingVertical: sp(0),
+          width: '83%',
+        },
+      }),
   },
   teaserButtonContainer: {
     normal: StyleSheet.create({
