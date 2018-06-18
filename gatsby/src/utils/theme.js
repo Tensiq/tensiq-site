@@ -122,6 +122,9 @@ const rawStyles = {
   cardContainer: {
     normal: {
       flex: 1,
+    },
+    withIcon: {
+      flex: 1,
       marginTop: sp(7),
     },
   },
@@ -243,6 +246,10 @@ const styles = {
       1: { paddingLeft: sp(5), marginTop: 110 },
       2: { paddingLeft: 250, marginTop: sp(1) },
     }),
+    withLongText: StyleSheet.create({
+      0: { paddingHorizontal: sp(2) },
+      1: { paddingHorizontal: sp(5), marginTop: sp(1) },
+    }),
   },
   cardGradient: {
     normal: StyleSheet.create({
@@ -264,6 +271,18 @@ const styles = {
         paddingBottom: sp(7),
       },
     }),
+    withLongText: StyleSheet.create({
+      0: {
+        flex: 1,
+        paddingTop: sp(0),
+        paddingBottom: sp(2),
+      },
+      1: {
+        flex: 1,
+        paddingTop: sp(3),
+        paddingBottom: sp(7),
+      },
+    }),
   },
   cardTextBody: {
     normal: StyleSheet.create({
@@ -272,6 +291,20 @@ const styles = {
       },
     }),
     withIcon: StyleSheet.create({
+      0: {
+        marginTop: sp(1),
+        paddingHorizontal: sp(2),
+      },
+      1: {
+        marginTop: sp(1),
+        paddingHorizontal: sp(5),
+      },
+      2: {
+        marginTop: sp(2),
+        paddingHorizontal: sp(5),
+      },
+    }),
+    withLongText: StyleSheet.create({
       0: {
         marginTop: sp(1),
         paddingHorizontal: sp(2),
@@ -509,6 +542,13 @@ const styles = {
   teaserText: {
     normal: StyleSheet.create({
       0: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+      3: {
         ...fonts.normal,
         fontSize: fs(3),
         color: color('lightText'),

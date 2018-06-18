@@ -140,7 +140,7 @@ class AboutPage extends React.Component {
                       >
                         <Card
                           style={{
-                            container: theme.rawStyles.cardContainer.normal,
+                            container: theme.rawStyles.cardContainer.withIcon,
                           }}
                         >
                           <LinearGradient
@@ -199,7 +199,6 @@ class AboutPage extends React.Component {
                               </TextNormal>
                             </View>
                           </LinearGradient>
-                          <Text id="crew" />
                         </Card>
                       </Box>
                       <View
@@ -234,6 +233,7 @@ class AboutPage extends React.Component {
                         </View>
                       </View>
                     </View>
+                    <Text id="crew" />
                   </LinearGradient>
                   <LinearGradient
                     {...theme.gradient('lightBlock')}
@@ -281,7 +281,6 @@ class AboutPage extends React.Component {
                             Great people create great products. This is our crew
                             to fly this rocket-ship...
                           </Text>
-                          <Text id="tools" />
                         </View>
                       </Box>
                     </View>
@@ -297,7 +296,7 @@ class AboutPage extends React.Component {
                       >
                         <Card
                           style={{
-                            container: theme.rawStyles.cardContainer.normal,
+                            container: theme.rawStyles.cardContainer.withIcon,
                           }}
                         >
                           <LinearGradient
@@ -404,6 +403,7 @@ class AboutPage extends React.Component {
                         </View>
                       </View>
                     </View>
+                    <Text id="tools" />
                   </LinearGradient>
                   <LinearGradient
                     {...theme.gradient('darkBlock2')}
@@ -471,7 +471,7 @@ class AboutPage extends React.Component {
                           <LinearGradient
                             style={theme.style({
                               element: 'cardGradient',
-                              type: 'withIcon',
+                              type: 'withLongText',
                             })}
                             {...theme.gradient('lightBlock')}
                             pointerEvents="none"
@@ -479,32 +479,400 @@ class AboutPage extends React.Component {
                             <View
                               style={theme.style({
                                 element: 'cardTitle',
-                                type: 'withIcon',
+                                type: 'withLongText',
                               })}
                               pointerEvents="none"
                             >
-                              <Header1 theme={theme}>
-                                Cross-Platform-Stack
-                              </Header1>
+                              <Header2 theme={theme}>
+                                Cross-Platform Apps
+                              </Header2>
                             </View>
                             <View
                               style={theme.style({
                                 element: 'cardTextBody',
-                                type: 'withIcon',
+                                type: 'withLongText',
                               })}
                               pointerEvents="none"
                             >
                               <TextNormal theme={theme}>
-                                We fell in love with the React ecosystem and use
-                                all the proven libraries like redux and mobx. To
-                                reach the goal of cross-platform we focus on
-                                using React Native and React Native Web and
-                                wisely select 3rd party libraries that support
-                                this approach.
+                                We fell in love with the {reactIcon()} React
+                                ecosystem and use all the proven libraries like
+                                redux and mobx. To reach the goal of
+                                cross-platform we focus on using React Native
+                                and React Native Web and wisely select 3rd party
+                                libraries that support this approach.
                               </TextNormal>
                             </View>
                           </LinearGradient>
-                          <Text id="crew" />
+                        </Card>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withLongText',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header2 theme={theme}>
+                                Progressive Web Apps
+                              </Header2>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                For building fast and secure web projects we
+                                found Gatsby.js as a good fit. Because it uses
+                                React.js and Webpack and offers custom plugins
+                                we are able to support the goal of
+                                cross-platform components with React Native Web.
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                        </Card>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withLongText',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header2 theme={theme}>Serverless</Header2>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                To reach an high level of performance and
+                                security we prefer an serverless approach. Thus
+                                we use different cloud solutions like
+                                Github-Pages, Netlify, etc. to provide an fast
+                                and easy to maintain product.
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                        </Card>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withLongText',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header2 theme={theme}>Backend</Header2>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                While we focus on a serverless setup for all our
+                                projects, we also use cloud services like
+                                Firebase or a combination of Node.JS, NGINX,
+                                OpenResty, Redis deployed on Debian or Ubuntu
+                                Linux systems to support backend logic.
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                        </Card>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withLongText',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header2 theme={theme}>
+                                Programming Languages
+                              </Header2>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                Our preferred programming languages to support
+                                our projects are Javascript, Java, Python, Lua
+                                (OpenResty), GDScript (Godot Engine),
+                                ABAP/ABAP-OO (SAP).
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                        </Card>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withLongText',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header2 theme={theme}>
+                                Cross-Platform Games
+                              </Header2>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                After using different kind of game development
+                                tools and environments we fell in love with the
+                                awesome Godot Engine. It is a compact open
+                                source C++ game engine with a custom Python
+                                flavored script language called GDScript. Via
+                                different export templates it targets most of
+                                the needed platforms. Thru the open source
+                                nature it is fully extensible and the MIT
+                                licence supports a completely free commercial
+                                usage.
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                        </Card>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withLongText',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header2 theme={theme}>Environments</Header2>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                We live on Windows, Mac OSX and Linux operating
+                                systems and do our coding in Visual Studio Code,
+                                Sublime Text and neovim thru tmux on Linux
+                                systems. We chose the environment that fits best
+                                and share our source code via git on Github or
+                                Gitea as local replacement.
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                        </Card>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withLongText',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header2 theme={theme}>Graphics</Header2>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withLongText',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                To create our digital art work and prototypes we
+                                rely on Inkscape and Gimp. If we do 3d modelling
+                                and rendering or cut-out-animations we use and
+                                Blender, which also became very good at video
+                                editing, thanks to the video sequencer addons
+                                provided by...
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
                         </Card>
                       </Box>
                     </View>
