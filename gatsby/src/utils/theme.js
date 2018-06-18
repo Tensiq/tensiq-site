@@ -228,19 +228,19 @@ const styles = {
       },
     }),
     dark: StyleSheet.create({
-        0: {
-          fontSize: 100,
-          color: color('darkText'),
-        },
-        1: {
-          fontSize: 100,
-          color: color('darkText'),
-        },
-        4: {
-          fontSize: 100,
-          color: color('darkText'),
-        },
-      }),
+      0: {
+        fontSize: 100,
+        color: color('darkText'),
+      },
+      1: {
+        fontSize: 100,
+        color: color('darkText'),
+      },
+      4: {
+        fontSize: 100,
+        color: color('darkText'),
+      },
+    }),
   },
   teaserIcon: {
     normal: StyleSheet.create({
@@ -301,21 +301,21 @@ const styles = {
       },
     }),
     dark: StyleSheet.create({
-        0: {
-          ...fonts.bold,
-          fontSize: fs(5),
-          color: color('darkText'),
-          paddingHorizontal: sp(0),
-          paddingVertical: sp(0),
-        },
-        1: {
-          ...fonts.bold,
-          fontSize: fs(7),
-          color: color('darkText'),
-          paddingHorizontal: sp(0),
-          paddingVertical: sp(0),
-        },
-      }),
+      0: {
+        ...fonts.bold,
+        fontSize: fs(5),
+        color: color('darkText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+      1: {
+        ...fonts.bold,
+        fontSize: fs(7),
+        color: color('darkText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+    }),
   },
   teaserText: {
     normal: StyleSheet.create({
@@ -329,15 +329,15 @@ const styles = {
       },
     }),
     dark: StyleSheet.create({
-        0: {
-          ...fonts.normal,
-          fontSize: fs(3),
-          color: color('darkText'),
-          paddingHorizontal: sp(0),
-          paddingVertical: sp(0),
-          width: '83%',
-        },
-      }),
+      0: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        color: color('darkText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+        width: '83%',
+      },
+    }),
   },
   teaserButtonContainer: {
     normal: StyleSheet.create({
@@ -563,7 +563,7 @@ const styles = {
       },
     }),
   },
-  headerColor: {
+  headerColorContainer: {
     normal: StyleSheet.create({
       0: {
         position: 'absolute',
@@ -572,9 +572,15 @@ const styles = {
         width: '100%',
         height: '100%',
         flex: 1,
-        backgroundColor: color('header'),
-        opacity: 0,
         ...shadow,
+      },
+    }),
+  },
+  headerColor: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+        backgroundColor: color('header'),
       },
     }),
   },

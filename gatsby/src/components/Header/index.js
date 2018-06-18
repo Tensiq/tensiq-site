@@ -44,9 +44,14 @@ class Header extends React.PureComponent {
                   { height, opacity: fade },
                 ]}
               >
-                <View
-                  style={[theme.style({ element: 'headerColor' }), { opacity }]}
-                />
+                <Animated.View
+                  style={[
+                    theme.style({ element: 'headerColorContainer' }),
+                    { opacity: opacity },
+                  ]}
+                >
+                  <View style={theme.style({ element: 'headerColor' })} />
+                </Animated.View>
                 <Box
                   style={theme.style({ element: 'headerInnerContainer' })}
                   {...theme.props.headerInnerContainer}
@@ -137,7 +142,7 @@ class Header extends React.PureComponent {
 
 Header.propTypes = {
   height: PropTypes.object,
-  opacity: PropTypes.number,
+  opacity: PropTypes.object,
 };
 
 export default Header;

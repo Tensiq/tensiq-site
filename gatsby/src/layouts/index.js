@@ -21,6 +21,13 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
   },
+  scrollViewOuterContainer: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '100%',
+  },
 });
 
 class TemplateWrapper extends React.PureComponent {
@@ -28,28 +35,14 @@ class TemplateWrapper extends React.PureComponent {
     super(props);
     this.state = {
       scrollY: new Animated.Value(0),
-      opacity: 0,
     };
   }
-  onScroll = e => {
-    const {
-      nativeEvent: {
-        contentOffset: { y: scrollYParam },
-      },
-    } = e;
-    const value = Math.min(
-      Math.max(0, 1 / headerScrollDistance / 4 * scrollYParam),
-      1,
-    );
-    this.setState(prevState => ({
-      ...prevState,
-      opacity: value,
-      height: value,
-    }));
-  };
   render() {
-    // const headerHeight =
-    //   HEADER_MAX_HEIGHT - HEADER_SCROLL_DISTANCE * this.state.height;
+    const opacity = this.state.scrollY.interpolate({
+      inputRange: [0, headerScrollDistance],
+      outputRange: [0.0, 1.0],
+      extrapolate: 'clamp',
+    });
     const headerHeight = this.state.scrollY.interpolate({
       inputRange: [0, headerScrollDistance],
       outputRange: [headerHeightMax, headerHeightMin],
@@ -58,27 +51,18 @@ class TemplateWrapper extends React.PureComponent {
     const { children } = this.props;
     return (
       <View>
-        <View
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '100%',
-          }}
-        >
+        <View style={styles.scrollViewOuterContainer}>
           <ScrollView
             contentContainerStyle={styles.scrollViewContent}
             scrollEventThrottle={1}
-            onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-              { listener: this.onScroll },
-            )}
+            onScroll={Animated.event([
+              { nativeEvent: { contentOffset: { y: this.state.scrollY } } },
+            ])}
           >
             {children()}
           </ScrollView>
         </View>
-        <Header height={headerHeight} opacity={this.state.opacity} />
+        <Header height={headerHeight} opacity={opacity} />
         <Footer />
         <Helmet
           title="Gatsby Default Starter"
