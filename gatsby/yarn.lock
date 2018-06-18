@@ -8294,8 +8294,8 @@ p-finally@^1.0.0:
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
 
 p-limit@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-1.2.0.tgz#0e92b6bedcb59f022c13d0f1949dc82d15909f1c"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-1.3.0.tgz#b86bd5f0c25690911c7590fcbfc2010d54b3ccb8"
   dependencies:
     p-try "^1.0.0"
 
@@ -9591,7 +9591,7 @@ react-native-typography@^1.3.0:
 
 react-native-vector-icons@arrkiin/react-native-vector-icons#react-native-web:
   version "4.6.0"
-  resolved "https://codeload.github.com/arrkiin/react-native-vector-icons/tar.gz/a83ccd411dfd4dceaa39593f32c115bd0b7774f4"
+  resolved "https://codeload.github.com/arrkiin/react-native-vector-icons/tar.gz/9a6fce8e643f863ff5c333a1dc2b44ebca91483f"
   dependencies:
     lodash "^4.0.0"
     prop-types "^15.5.10"
@@ -12538,9 +12538,15 @@ which-pm-runs@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/which-pm-runs/-/which-pm-runs-1.0.0.tgz#670b3afbc552e0b55df6b7780ca74615f23ad1cb"
 
-which@^1.0.9, which@^1.1.1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0:
+which@^1.0.9, which@^1.1.1, which@^1.2.12, which@^1.2.14, which@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
+  dependencies:
+    isexe "^2.0.0"
+
+which@^1.2.9:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/which/-/which-1.3.1.tgz#a45043d54f5805316da8d62f9f50918d3da70b0a"
   dependencies:
     isexe "^2.0.0"
 

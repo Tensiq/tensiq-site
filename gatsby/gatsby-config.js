@@ -82,6 +82,19 @@ module.exports = {
               },
             },
           },
+          {
+            resolve: 'gatsby-plugin-manifest',
+            options: {
+              name: 'Tensiq',
+              short_name: 'Tensiq',
+              start_url: '/',
+              background_color: '#3a3a3aff',
+              theme_color: '#3a3a3aff',
+              display: 'minimal-ui',
+              icon: 'src/images/icon.png', // This path is relative to the root of the site.
+            },
+          },
+          'gatsby-plugin-offline',
         ],
       },
     },

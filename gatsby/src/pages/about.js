@@ -19,12 +19,20 @@ const glyphMap = {
   toolbox: parseInt('f552', 16),
   'arrow-circle-right': parseInt('f0a9', 16),
   heart: parseInt('f004', 16),
+  server: parseInt('f233', 16),
+  cloud: parseInt('f0c2', 16),
+  game: parseInt('f11b', 16),
+  code: parseInt('f121', 16),
+  terminal: parseInt('f120', 16),
+  globe: parseInt('f0ac', 16),
+  eye: parseInt('f06e', 16),
 };
 
 const brandGlyphMap = {
   react: parseInt('f41b', 16),
   github: parseInt('f09b', 16),
   twitter: parseInt('f099', 16),
+  'node-js': parseInt('f3d3', 16),
 };
 
 const customGlyphMap = {
@@ -41,12 +49,6 @@ const tensiqCardIcon = theme => (
   <CustomIcon name="tensiq" style={theme.style({ element: 'cardWrapIcon' })} />
 );
 
-const tensiqIcon = () => <CustomIcon name="tensiq" />;
-
-const netlifyIcon = () => <CustomIcon name="netlify" />;
-
-const gatsbyIcon = () => <CustomIcon name="gatsby" />;
-
 const crewIcon = (theme, type = 'normal') => (
   <Icon name="users" style={theme.style({ element: 'headerIcon', type })} />
 );
@@ -59,14 +61,21 @@ const toolsIcon = (theme, type = 'normal') => (
   <Icon name="toolbox" style={theme.style({ element: 'headerIcon', type })} />
 );
 
-const goIcon = theme => (
-  <Icon name="arrow-circle-right" style={theme.style({ element: 'goIcon' })} />
-);
-
-const heartIcon = () => <Icon name="heart" />;
-const reactIcon = () => <BrandIcon name="react" />;
-const githubIcon = () => <BrandIcon name="github" />;
-const twitterIcon = () => <BrandIcon name="twitter" />;
+const HeartIcon = props => <Icon name="heart" {...props} />;
+const ReactIcon = props => <BrandIcon name="react" {...props} />;
+const GithubIcon = props => <BrandIcon name="github" {...props} />;
+const TwitterIcon = props => <BrandIcon name="twitter" {...props} />;
+const TensiqIcon = props => <CustomIcon name="tensiq" {...props} />;
+const NetlifyIcon = props => <CustomIcon name="netlify" {...props} />;
+const GatsbyIcon = props => <CustomIcon name="gatsby" {...props} />;
+const GlobeIcon = props => <Icon name="globe" {...props} />;
+const ServerIcon = props => <Icon name="server" {...props} />;
+const CloudIcon = props => <Icon name="cloud" {...props} />;
+const CodeIcon = props => <Icon name="code" {...props} />;
+const NodeIcon = props => <BrandIcon name="node-js" {...props} />;
+const GameIcon = props => <Icon name="game" {...props} />;
+const TerminalIcon = props => <Icon name="terminal" {...props} />;
+const EyeIcon = props => <Icon name="eye" {...props} />;
 
 class AboutPage extends React.Component {
   render() {
@@ -168,7 +177,7 @@ class AboutPage extends React.Component {
                                     type: 'dark',
                                   })}
                                 >
-                                  {twitterIcon()}
+                                  <TwitterIcon />
                                   <TextNormal
                                     theme={theme}
                                     element="socialBlockEntryText"
@@ -325,7 +334,7 @@ class AboutPage extends React.Component {
                                     element: 'socialBlockEntry',
                                   })}
                                 >
-                                  {twitterIcon()}
+                                  <TwitterIcon />
                                   <TextNormal
                                     theme={theme}
                                     element="socialBlockEntryText"
@@ -338,7 +347,7 @@ class AboutPage extends React.Component {
                                     element: 'socialBlockEntry',
                                   })}
                                 >
-                                  {githubIcon()}
+                                  <GithubIcon />
                                   <TextNormal
                                     theme={theme}
                                     element="socialBlockEntryText"
@@ -483,7 +492,13 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>
+                              <ReactIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
                                 Cross-Platform Apps
                               </Header2>
                             </View>
@@ -495,7 +510,7 @@ class AboutPage extends React.Component {
                               pointerEvents="none"
                             >
                               <TextNormal theme={theme}>
-                                We fell in love with the {reactIcon()} React
+                                We fell in love with the <ReactIcon /> React
                                 ecosystem and use all the proven libraries like
                                 redux and mobx. To reach the goal of
                                 cross-platform we focus on using React Native
@@ -537,7 +552,13 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>
+                              <GlobeIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
                                 Progressive Web Apps
                               </Header2>
                             </View>
@@ -550,10 +571,11 @@ class AboutPage extends React.Component {
                             >
                               <TextNormal theme={theme}>
                                 For building fast and secure web projects we
-                                found Gatsby.js as a good fit. Because it uses
-                                React.js and Webpack and offers custom plugins
-                                we are able to support the goal of
-                                cross-platform components with React Native Web.
+                                found <GatsbyIcon /> Gatsby.js as a good fit.
+                                Because it uses React.js and Webpack and offers
+                                custom plugins we are able to support the goal
+                                of cross-platform components with React Native
+                                Web.
                               </TextNormal>
                             </View>
                           </LinearGradient>
@@ -590,7 +612,15 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>Serverless</Header2>
+                              <CloudIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
+                                Serverless
+                              </Header2>
                             </View>
                             <View
                               style={theme.style({
@@ -602,9 +632,10 @@ class AboutPage extends React.Component {
                               <TextNormal theme={theme}>
                                 To reach an high level of performance and
                                 security we prefer an serverless approach. Thus
-                                we use different cloud solutions like
-                                Github-Pages, Netlify, etc. to provide an fast
-                                and easy to maintain product.
+                                we use different cloud solutions like{' '}
+                                <GithubIcon /> Github Pages, <NetlifyIcon />{' '}
+                                Netlify, etc. to provide an fast and easy to
+                                maintain product.
                               </TextNormal>
                             </View>
                           </LinearGradient>
@@ -641,7 +672,15 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>Backend</Header2>
+                              <ServerIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
+                                Backend
+                              </Header2>
                             </View>
                             <View
                               style={theme.style({
@@ -653,9 +692,10 @@ class AboutPage extends React.Component {
                               <TextNormal theme={theme}>
                                 While we focus on a serverless setup for all our
                                 projects, we also use cloud services like
-                                Firebase or a combination of Node.JS, NGINX,
-                                OpenResty, Redis deployed on Debian or Ubuntu
-                                Linux systems to support backend logic.
+                                Firebase or a combination of <NodeIcon />{' '}
+                                Node.JS, NGINX, OpenResty, Redis deployed on
+                                Debian or Ubuntu Linux systems to support
+                                backend logic.
                               </TextNormal>
                             </View>
                           </LinearGradient>
@@ -692,7 +732,13 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>
+                              <CodeIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
                                 Programming Languages
                               </Header2>
                             </View>
@@ -744,7 +790,13 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>
+                              <GameIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
                                 Cross-Platform Games
                               </Header2>
                             </View>
@@ -802,7 +854,15 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>Environments</Header2>
+                              <TerminalIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
+                                Environments
+                              </Header2>
                             </View>
                             <View
                               style={theme.style({
@@ -854,7 +914,15 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <Header2 theme={theme}>Graphics</Header2>
+                              <EyeIcon
+                                style={{
+                                  fontSize: theme.fs(7),
+                                  marginRight: theme.sp(2),
+                                }}
+                              />
+                              <Header2 theme={theme} style={{ marginTop: 0 }}>
+                                Graphics
+                              </Header2>
                             </View>
                             <View
                               style={theme.style({
@@ -898,21 +966,21 @@ class AboutPage extends React.Component {
                       ]}
                     >
                       <TextNormal theme={theme} element="footnoteText">
-                        Copyright © 2018 {tensiqIcon(theme)} Tensiq OÜ.
+                        Copyright © 2018 <TensiqIcon /> Tensiq OÜ.
                       </TextNormal>
                       <TextNormal theme={theme} element="footnoteText">
                         All rights reserved.
                       </TextNormal>
                       <TextNormal theme={theme} element="footnoteText">
-                        Built with {heartIcon(theme)} in Tallinn, Estonia.
+                        Built with <HeartIcon /> in Tallinn, Estonia.
                       </TextNormal>
                       <TextNormal theme={theme} element="footnoteText">
-                        Crafted with {gatsbyIcon(theme)} Gatsby.js and{' '}
-                        {reactIcon(theme)} React Native Web.
+                        Crafted with <GatsbyIcon /> Gatsby.js and <ReactIcon />{' '}
+                        React Native Web.
                       </TextNormal>
                       <TextNormal theme={theme} element="footnoteText">
-                        Organized on {githubIcon(theme)} Github and deployed on{' '}
-                        {netlifyIcon(theme)} Netlify.
+                        Organized on <GithubIcon /> Github and deployed on{' '}
+                        <NetlifyIcon /> Netlify.
                       </TextNormal>
                     </View>
                   </View>

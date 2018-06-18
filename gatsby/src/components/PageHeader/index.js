@@ -12,11 +12,11 @@ const getChildrenWithStyle = (style, children) => {
     });
   });
 };
-const Header = ({ children, ...props }) => {
+const Header = ({ children, style, ...props }) => {
   const { theme } = props;
   return (
-    <Text style={theme.style(props)} {...props}>
-      {getChildrenWithStyle(theme.style(props), children)}
+    <Text style={[theme.style(props), style]} {...props}>
+      {children}
     </Text>
   );
 };
