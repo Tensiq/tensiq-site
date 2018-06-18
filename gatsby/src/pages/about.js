@@ -208,8 +208,9 @@ class AboutPage extends React.Component {
                         <View
                           style={{
                             position: 'absolute',
-                            top: 34,
-                            width: '100%',
+                            top: 36,
+                            height: '99%',
+                            width: '99%',
                           }}
                         >
                           <Img
@@ -219,6 +220,18 @@ class AboutPage extends React.Component {
                           />
                         </View>
                         {tensiqCardIcon(theme)}
+                        <View
+                          style={{
+                            position: 'absolute',
+                            top: 35,
+                            left: -2,
+                            width: '100%',
+                          }}
+                        >
+                          <Img
+                            sizes={data.imgTensiqIcon.childImageSharp.sizes}
+                          />
+                        </View>
                       </View>
                     </View>
                   </LinearGradient>
@@ -355,7 +368,7 @@ class AboutPage extends React.Component {
                                   existing teams while keeping the courage to
                                   offer leadership. I love working with
                                   teammates and invest all of my creativity,
-                                  experience and skills to deliversmart and
+                                  experience and skills to deliver smart and
                                   elegant solutions.
                                 </TextNormal>
                               </Text>
@@ -395,7 +408,7 @@ class AboutPage extends React.Component {
                   <LinearGradient
                     {...theme.gradient('darkBlock2')}
                     style={theme.style({
-                      element: 'contentBlock',
+                      element: 'contentBlockCol',
                     })}
                   >
                     <View
@@ -438,6 +451,61 @@ class AboutPage extends React.Component {
                             great products we love and use...
                           </Text>
                         </View>
+                      </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withIcon',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withIcon',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header1 theme={theme}>
+                                Cross-Platform-Stack
+                              </Header1>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withIcon',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                We fell in love with the React ecosystem and use
+                                all the proven libraries like redux and mobx. To
+                                reach the goal of cross-platform we focus on
+                                using React Native and React Native Web and
+                                wisely select 3rd party libraries that support
+                                this approach.
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                          <Text id="crew" />
+                        </Card>
                       </Box>
                     </View>
                   </LinearGradient>
@@ -496,6 +564,15 @@ export const query = graphql`
   query AboutImageQuery {
     imgTensiqIconShadow: file(
       relativePath: { eq: "images/tensiq-icon-shadow.png" }
+    ) {
+      childImageSharp {
+        sizes(maxWidth: 960) {
+          ...GatsbyImageSharpSizes_withWebp_noBase64
+        }
+      }
+    }
+    imgTensiqIcon: file(
+      relativePath: { eq: "images/tensiq-icon-with-shadow.png" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
