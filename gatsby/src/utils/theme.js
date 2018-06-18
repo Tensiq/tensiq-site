@@ -119,6 +119,12 @@ const rawStyles = {
       paddingHorizontal: sp(1),
     },
   },
+  cardContainer: {
+    normal: {
+      flex: 1,
+      marginTop: sp(7),
+    },
+  },
 };
 
 const props = {
@@ -165,6 +171,32 @@ const props = {
 };
 
 const styles = {
+  socialBlock: {
+    normal: StyleSheet.create({
+      0: { flexDirection: 'row' },
+    }),
+  },
+  socialBlockEntry: {
+    normal: StyleSheet.create({
+      0: {
+        marginRight: sp(2),
+        fontSize: fs(1),
+        color: color('lightText'),
+      },
+    }),
+    dark: StyleSheet.create({
+      0: {
+        marginRight: sp(2),
+        fontSize: fs(1),
+        color: color('darkText'),
+      },
+    }),
+  },
+  socialBlockEntryText: {
+    normal: StyleSheet.create({
+      0: { paddingLeft: sp(0) },
+    }),
+  },
   headerIconCenter: {
     normal: StyleSheet.create({
       0: {
@@ -177,8 +209,28 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         paddingTop: sp(1),
+        marginLeft: sp(4),
         marginRight: sp(4),
         width: 125,
+      },
+    }),
+  },
+  cardWrapIcon: {
+    normal: StyleSheet.create({
+      0: {
+        position: 'absolute',
+        fontSize: 200,
+        color: color('darkText'),
+      },
+    }),
+  },
+  cardIconContainer: {
+    normal: StyleSheet.create({
+      0: {
+        position: 'absolute',
+        top: -40,
+        left: 70,
+        width: 200,
       },
     }),
   },
@@ -186,10 +238,50 @@ const styles = {
     normal: StyleSheet.create({
       0: { height: 70 },
     }),
+    withIcon: StyleSheet.create({
+      0: { alignItems: 'center', marginTop: 110 },
+      1: { paddingLeft: sp(5), marginTop: 110 },
+      2: { paddingLeft: 250, marginTop: sp(1) },
+    }),
+  },
+  cardGradient: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+        paddingTop: sp(3),
+        paddingBottom: sp(7),
+      },
+    }),
+    withIcon: StyleSheet.create({
+      0: {
+        flex: 1,
+        paddingTop: sp(3),
+        paddingBottom: sp(2),
+      },
+      1: {
+        flex: 1,
+        paddingTop: sp(3),
+        paddingBottom: sp(7),
+      },
+    }),
   },
   cardTextBody: {
     normal: StyleSheet.create({
       0: {
+        paddingHorizontal: sp(5),
+      },
+    }),
+    withIcon: StyleSheet.create({
+      0: {
+        marginTop: sp(1),
+        paddingHorizontal: sp(2),
+      },
+      1: {
+        marginTop: sp(1),
+        paddingHorizontal: sp(5),
+      },
+      2: {
+        marginTop: sp(2),
         paddingHorizontal: sp(5),
       },
     }),
@@ -202,6 +294,16 @@ const styles = {
         alignItems: 'flex-end',
         marginBottom: sp(3),
         paddingHorizontal: sp(3),
+      },
+    }),
+  },
+  footnoteText: {
+    normal: StyleSheet.create({
+      0: {
+        textAlign: 'center',
+        fontSize: fs(2),
+        paddingVertical: sp(0),
+        color: color('lightText'),
       },
     }),
   },
@@ -458,6 +560,18 @@ const styles = {
       0: {
         ...rawStyles.contentBlock.normal,
         paddingTop: headerHeightMax,
+      },
+    }),
+  },
+  contentBlockCol: {
+    normal: StyleSheet.create({
+      0: { ...rawStyles.contentBlock.normal, flexDirection: 'column' },
+    }),
+    first: StyleSheet.create({
+      0: {
+        ...rawStyles.contentBlock.normal,
+        paddingTop: headerHeightMax,
+        flexDirection: 'column',
       },
     }),
   },
@@ -1001,6 +1115,7 @@ const theme = {
   fontsizes,
   fs,
   styles,
+  rawStyles,
   props,
   fonts,
   fontweights,

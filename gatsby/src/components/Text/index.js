@@ -3,10 +3,10 @@ import { Text } from 'react-native';
 
 class TextNormal extends PureComponent {
   render() {
-    const { children, ...props } = this.props;
+    const { children, style, ...props } = this.props;
     const { theme } = props;
     return (
-      <Text style={theme.style(props)} {...props}>
+      <Text style={[theme.style(props), style]} {...props}>
         {children}
       </Text>
     );

@@ -26,6 +26,11 @@ const gradients = {
     end: { x: 1.0, y: 0.9 },
     colors: ['#e8dae9ff', '#b0d6f9ff'],
   },
+  blackBlock: {
+    start: { x: 0.0, y: 0.25 },
+    end: { x: 1.0, y: 0.9 },
+    colors: ['#323232ff', '#666666ff'],
+  },
 };
 
 export default color => Color(colors[color]);

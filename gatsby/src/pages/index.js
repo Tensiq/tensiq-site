@@ -466,7 +466,6 @@ class IndexPage extends React.Component {
                               </LinearGradient>
                             </Card>
                           </Box>
-
                           <Box
                             style={theme.style({ element: 'contentCard3' })}
                             {...theme.props.contentColumn3}

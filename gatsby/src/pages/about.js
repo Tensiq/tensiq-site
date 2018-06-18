@@ -24,6 +24,7 @@ const glyphMap = {
 const brandGlyphMap = {
   react: parseInt('f41b', 16),
   github: parseInt('f09b', 16),
+  twitter: parseInt('f099', 16),
 };
 
 const customGlyphMap = {
@@ -36,17 +37,15 @@ const Icon = createIconSet(glyphMap, 'FontAwesome');
 const BrandIcon = createIconSet(brandGlyphMap, 'FontAwesomeBrands');
 const CustomIcon = createIconSet(customGlyphMap, 'Tensiq');
 
-const tensiqIcon = theme => (
-  <CustomIcon name="tensiq" style={theme.style({ element: 'githubIcon' })} />
+const tensiqCardIcon = theme => (
+  <CustomIcon name="tensiq" style={theme.style({ element: 'cardWrapIcon' })} />
 );
 
-const netlifyIcon = theme => (
-  <CustomIcon name="netlify" style={theme.style({ element: 'githubIcon' })} />
-);
+const tensiqIcon = () => <CustomIcon name="tensiq" />;
 
-const gatsbyIcon = theme => (
-  <CustomIcon name="gatsby" style={theme.style({ element: 'githubIcon' })} />
-);
+const netlifyIcon = () => <CustomIcon name="netlify" />;
+
+const gatsbyIcon = () => <CustomIcon name="gatsby" />;
 
 const crewIcon = (theme, type = 'normal') => (
   <Icon name="users" style={theme.style({ element: 'headerIcon', type })} />
@@ -64,17 +63,10 @@ const goIcon = theme => (
   <Icon name="arrow-circle-right" style={theme.style({ element: 'goIcon' })} />
 );
 
-const heartIcon = theme => (
-  <Icon name="heart" style={theme.style({ element: 'githubIcon' })} />
-);
-
-const reactIcon = theme => (
-  <BrandIcon name="react" style={theme.style({ element: 'githubIcon' })} />
-);
-
-const githubIcon = theme => (
-  <BrandIcon name="github" style={theme.style({ element: 'githubIcon' })} />
-);
+const heartIcon = () => <Icon name="heart" />;
+const reactIcon = () => <BrandIcon name="react" />;
+const githubIcon = () => <BrandIcon name="github" />;
+const twitterIcon = () => <BrandIcon name="twitter" />;
 
 class AboutPage extends React.Component {
   render() {
@@ -91,7 +83,7 @@ class AboutPage extends React.Component {
                   <LinearGradient
                     {...theme.gradient('darkBlock1')}
                     style={theme.style({
-                      element: 'contentBlock',
+                      element: 'contentBlockCol',
                       type: 'first',
                     })}
                   >
@@ -133,15 +125,107 @@ class AboutPage extends React.Component {
                             All things in life start with why. Feel what powers
                             our minds and thus fuels this company.
                           </Text>
-                          <Text id="crew" />
                         </View>
                       </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withIcon',
+                            })}
+                            {...theme.gradient('lightBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withIcon',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header1 theme={theme}>Tensiq</Header1>
+                              <View
+                                style={theme.style({ element: 'socialBlock' })}
+                              >
+                                <Text
+                                  style={theme.style({
+                                    element: 'socialBlockEntry',
+                                    type: 'dark',
+                                  })}
+                                >
+                                  {twitterIcon()}
+                                  <TextNormal
+                                    theme={theme}
+                                    element="socialBlockEntryText"
+                                  >
+                                    tensiq
+                                  </TextNormal>
+                                </Text>
+                              </View>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withIcon',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <TextNormal theme={theme}>
+                                Tensiq is an estonian based web and mobile app
+                                development company specialized in building
+                                custom solutions for innovative projects. We
+                                focus on technology that let us build fast,
+                                secure, reliable and maintainable products while
+                                targeting most of the commonly used devices.
+                                Backed by 12 years of experience in the IT
+                                industry, we really know what we are doing and
+                                how to reach the target. We are really good at
+                                what we do and love to build the next big thing.
+                              </TextNormal>
+                            </View>
+                          </LinearGradient>
+                          <Text id="crew" />
+                        </Card>
+                      </Box>
+                      <View
+                        style={theme.style({ element: 'cardIconContainer' })}
+                      >
+                        <View
+                          style={{
+                            position: 'absolute',
+                            top: 34,
+                            width: '100%',
+                          }}
+                        >
+                          <Img
+                            sizes={
+                              data.imgTensiqIconShadow.childImageSharp.sizes
+                            }
+                          />
+                        </View>
+                        {tensiqCardIcon(theme)}
+                      </View>
                     </View>
                   </LinearGradient>
                   <LinearGradient
                     {...theme.gradient('lightBlock')}
                     style={theme.style({
-                      element: 'contentBlock',
+                      element: 'contentBlockCol',
                     })}
                   >
                     <View
@@ -187,6 +271,125 @@ class AboutPage extends React.Component {
                           <Text id="tools" />
                         </View>
                       </Box>
+                    </View>
+                    <View
+                      style={theme.style({
+                        element: 'contentBlockOuterContainer',
+                      })}
+                    >
+                      <Box
+                        style={theme.style({
+                          element: 'contentBlockInnerContainer',
+                        })}
+                      >
+                        <Card
+                          style={{
+                            container: theme.rawStyles.cardContainer.normal,
+                          }}
+                        >
+                          <LinearGradient
+                            style={theme.style({
+                              element: 'cardGradient',
+                              type: 'withIcon',
+                            })}
+                            {...theme.gradient('blackBlock')}
+                            pointerEvents="none"
+                          >
+                            <View
+                              style={theme.style({
+                                element: 'cardTitle',
+                                type: 'withIcon',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Header1 light="true" theme={theme}>
+                                Jens
+                              </Header1>
+                              <View
+                                style={theme.style({ element: 'socialBlock' })}
+                              >
+                                <Text
+                                  style={theme.style({
+                                    element: 'socialBlockEntry',
+                                  })}
+                                >
+                                  {twitterIcon()}
+                                  <TextNormal
+                                    theme={theme}
+                                    element="socialBlockEntryText"
+                                  >
+                                    arrkiin
+                                  </TextNormal>
+                                </Text>
+                                <Text
+                                  style={theme.style({
+                                    element: 'socialBlockEntry',
+                                  })}
+                                >
+                                  {githubIcon()}
+                                  <TextNormal
+                                    theme={theme}
+                                    element="socialBlockEntryText"
+                                  >
+                                    arrkiin
+                                  </TextNormal>
+                                </Text>
+                              </View>
+                            </View>
+                            <View
+                              style={theme.style({
+                                element: 'cardTextBody',
+                                type: 'withIcon',
+                              })}
+                              pointerEvents="none"
+                            >
+                              <Text style={{ color: theme.color('lightText') }}>
+                                <TextNormal theme={theme}>
+                                  I am an academically educated and awarded IT
+                                  specialist working in diverse IT projects for
+                                  almost two decades now. I believe in great
+                                  people forming even better teams by fluent
+                                  collaboration and the force of constant
+                                  improvement. As an highly motivated engineer I
+                                  provide a great ability to integrate into
+                                  existing teams while keeping the courage to
+                                  offer leadership. I love working with
+                                  teammates and invest all of my creativity,
+                                  experience and skills to deliversmart and
+                                  elegant solutions.
+                                </TextNormal>
+                              </Text>
+                            </View>
+                          </LinearGradient>
+                        </Card>
+                      </Box>
+                      <View
+                        style={theme.style({ element: 'cardIconContainer' })}
+                      >
+                        <View
+                          style={{
+                            position: 'absolute',
+                            top: 34,
+                            width: '100%',
+                          }}
+                        >
+                          <Img
+                            sizes={
+                              data.imgTensiqIconShadow.childImageSharp.sizes
+                            }
+                          />
+                        </View>
+                        {tensiqCardIcon(theme)}
+                        <View
+                          style={{
+                            position: 'absolute',
+                            top: 34,
+                            width: '100%',
+                          }}
+                        >
+                          <Img sizes={data.imgJensIcon.childImageSharp.sizes} />
+                        </View>
+                      </View>
                     </View>
                   </LinearGradient>
                   <LinearGradient
@@ -258,55 +461,20 @@ class AboutPage extends React.Component {
                         },
                       ]}
                     >
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
+                      <TextNormal theme={theme} element="footnoteText">
                         Copyright © 2018 {tensiqIcon(theme)} Tensiq OÜ.
                       </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
+                      <TextNormal theme={theme} element="footnoteText">
                         All rights reserved.
                       </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
+                      <TextNormal theme={theme} element="footnoteText">
                         Built with {heartIcon(theme)} in Tallinn, Estonia.
                       </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
+                      <TextNormal theme={theme} element="footnoteText">
                         Crafted with {gatsbyIcon(theme)} Gatsby.js and{' '}
                         {reactIcon(theme)} React Native Web.
                       </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
+                      <TextNormal theme={theme} element="footnoteText">
                         Organized on {githubIcon(theme)} Github and deployed on{' '}
                         {netlifyIcon(theme)} Netlify.
                       </TextNormal>
@@ -326,8 +494,8 @@ export default AboutPage;
 
 export const query = graphql`
   query AboutImageQuery {
-    imgModernMobileWebApps: file(
-      relativePath: { eq: "images/modern-mobile-web-apps.png" }
+    imgTensiqIconShadow: file(
+      relativePath: { eq: "images/tensiq-icon-shadow.png" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
@@ -335,16 +503,9 @@ export const query = graphql`
         }
       }
     }
-    imgCrossPlatform2dGames: file(
-      relativePath: { eq: "images/cross-platform-2d-games.png" }
+    imgJensIcon: file(
+      relativePath: { eq: "images/jens-icon-with-shadow.png" }
     ) {
-      childImageSharp {
-        sizes(maxWidth: 960) {
-          ...GatsbyImageSharpSizes_withWebp_noBase64
-        }
-      }
-    }
-    imgDataAnalysis: file(relativePath: { eq: "images/data-analysis.png" }) {
       childImageSharp {
         sizes(maxWidth: 960) {
           ...GatsbyImageSharpSizes_withWebp_noBase64
