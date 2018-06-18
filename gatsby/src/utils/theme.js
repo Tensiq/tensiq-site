@@ -165,6 +165,23 @@ const props = {
 };
 
 const styles = {
+  headerIconCenter: {
+    normal: StyleSheet.create({
+      0: {
+        marginVertical: sp(2),
+        alignItems: 'center',
+      },
+    }),
+  },
+  headerIconLeft: {
+    normal: StyleSheet.create({
+      0: {
+        paddingTop: sp(1),
+        marginRight: sp(4),
+        width: 125,
+      },
+    }),
+  },
   cardTitle: {
     normal: StyleSheet.create({
       0: { height: 70 },
@@ -283,6 +300,40 @@ const styles = {
   teaserBlock: {
     normal: StyleSheet.create({ 0: {} }),
   },
+  headerTitleText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.bold,
+        fontSize: fs(5),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+      1: {
+        ...fonts.bold,
+        fontSize: fs(7),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+    }),
+    dark: StyleSheet.create({
+      0: {
+        ...fonts.bold,
+        fontSize: fs(5),
+        color: color('darkText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+      1: {
+        ...fonts.bold,
+        fontSize: fs(7),
+        color: color('darkText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+    }),
+  },
   teaserTitleText: {
     normal: StyleSheet.create({
       0: {
@@ -314,6 +365,42 @@ const styles = {
         color: color('darkText'),
         paddingHorizontal: sp(0),
         paddingVertical: sp(0),
+      },
+    }),
+  },
+  headerText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+      1: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        color: color('lightText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+        width: '83%',
+      },
+    }),
+    dark: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        color: color('darkText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+      },
+      1: {
+        ...fonts.normal,
+        fontSize: fs(3),
+        color: color('darkText'),
+        paddingHorizontal: sp(0),
+        paddingVertical: sp(0),
+        width: '83%',
       },
     }),
   },

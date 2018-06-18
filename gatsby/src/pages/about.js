@@ -87,6 +87,7 @@ class AboutPage extends React.Component {
             {theme => {
               return (
                 <View>
+                  <Text id="mission" />
                   <LinearGradient
                     {...theme.gradient('darkBlock1')}
                     style={theme.style({
@@ -105,10 +106,7 @@ class AboutPage extends React.Component {
                         })}
                       >
                         <Box
-                          style={{
-                            paddingTop: theme.sp(1),
-                            marginRight: theme.sp(4),
-                          }}
+                          style={theme.style({ element: 'headerIconLeft' })}
                           {...theme.props.headerIconLeft}
                         >
                           {missionIcon(theme)}
@@ -116,28 +114,26 @@ class AboutPage extends React.Component {
                         <View style={{ flex: 1 }}>
                           <Text
                             style={theme.style({
-                              element: 'teaserTitleText',
+                              element: 'headerTitleText',
                             })}
                           >
                             Mission
                           </Text>
                           <Box
-                            style={{
-                              marginVertical: theme.sp(2),
-                              alignItems: 'center',
-                            }}
+                            style={theme.style({ element: 'headerIconCenter' })}
                             {...theme.props.headerIconCenter}
                           >
                             {missionIcon(theme)}
                           </Box>
                           <Text
                             style={theme.style({
-                              element: 'teaserText',
+                              element: 'headerText',
                             })}
                           >
                             All things in life start with why. Feel what powers
                             our minds and thus fuels this company.
                           </Text>
+                          <Text id="crew" />
                         </View>
                       </Box>
                     </View>
@@ -159,10 +155,7 @@ class AboutPage extends React.Component {
                         })}
                       >
                         <Box
-                          style={{
-                            paddingTop: theme.sp(1),
-                            marginRight: theme.sp(4),
-                          }}
+                          style={theme.style({ element: 'headerIconLeft' })}
                           {...theme.props.headerIconLeft}
                         >
                           {crewIcon(theme, 'dark')}
@@ -170,30 +163,28 @@ class AboutPage extends React.Component {
                         <View style={{ flex: 1 }}>
                           <Text
                             style={theme.style({
-                              element: 'teaserTitleText',
+                              element: 'headerTitleText',
                               type: 'dark',
                             })}
                           >
                             Crew
                           </Text>
                           <Box
-                            style={{
-                              marginVertical: theme.sp(2),
-                              alignItems: 'center',
-                            }}
+                            style={theme.style({ element: 'headerIconCenter' })}
                             {...theme.props.headerIconCenter}
                           >
                             {crewIcon(theme, 'dark')}
                           </Box>
                           <Text
                             style={theme.style({
-                              element: 'teaserText',
+                              element: 'headerText',
                               type: 'dark',
                             })}
                           >
                             Great people create great products. This is our crew
                             to fly this rocket-ship...
                           </Text>
+                          <Text id="tools" />
                         </View>
                       </Box>
                     </View>
@@ -215,10 +206,7 @@ class AboutPage extends React.Component {
                         })}
                       >
                         <Box
-                          style={{
-                            paddingTop: theme.sp(1),
-                            marginRight: theme.sp(4),
-                          }}
+                          style={theme.style({ element: 'headerIconLeft' })}
                           {...theme.props.headerIconLeft}
                         >
                           {toolsIcon(theme)}
@@ -226,23 +214,21 @@ class AboutPage extends React.Component {
                         <View style={{ flex: 1 }}>
                           <Text
                             style={theme.style({
-                              element: 'teaserTitleText',
+                              element: 'headerTitleText',
                             })}
+                            id="tools"
                           >
                             Tools
                           </Text>
                           <Box
-                            style={{
-                              marginVertical: theme.sp(2),
-                              alignItems: 'center',
-                            }}
+                            style={theme.style({ element: 'headerIconCenter' })}
                             {...theme.props.headerIconCenter}
                           >
                             {toolsIcon(theme)}
                           </Box>
                           <Text
                             style={theme.style({
-                              element: 'teaserText',
+                              element: 'headerText',
                             })}
                           >
                             Awesome products need great tools. We show you which
