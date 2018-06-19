@@ -1,8 +1,6 @@
-const GraphQlJson = require('graphql-type-json');
-
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Tensiq',
   },
   plugins: [
     'gatsby-plugin-react-native-web',
@@ -17,11 +15,33 @@ module.exports = {
         statsFilename: '../stats.json',
       },
     },
+    'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'src',
-        path: `${__dirname}/src/`,
+        name: 'pages',
+        path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'snippets',
+        path: `${__dirname}/src/snippets/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'data',
+        path: `${__dirname}/src/data/`,
       },
     },
     'gatsby-plugin-sharp',
@@ -47,7 +67,7 @@ module.exports = {
                     tagName: 'icon',
                     properties: {
                       name: '::content::',
-                      color: '::argument::',
+                      element: '::argument::',
                     },
                   },
                 },

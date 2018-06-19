@@ -78,14 +78,19 @@ exports.onPostBuild = (args, pluginOptions) =>
       const zipped = zlib.gzipSync(content);
       fs.writeFileSync(`${file}.gz`, zipped);
     });
-    const usedGlyphs = JSON.parse(
-      fs.readFileSync(`${__dirname}/src/fonts/FontAwesome.json`),
-    );
-    const fontAwesomeFontfiles = glob.sync(
-      `${publicPath}/static/FontAwesome*.ttf`,
-    );
-    fontAwesomeFontfiles.forEach(file => {
-      var content = fs.readFileSync(file);
+    const glyphMaps = glob.sync(`${__dirname}/src/fonts/(*.json|*.js)`);
+    const fontWithGlyphmap = glyphMaps.map(file => {
+      return {
+        glyphmap: file,
+        font: `${publicPath}/static/${file.substring(
+          1,
+          file.lastIndexOf('.'),
+        )}.ttf`,
+      };
+    });
+    fontWithGlyphmap.forEach(({ glyphmap, fontFile }) => {
+      const usedGlyphs = require(glyphmap);
+      var content = fs.readFileSync(fontFile);
       const font = Font.create(content, {
         type: 'ttf',
         subset: Object.values(usedGlyphs),
@@ -96,7 +101,7 @@ exports.onPostBuild = (args, pluginOptions) =>
         type: 'ttf',
         hinting: true,
       });
-      fs.writeFileSync(file, content);
+      fs.writeFileSync(fontFile, content);
     });
     resolve();
   });

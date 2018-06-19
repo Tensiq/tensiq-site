@@ -1,15 +1,28 @@
 import React, { PureComponent } from 'react';
 import { Text } from 'react-native';
+import { ThemeContext } from '../ThemeProvider';
 
 class TextNormal extends PureComponent {
   render() {
     const { children, style, ...props } = this.props;
     const { theme } = props;
-    return (
-      <Text style={[theme.style(props), style]} {...props}>
-        {children}
-      </Text>
-    );
+    if (theme === undefined) {
+      return (
+        <ThemeContext.Consumer>
+          {theme => (
+            <Text style={[theme.style(props), style]} {...props}>
+              {children}
+            </Text>
+          )}
+        </ThemeContext.Consumer>
+      );
+    } else {
+      return (
+        <Text style={[theme.style(props), style]} {...props}>
+          {children}
+        </Text>
+      );
+    }
   }
 }
 TextNormal.defaultProps = {

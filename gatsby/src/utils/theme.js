@@ -247,8 +247,25 @@ const styles = {
       2: { paddingLeft: 250, marginTop: sp(1) },
     }),
     withLongText: StyleSheet.create({
-      0: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: sp(2) },
-      1: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: sp(5), marginTop: sp(1) },
+      0: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: sp(2),
+      },
+      1: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: sp(5),
+        marginTop: sp(1),
+      },
+    }),
+  },
+  cardTitleIcon: {
+    normal: StyleSheet.create({
+      0: {
+        fontSize: fs(7),
+        marginRight: sp(2),
+      },
     }),
   },
   cardGradient: {

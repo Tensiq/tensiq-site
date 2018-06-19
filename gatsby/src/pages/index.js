@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '../components/RippleLink';
 import { navigateTo } from 'gatsby-link';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Box from '../components/Grid/Box';
 import { ThemeContext } from '../components/ThemeProvider';
@@ -10,85 +10,32 @@ import { Header1, Header2 } from '../components/PageHeader';
 import { TextNormal, TextStrong } from '../components/Text';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import Card from 'react-native-material-ui/src/Card';
-import { createIconSet } from 'react-native-vector-icons';
+import rehypeReact from 'rehype-react';
+import Icon from '../components/Icon';
 
-const glyphMap = {
-  rocket: parseInt('f135', 16),
-  users: parseInt('f0c0', 16),
-  heartbeat: parseInt('f21e', 16),
-  toolbox: parseInt('f552', 16),
-  'arrow-circle-right': parseInt('f0a9', 16),
-  heart: parseInt('f004', 16),
-};
+const RocketIcon = () => <Icon name="rocket" element="teaserIcon" />;
+const CrewIcon = () => <Icon name="users" element="aboutIcon" />;
+const MindIcon = () => <Icon name="heartbeat" element="aboutIcon" />;
+const ToolsIcon = () => <Icon name="toolbox" element="aboutIcon" />;
+const GoIcon = () => <Icon name="arrow-circle-right" element="goIcon" />;
 
-const brandGlyphMap = {
-  react: parseInt('f41b', 16),
-  github: parseInt('f09b', 16),
-};
-
-const customGlyphMap = {
-  tensiq: 't',
-  netlify: 'n',
-  gatsby: 'g',
-};
-
-const Icon = createIconSet(glyphMap, 'FontAwesome');
-const BrandIcon = createIconSet(brandGlyphMap, 'FontAwesomeBrands');
-const CustomIcon = createIconSet(customGlyphMap, 'Tensiq');
-
-const tensiqIcon = theme => (
-  <CustomIcon name="tensiq" style={theme.style({ element: 'githubIcon' })} />
-);
-
-const netlifyIcon = theme => (
-  <CustomIcon name="netlify" style={theme.style({ element: 'githubIcon' })} />
-);
-
-const gatsbyIcon = theme => (
-  <CustomIcon name="gatsby" style={theme.style({ element: 'githubIcon' })} />
-);
-
-const rocketIcon = theme => (
-  <Icon name="rocket" style={theme.style({ element: 'teaserIcon' })} />
-);
-
-const crewIcon = theme => (
-  <Icon name="users" style={theme.style({ element: 'aboutIcon' })} />
-);
-
-const mindIcon = theme => (
-  <Icon name="heartbeat" style={theme.style({ element: 'aboutIcon' })} />
-);
-
-const toolsIcon = theme => (
-  <Icon name="toolbox" style={theme.style({ element: 'aboutIcon' })} />
-);
-
-const goIcon = theme => (
-  <Icon name="arrow-circle-right" style={theme.style({ element: 'goIcon' })} />
-);
-
-const heartIcon = theme => (
-  <Icon name="heart" style={theme.style({ element: 'githubIcon' })} />
-);
-
-const reactIcon = theme => (
-  <BrandIcon name="react" style={theme.style({ element: 'githubIcon' })} />
-);
-
-const githubIcon = theme => (
-  <BrandIcon name="github" style={theme.style({ element: 'githubIcon' })} />
-);
+const renderHtmlAst = new rehypeReact({
+  createElement: React.createElement,
+  components: {
+    p: TextNormal,
+    icon: Icon,
+  },
+}).Compiler;
 
 class IndexPage extends React.Component {
   render() {
     const { data } = this.props;
-    // console.log(data);
     return (
       <View>
         <ThemeProvider uiTheme={{}}>
           <ThemeContext.Consumer>
             {theme => {
+              const footnotes = renderHtmlAst(data.astFootnotes.htmlAst);
               return (
                 <View>
                   <LinearGradient
@@ -115,7 +62,7 @@ class IndexPage extends React.Component {
                           }}
                           {...theme.props.rocketIconLeft}
                         >
-                          {rocketIcon(theme)}
+                          <RocketIcon />
                         </Box>
                         <View style={{ flex: 1 }}>
                           <Text
@@ -132,7 +79,7 @@ class IndexPage extends React.Component {
                             }}
                             {...theme.props.rocketIconCenter}
                           >
-                            {rocketIcon(theme)}
+                            <RocketIcon />
                           </Box>
                           <Text
                             style={theme.style({
@@ -334,7 +281,7 @@ class IndexPage extends React.Component {
                           }}
                           // {...theme.props.rocketIconCenter}
                         >
-                          {rocketIcon(theme)}
+                          <RocketIcon />
                         </Box>
                         <View
                           style={{
@@ -373,7 +320,7 @@ class IndexPage extends React.Component {
                                     alignItems: 'center',
                                   }}
                                 >
-                                  {mindIcon(theme)}
+                                  <MindIcon />
                                 </View>
                                 <View
                                   style={theme.style({
@@ -399,7 +346,7 @@ class IndexPage extends React.Component {
                                     element: 'cardGoIcon',
                                   })}
                                 >
-                                  {goIcon(theme)}
+                                  <GoIcon />
                                 </View>
                               </LinearGradient>
                             </Card>
@@ -432,7 +379,7 @@ class IndexPage extends React.Component {
                                   }}
                                   pointerEvents="none"
                                 >
-                                  {crewIcon(theme)}
+                                  <CrewIcon />
                                 </View>
                                 <View
                                   style={theme.style({
@@ -461,7 +408,7 @@ class IndexPage extends React.Component {
                                   })}
                                   pointerEvents="none"
                                 >
-                                  {goIcon(theme)}
+                                  <GoIcon />
                                 </View>
                               </LinearGradient>
                             </Card>
@@ -495,7 +442,7 @@ class IndexPage extends React.Component {
                                     alignItems: 'center',
                                   }}
                                 >
-                                  {toolsIcon(theme)}
+                                  <ToolsIcon />
                                 </View>
                                 <View
                                   style={theme.style({
@@ -521,7 +468,7 @@ class IndexPage extends React.Component {
                                     element: 'cardGoIcon',
                                   })}
                                 >
-                                  {goIcon(theme)}
+                                  <GoIcon />
                                 </View>
                               </LinearGradient>
                             </Card>
@@ -550,58 +497,15 @@ class IndexPage extends React.Component {
                         },
                       ]}
                     >
-                      <TextNormal
-                        theme={theme}
+                      <Text
                         style={{
                           textAlign: 'center',
                           paddingVertical: theme.sp(0),
                           color: theme.color('lightText'),
                         }}
                       >
-                        Copyright © 2018 {tensiqIcon(theme)} Tensiq OÜ.
-                      </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
-                        All rights reserved.
-                      </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
-                        Built with {heartIcon(theme)} in Tallinn, Estonia.
-                      </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
-                        Crafted with {gatsbyIcon(theme)} Gatsby.js and{' '}
-                        {reactIcon(theme)} React Native Web.
-                      </TextNormal>
-                      <TextNormal
-                        theme={theme}
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
-                        Organized on {githubIcon(theme)} Github and deployed on{' '}
-                        {netlifyIcon(theme)} Netlify.
-                      </TextNormal>
+                        {footnotes}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -617,9 +521,15 @@ class IndexPage extends React.Component {
 export default IndexPage;
 
 export const query = graphql`
-  query IndexImageQuery {
+  query IndexPageQuery {
+    astFootnotes: markdownRemark(
+      frontmatter: { snippet: { eq: "footnotes" } }
+    ) {
+      htmlAst
+    }
     imgModernMobileWebApps: file(
-      relativePath: { eq: "images/modern-mobile-web-apps.png" }
+      relativePath: { eq: "modern-mobile-web-apps.png" }
+      sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
@@ -628,7 +538,8 @@ export const query = graphql`
       }
     }
     imgCrossPlatform2dGames: file(
-      relativePath: { eq: "images/cross-platform-2d-games.png" }
+      relativePath: { eq: "cross-platform-2d-games.png" }
+      sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
@@ -636,7 +547,10 @@ export const query = graphql`
         }
       }
     }
-    imgDataAnalysis: file(relativePath: { eq: "images/data-analysis.png" }) {
+    imgDataAnalysis: file(
+      relativePath: { eq: "data-analysis.png" }
+      sourceInstanceName: { eq: "images" }
+    ) {
       childImageSharp {
         sizes(maxWidth: 960) {
           ...GatsbyImageSharpSizes_withWebp_noBase64

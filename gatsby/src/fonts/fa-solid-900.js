@@ -1,0 +1,15 @@
+export default {
+  rocket: parseInt('f135', 16),
+  users: parseInt('f0c0', 16),
+  heartbeat: parseInt('f21e', 16),
+  toolbox: parseInt('f552', 16),
+  'arrow-circle-right': parseInt('f0a9', 16),
+  heart: parseInt('f004', 16),
+  server: parseInt('f233', 16),
+  cloud: parseInt('f0c2', 16),
+  game: parseInt('f11b', 16),
+  code: parseInt('f121', 16),
+  terminal: parseInt('f120', 16),
+  globe: parseInt('f0ac', 16),
+  eye: parseInt('f06e', 16),
+};

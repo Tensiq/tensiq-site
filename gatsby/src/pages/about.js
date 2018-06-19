@@ -1,81 +1,58 @@
 import React from 'react';
-import Link from '../components/RippleLink';
-import { navigateTo } from 'gatsby-link';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Box from '../components/Grid/Box';
 import { ThemeContext } from '../components/ThemeProvider';
 import Img from 'gatsby-image';
 import { Header1, Header2 } from '../components/PageHeader';
-import { TextNormal, TextStrong } from '../components/Text';
+import { TextNormal } from '../components/Text';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import Card from 'react-native-material-ui/src/Card';
-import { createIconSet } from 'react-native-vector-icons';
+import rehypeReact from 'rehype-react';
+import Icon from '../components/Icon';
 
-const glyphMap = {
-  rocket: parseInt('f135', 16),
-  users: parseInt('f0c0', 16),
-  heartbeat: parseInt('f21e', 16),
-  toolbox: parseInt('f552', 16),
-  'arrow-circle-right': parseInt('f0a9', 16),
-  heart: parseInt('f004', 16),
-  server: parseInt('f233', 16),
-  cloud: parseInt('f0c2', 16),
-  game: parseInt('f11b', 16),
-  code: parseInt('f121', 16),
-  terminal: parseInt('f120', 16),
-  globe: parseInt('f0ac', 16),
-  eye: parseInt('f06e', 16),
-};
-
-const brandGlyphMap = {
-  react: parseInt('f41b', 16),
-  github: parseInt('f09b', 16),
-  twitter: parseInt('f099', 16),
-  'node-js': parseInt('f3d3', 16),
-};
-
-const customGlyphMap = {
-  tensiq: 't',
-  netlify: 'n',
-  gatsby: 'g',
-};
-
-const Icon = createIconSet(glyphMap, 'FontAwesome');
-const BrandIcon = createIconSet(brandGlyphMap, 'FontAwesomeBrands');
-const CustomIcon = createIconSet(customGlyphMap, 'Tensiq');
-
-const tensiqCardIcon = theme => (
-  <CustomIcon name="tensiq" style={theme.style({ element: 'cardWrapIcon' })} />
+const tensiqCardIcon = () => <Icon name="tensiq" element="cardWrapIcon" />;
+const CrewIcon = props => <Icon name="users" element="headerIcon" {...props} />;
+const MindIcon = props => (
+  <Icon name="heartbeat" element="headerIcon" {...props} />
+);
+const ToolsIcon = props => (
+  <Icon name="toolbox" element="headerIcon" {...props} />
 );
 
-const crewIcon = (theme, type = 'normal') => (
-  <Icon name="users" style={theme.style({ element: 'headerIcon', type })} />
+const ReactIcon = props => <Icon name="react" {...props} />;
+const GithubIcon = props => <Icon name="github" {...props} />;
+const TwitterIcon = props => <Icon name="twitter" {...props} />;
+const NetlifyIcon = props => <Icon name="netlify" {...props} />;
+const GatsbyIcon = props => <Icon name="gatsby" {...props} />;
+const GlobeIcon = props => (
+  <Icon name="globe" element="cardTitleIcon" {...props} />
 );
-
-const missionIcon = (theme, type = 'normal') => (
-  <Icon name="heartbeat" style={theme.style({ element: 'headerIcon', type })} />
+const ServerIcon = props => (
+  <Icon name="server" element="cardTitleIcon" {...props} />
 );
-
-const toolsIcon = (theme, type = 'normal') => (
-  <Icon name="toolbox" style={theme.style({ element: 'headerIcon', type })} />
+const CloudIcon = props => (
+  <Icon name="cloud" element="cardTitleIcon" {...props} />
 );
+const CodeIcon = props => (
+  <Icon name="code" element="cardTitleIcon" {...props} />
+);
+const NodeIcon = props => <Icon name="node-js" {...props} />;
+const GameIcon = props => (
+  <Icon name="game" element="cardTitleIcon" {...props} />
+);
+const TerminalIcon = props => (
+  <Icon name="terminal" element="cardTitleIcon" {...props} />
+);
+const EyeIcon = props => <Icon name="eye" element="cardTitleIcon" {...props} />;
 
-const HeartIcon = props => <Icon name="heart" {...props} />;
-const ReactIcon = props => <BrandIcon name="react" {...props} />;
-const GithubIcon = props => <BrandIcon name="github" {...props} />;
-const TwitterIcon = props => <BrandIcon name="twitter" {...props} />;
-const TensiqIcon = props => <CustomIcon name="tensiq" {...props} />;
-const NetlifyIcon = props => <CustomIcon name="netlify" {...props} />;
-const GatsbyIcon = props => <CustomIcon name="gatsby" {...props} />;
-const GlobeIcon = props => <Icon name="globe" {...props} />;
-const ServerIcon = props => <Icon name="server" {...props} />;
-const CloudIcon = props => <Icon name="cloud" {...props} />;
-const CodeIcon = props => <Icon name="code" {...props} />;
-const NodeIcon = props => <BrandIcon name="node-js" {...props} />;
-const GameIcon = props => <Icon name="game" {...props} />;
-const TerminalIcon = props => <Icon name="terminal" {...props} />;
-const EyeIcon = props => <Icon name="eye" {...props} />;
+const renderHtmlAst = new rehypeReact({
+  createElement: React.createElement,
+  components: {
+    p: TextNormal,
+    icon: Icon,
+  },
+}).Compiler;
 
 class AboutPage extends React.Component {
   render() {
@@ -86,6 +63,7 @@ class AboutPage extends React.Component {
         <ThemeProvider uiTheme={{}}>
           <ThemeContext.Consumer>
             {theme => {
+              const footnotes = renderHtmlAst(data.astFootnotes.htmlAst);
               return (
                 <View>
                   <Text id="mission" />
@@ -110,7 +88,7 @@ class AboutPage extends React.Component {
                           style={theme.style({ element: 'headerIconLeft' })}
                           {...theme.props.headerIconLeft}
                         >
-                          {missionIcon(theme)}
+                          <MindIcon />
                         </Box>
                         <View style={{ flex: 1 }}>
                           <Text
@@ -124,7 +102,7 @@ class AboutPage extends React.Component {
                             style={theme.style({ element: 'headerIconCenter' })}
                             {...theme.props.headerIconCenter}
                           >
-                            {missionIcon(theme)}
+                            <MindIcon />
                           </Box>
                           <Text
                             style={theme.style({
@@ -264,7 +242,7 @@ class AboutPage extends React.Component {
                           style={theme.style({ element: 'headerIconLeft' })}
                           {...theme.props.headerIconLeft}
                         >
-                          {crewIcon(theme, 'dark')}
+                          <CrewIcon type="dark" />
                         </Box>
                         <View style={{ flex: 1 }}>
                           <Text
@@ -279,7 +257,7 @@ class AboutPage extends React.Component {
                             style={theme.style({ element: 'headerIconCenter' })}
                             {...theme.props.headerIconCenter}
                           >
-                            {crewIcon(theme, 'dark')}
+                            <CrewIcon type="dark" />
                           </Box>
                           <Text
                             style={theme.style({
@@ -434,7 +412,7 @@ class AboutPage extends React.Component {
                           style={theme.style({ element: 'headerIconLeft' })}
                           {...theme.props.headerIconLeft}
                         >
-                          {toolsIcon(theme)}
+                          <ToolsIcon />
                         </Box>
                         <View style={{ flex: 1 }}>
                           <Text
@@ -449,7 +427,7 @@ class AboutPage extends React.Component {
                             style={theme.style({ element: 'headerIconCenter' })}
                             {...theme.props.headerIconCenter}
                           >
-                            {toolsIcon(theme)}
+                            <ToolsIcon />
                           </Box>
                           <Text
                             style={theme.style({
@@ -492,12 +470,7 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <ReactIcon
-                                style={{
-                                  fontSize: theme.fs(7),
-                                  marginRight: theme.sp(2),
-                                }}
-                              />
+                              <ReactIcon element="cardTitleIcon" />
                               <Header2 theme={theme} style={{ marginTop: 0 }}>
                                 Cross-Platform Apps
                               </Header2>
@@ -552,12 +525,7 @@ class AboutPage extends React.Component {
                               })}
                               pointerEvents="none"
                             >
-                              <GlobeIcon
-                                style={{
-                                  fontSize: theme.fs(7),
-                                  marginRight: theme.sp(2),
-                                }}
-                              />
+                              <GlobeIcon />
                               <Header2 theme={theme} style={{ marginTop: 0 }}>
                                 Progressive Web Apps
                               </Header2>
@@ -965,23 +933,15 @@ class AboutPage extends React.Component {
                         },
                       ]}
                     >
-                      <TextNormal theme={theme} element="footnoteText">
-                        Copyright © 2018 <TensiqIcon /> Tensiq OÜ.
-                      </TextNormal>
-                      <TextNormal theme={theme} element="footnoteText">
-                        All rights reserved.
-                      </TextNormal>
-                      <TextNormal theme={theme} element="footnoteText">
-                        Built with <HeartIcon /> in Tallinn, Estonia.
-                      </TextNormal>
-                      <TextNormal theme={theme} element="footnoteText">
-                        Crafted with <GatsbyIcon /> Gatsby.js and <ReactIcon />{' '}
-                        React Native Web.
-                      </TextNormal>
-                      <TextNormal theme={theme} element="footnoteText">
-                        Organized on <GithubIcon /> Github and deployed on{' '}
-                        <NetlifyIcon /> Netlify.
-                      </TextNormal>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          paddingVertical: theme.sp(0),
+                          color: theme.color('lightText'),
+                        }}
+                      >
+                        {footnotes}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -997,9 +957,15 @@ class AboutPage extends React.Component {
 export default AboutPage;
 
 export const query = graphql`
-  query AboutImageQuery {
+  query AboutPageQuery {
+    astFootnotes: markdownRemark(
+      frontmatter: { snippet: { eq: "footnotes" } }
+    ) {
+      htmlAst
+    }
     imgTensiqIconShadow: file(
-      relativePath: { eq: "images/tensiq-icon-shadow.png" }
+      relativePath: { eq: "tensiq-icon-shadow.png" }
+      sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
@@ -1008,7 +974,8 @@ export const query = graphql`
       }
     }
     imgTensiqIcon: file(
-      relativePath: { eq: "images/tensiq-icon-with-shadow.png" }
+      relativePath: { eq: "tensiq-icon-with-shadow.png" }
+      sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
@@ -1017,7 +984,8 @@ export const query = graphql`
       }
     }
     imgJensIcon: file(
-      relativePath: { eq: "images/jens-icon-with-shadow.png" }
+      relativePath: { eq: "jens-icon-with-shadow.png" }
+      sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
         sizes(maxWidth: 960) {
