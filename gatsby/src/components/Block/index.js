@@ -4,9 +4,9 @@ import { View } from 'react-native';
 import Img from 'gatsby-image';
 import Box from '../Grid/Box';
 import { Header2 } from '../PageHeader';
-import { TextNormal } from '../components/Text';
+import { TextNormal } from '../Text';
 
-const Block = ({ title, image, children }) => (
+const Block = ({ title, sizes, children }) => (
   <ThemeContext.Consumer>
     {theme => (
       <Box
@@ -20,8 +20,10 @@ const Block = ({ title, image, children }) => (
         >
           <Header2 theme={theme}>{title}</Header2>
         </View>
-        <Img sizes={data.imgModernMobileWebApps.childImageSharp.sizes} />
-        <TextNormal theme={theme}>{children}</TextNormal>
+        {/* <Img sizes={sizes} /> */}
+        {/* <TextNormal theme={theme}> */}
+        {children}
+        {/* </TextNormal> */}
       </Box>
     )}
   </ThemeContext.Consumer>

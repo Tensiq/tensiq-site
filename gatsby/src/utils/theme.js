@@ -178,6 +178,12 @@ const props = {
 };
 
 const styles = {
+  icon: {
+    normal: {},
+    pr: StyleSheet.create({
+      paddingRight: sp(1),
+    }),
+  },
   teaserIconBox: {
     normal: StyleSheet.create({
       0: {
@@ -659,6 +665,37 @@ const styles = {
         ...rawStyles.contentBlockInnerContainer.normal,
       },
     },
+    column: {
+      0: {
+        ...rawStyles.contentBlockInnerContainer.slim,
+        flexDirection: 'column',
+      },
+      1: {
+        ...rawStyles.contentBlockInnerContainer.tight,
+        flexDirection: 'column',
+      },
+      2: {
+        ...rawStyles.contentBlockInnerContainer.normal,
+        flexDirection: 'column',
+      },
+    },
+    thinColumn: {
+      0: {
+        ...rawStyles.contentBlockInnerContainer.slim,
+        flexDirection: 'column',
+        paddingHorizontal: sp(4),
+      },
+      1: {
+        ...rawStyles.contentBlockInnerContainer.tight,
+        flexDirection: 'column',
+        paddingHorizontal: sp(4),
+      },
+      2: {
+        ...rawStyles.contentBlockInnerContainer.normal,
+        flexDirection: 'column',
+        paddingHorizontal: sp(4),
+      },
+    },
     leftCentered: {
       0: {
         ...rawStyles.contentBlockInnerContainer.normal,
@@ -993,13 +1030,6 @@ const styles = {
       0: {
         fontWeight: fontweights.bold,
       },
-    }),
-  },
-  icon: {
-    normal: StyleSheet.create({
-      0: { fontSize: 18, color: 'purple' },
-      1: { fontSize: 22, color: 'red' },
-      2: { fontSize: 24, color: 'blue' },
     }),
   },
   paragraph: {

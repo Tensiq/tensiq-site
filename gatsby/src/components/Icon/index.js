@@ -19,9 +19,13 @@ const createStyleElement = (group, props, theme) => {
     ...props,
     style: [
       props.style,
-      props.element === 'undefined' || props.element === undefined
-        ? null
-        : theme.style({ element: props.element, type: props.type || 'normal' }),
+      theme.style({
+        element:
+          props.element === 'undefined' || props.element === undefined
+            ? 'icon'
+            : props.element,
+        type: props.type || 'normal',
+      }),
     ],
   };
   return React.createElement(group, styledProps);
