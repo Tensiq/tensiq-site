@@ -86,7 +86,7 @@ class AboutPage extends React.Component {
                       >
                         <Box
                           style={theme.style({ element: 'headerIconLeft' })}
-                          {...theme.props.headerIconLeft}
+                          {...theme.props.headerIcon.left}
                         >
                           <MindIcon />
                         </Box>
@@ -100,7 +100,7 @@ class AboutPage extends React.Component {
                           </Text>
                           <Box
                             style={theme.style({ element: 'headerIconCenter' })}
-                            {...theme.props.headerIconCenter}
+                            {...theme.props.headerIcon.normal}
                           >
                             <MindIcon />
                           </Box>
@@ -240,7 +240,7 @@ class AboutPage extends React.Component {
                       >
                         <Box
                           style={theme.style({ element: 'headerIconLeft' })}
-                          {...theme.props.headerIconLeft}
+                          {...theme.props.headerIcon.left}
                         >
                           <CrewIcon type="dark" />
                         </Box>
@@ -255,7 +255,7 @@ class AboutPage extends React.Component {
                           </Text>
                           <Box
                             style={theme.style({ element: 'headerIconCenter' })}
-                            {...theme.props.headerIconCenter}
+                            {...theme.props.headerIcon.normal}
                           >
                             <CrewIcon type="dark" />
                           </Box>
@@ -410,7 +410,7 @@ class AboutPage extends React.Component {
                       >
                         <Box
                           style={theme.style({ element: 'headerIconLeft' })}
-                          {...theme.props.headerIconLeft}
+                          {...theme.props.headerIcon.Left}
                         >
                           <ToolsIcon />
                         </Box>
@@ -425,7 +425,7 @@ class AboutPage extends React.Component {
                           </Text>
                           <Box
                             style={theme.style({ element: 'headerIconCenter' })}
-                            {...theme.props.headerIconCenter}
+                            {...theme.props.headerIcon.normal}
                           >
                             <ToolsIcon />
                           </Box>
@@ -964,7 +964,7 @@ export const query = graphql`
       htmlAst
     }
     imgTensiqIconShadow: file(
-      relativePath: { eq: "tensiq-icon-shadow.png" }
+      relativePath: { eq: "profiles/tensiq-icon-shadow.png" }
       sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
@@ -974,7 +974,7 @@ export const query = graphql`
       }
     }
     imgTensiqIcon: file(
-      relativePath: { eq: "tensiq-icon-with-shadow.png" }
+      relativePath: { eq: "profiles/tensiq-icon-with-shadow.png" }
       sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
@@ -984,7 +984,7 @@ export const query = graphql`
       }
     }
     imgJensIcon: file(
-      relativePath: { eq: "jens-icon-with-shadow.png" }
+      relativePath: { eq: "profiles/jens-icon-with-shadow.png" }
       sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {

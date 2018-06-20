@@ -71,6 +71,15 @@ module.exports = {
                     },
                   },
                 },
+                Button: {
+                  html: {
+                    tagName: 'button',
+                    properties: {
+                      text: '::content::',
+                      element: '::argument::',
+                    },
+                  },
+                },
                 Youtube: {
                   html: {
                     tagName: 'c-youtube',

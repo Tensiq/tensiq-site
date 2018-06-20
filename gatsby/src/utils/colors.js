@@ -6,8 +6,9 @@ const colors = {
   footnotes: '#4b4b4bff',
   lightText: '#f5f5f5ff',
   darkText: '#2b2b2bff',
-  rippleHeader: '#f5f5f580',
-  rippleFooter: '#f5f5f580',
+  headerRipple: '#f5f5f580',
+  footerRipple: '#f5f5f580',
+  teaserButtonRipple: '#3a3a3aff',
 };
 
 const gradients = {

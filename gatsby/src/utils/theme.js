@@ -131,17 +131,21 @@ const rawStyles = {
 };
 
 const props = {
-  rocketIconLeft: {
-    display: ['none', null, 'flex'],
+  teaserIconBox: {
+    left: {
+      display: ['none', null, 'flex'],
+    },
+    normal: {
+      display: ['flex', null, 'none'],
+    },
   },
-  rocketIconCenter: {
-    display: ['flex', null, 'none'],
-  },
-  headerIconLeft: {
-    display: ['none', 'flex'],
-  },
-  headerIconCenter: {
-    display: ['flex', 'none'],
+  headerIcon: {
+    left: {
+      display: ['none', 'flex'],
+    },
+    normal: {
+      display: ['flex', 'none'],
+    },
   },
   contentColumn3: {
     width: [1, 1, 1 / 2, 1 / 3, 1 / 3],
@@ -174,6 +178,21 @@ const props = {
 };
 
 const styles = {
+  teaserIconBox: {
+    normal: StyleSheet.create({
+      0: {
+        marginVertical: sp(2),
+        alignItems: 'center',
+      },
+    }),
+    left: StyleSheet.create({
+      0: {
+        marginVertical: sp(2),
+        paddingTop: sp(1),
+        marginRight: sp(4),
+      },
+    }),
+  },
   socialBlock: {
     normal: StyleSheet.create({
       0: { flexDirection: 'row' },
@@ -492,14 +511,12 @@ const styles = {
         ...fonts.bold,
         fontSize: fs(5),
         color: color('lightText'),
-        paddingHorizontal: sp(0),
         paddingVertical: sp(0),
       },
       1: {
         ...fonts.bold,
         fontSize: fs(7),
         color: color('lightText'),
-        paddingHorizontal: sp(0),
         paddingVertical: sp(0),
       },
     }),
@@ -508,14 +525,12 @@ const styles = {
         ...fonts.bold,
         fontSize: fs(5),
         color: color('darkText'),
-        paddingHorizontal: sp(0),
         paddingVertical: sp(0),
       },
       1: {
         ...fonts.bold,
         fontSize: fs(7),
         color: color('darkText'),
-        paddingHorizontal: sp(0),
         paddingVertical: sp(0),
       },
     }),
@@ -971,20 +986,12 @@ const styles = {
     }),
     em: StyleSheet.create({
       0: {
-        ...fonts.normal,
         fontStyle: 'italic',
-        fontSize: fs(2),
-        paddingVertical: 4,
-        lineHeight: lh(3),
       },
     }),
     strong: StyleSheet.create({
       0: {
-        ...fonts.normal,
         fontWeight: fontweights.bold,
-        fontSize: fs(2),
-        paddingVertical: 4,
-        lineHeight: lh(3),
       },
     }),
   },

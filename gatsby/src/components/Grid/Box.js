@@ -95,6 +95,13 @@ const getStyleSheets = props => {
   return styleSheets;
 };
 
+const getThemedStyle = (theme, props) => {
+  const { element, type } = props;
+  return element === 'undefined'
+    ? null
+    : theme.style({ element: element, type: type || 'normal' });
+};
+
 export default class Box extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -119,7 +126,11 @@ export default class Box extends React.PureComponent {
           return (
             <View
               {...this.props}
-              style={[style, this.getStyleSheet(theme)[theme.breakpoint]]}
+              style={[
+                style,
+                this.getStyleSheet(theme)[theme.breakpoint],
+                getThemedStyle(theme, this.props),
+              ]}
             >
               {children}
             </View>

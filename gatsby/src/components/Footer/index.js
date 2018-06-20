@@ -40,7 +40,7 @@ class Footer extends React.PureComponent {
                       contentStyle={theme.style({
                         element: 'footerLinkContent',
                       })}
-                      rippleColor={theme.color('rippleFooter')}
+                      rippleColor={theme.color('footerRipple')}
                     >
                       <Text style={theme.style({ element: 'footerLinkText' })}>
                         Services
@@ -55,7 +55,7 @@ class Footer extends React.PureComponent {
                       contentStyle={theme.style({
                         element: 'footerLinkContent',
                       })}
-                      rippleColor={theme.color('rippleFooter')}
+                      rippleColor={theme.color('footerRipple')}
                     >
                       <Text style={theme.style({ element: 'footerLinkText' })}>
                         About
@@ -70,7 +70,7 @@ class Footer extends React.PureComponent {
                       contentStyle={theme.style({
                         element: 'footerLinkContent',
                       })}
-                      rippleColor={theme.color('rippleFooter')}
+                      rippleColor={theme.color('footerRipple')}
                     >
                       <Text style={theme.style({ element: 'footerLinkText' })}>
                         Contact

@@ -11,19 +11,37 @@ import { TextNormal, TextStrong } from '../components/Text';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import Card from 'react-native-material-ui/src/Card';
 import rehypeReact from 'rehype-react';
+import cleanHtmlAst from '../utils/cleanHtmlAst';
 import Icon from '../components/Icon';
+import Teaser, {
+  Title as TeaserTitle,
+  Icon as TeaserIcon,
+  Button as TeaserButton,
+  Text as TeaserText,
+} from '../components/Teaser';
 
-const RocketIcon = () => <Icon name="rocket" element="teaserIcon" />;
 const CrewIcon = () => <Icon name="users" element="aboutIcon" />;
 const MindIcon = () => <Icon name="heartbeat" element="aboutIcon" />;
 const ToolsIcon = () => <Icon name="toolbox" element="aboutIcon" />;
 const GoIcon = () => <Icon name="arrow-circle-right" element="goIcon" />;
 
-const renderHtmlAst = new rehypeReact({
+const renderFooter = new rehypeReact({
   createElement: React.createElement,
   components: {
     p: TextNormal,
     icon: Icon,
+  },
+}).Compiler;
+
+const renderTeaser = new rehypeReact({
+  createElement: React.createElement,
+  components: {
+    p: View,
+    text: Text,
+    'text-block': TeaserText,
+    h1: TeaserTitle,
+    icon: TeaserIcon,
+    button: TeaserButton,
   },
 }).Compiler;
 
@@ -35,7 +53,10 @@ class IndexPage extends React.Component {
         <ThemeProvider uiTheme={{}}>
           <ThemeContext.Consumer>
             {theme => {
-              const footnotes = renderHtmlAst(data.astFootnotes.htmlAst);
+              const footnotes = renderFooter(data.mdFootnotes.htmlAst);
+              const teaser = renderTeaser(cleanHtmlAst(data.mdTeaser.htmlAst));
+              console.log(data.services.edges);
+              console.log(data.imgServices.edges);
               return (
                 <View>
                   <LinearGradient
@@ -55,73 +76,7 @@ class IndexPage extends React.Component {
                           element: 'contentBlockInnerContainer',
                         })}
                       >
-                        <Box
-                          style={{
-                            paddingTop: theme.sp(1),
-                            marginRight: theme.sp(4),
-                          }}
-                          {...theme.props.rocketIconLeft}
-                        >
-                          <RocketIcon />
-                        </Box>
-                        <View style={{ flex: 1 }}>
-                          <Text
-                            style={theme.style({
-                              element: 'teaserTitleText',
-                            })}
-                          >
-                            Let's build awesome things together...
-                          </Text>
-                          <Box
-                            style={{
-                              marginVertical: theme.sp(2),
-                              alignItems: 'center',
-                            }}
-                            {...theme.props.rocketIconCenter}
-                          >
-                            <RocketIcon />
-                          </Box>
-                          <Text
-                            style={theme.style({
-                              element: 'teaserText',
-                            })}
-                          >
-                            We master the bridge between cutting-edge technology
-                            and secure, resilient, performant solutions.
-                          </Text>
-                          <View
-                            style={theme.style({
-                              element: 'teaserButtonContainer',
-                            })}
-                          >
-                            <Link
-                              to="/"
-                              style={{ flex: 1 }}
-                              contentStyle={theme.style({
-                                element: 'teaserButtonContent',
-                              })}
-                              rippleColor={theme.color('rippleTeaserButton')}
-                            >
-                              <LinearGradient
-                                {...theme.gradient('lightBlock')}
-                                style={{
-                                  width: '100%',
-                                  height: '100%',
-                                  justifyContent: 'center',
-                                  alignItems: 'center',
-                                }}
-                              >
-                                <Text
-                                  style={theme.style({
-                                    element: 'teaserButtonText',
-                                  })}
-                                >
-                                  Get In Touch
-                                </Text>
-                              </LinearGradient>
-                            </Link>
-                          </View>
-                        </View>
+                        <Teaser icon="rocket">{teaser}</Teaser>
                       </Box>
                     </View>
                   </LinearGradient>
@@ -279,9 +234,8 @@ class IndexPage extends React.Component {
                             paddingBottom: theme.sp(8),
                             alignItems: 'center',
                           }}
-                          // {...theme.props.rocketIconCenter}
                         >
-                          <RocketIcon />
+                          <Icon name="rocket" element="teaserIcon" />
                         </Box>
                         <View
                           style={{
@@ -522,13 +476,48 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexPageQuery {
-    astFootnotes: markdownRemark(
-      frontmatter: { snippet: { eq: "footnotes" } }
+    services: allMarkdownRemark(
+      filter: { frontmatter: { snippet: { eq: "service" } } }
+      sort: { fields: [frontmatter___order] }
     ) {
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+          htmlAst
+        }
+      }
+    }
+    imgServices: allFile(
+      filter: {
+        sourceInstanceName: { eq: "images" }
+        relativeDirectory: { eq: "services" }
+      }
+    ) {
+      edges {
+        node {
+          relativeDirectory
+          childImageSharp {
+            sizes(maxWidth: 960) {
+              originalName
+              ...GatsbyImageSharpSizes_withWebp_noBase64
+            }
+          }
+        }
+      }
+    }
+    mdTeaser: markdownRemark(frontmatter: { snippet: { eq: "teaser" } }) {
+      frontmatter {
+        icon
+      }
+      htmlAst
+    }
+    mdFootnotes: markdownRemark(frontmatter: { snippet: { eq: "footnotes" } }) {
       htmlAst
     }
     imgModernMobileWebApps: file(
-      relativePath: { eq: "modern-mobile-web-apps.png" }
+      relativePath: { eq: "services/modern-mobile-web-apps.png" }
       sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
@@ -538,7 +527,7 @@ export const query = graphql`
       }
     }
     imgCrossPlatform2dGames: file(
-      relativePath: { eq: "cross-platform-2d-games.png" }
+      relativePath: { eq: "services/cross-platform-2d-games.png" }
       sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {
@@ -548,7 +537,7 @@ export const query = graphql`
       }
     }
     imgDataAnalysis: file(
-      relativePath: { eq: "data-analysis.png" }
+      relativePath: { eq: "services/data-analysis.png" }
       sourceInstanceName: { eq: "images" }
     ) {
       childImageSharp {

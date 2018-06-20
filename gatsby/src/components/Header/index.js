@@ -66,7 +66,7 @@ class Header extends React.PureComponent {
                       contentStyle={theme.style({
                         element: 'headerLogoContent',
                       })}
-                      rippleColor={theme.color('rippleHeader')}
+                      rippleColor={theme.color('headerRipple')}
                     >
                       {tensiqIcon(theme)}
                       <Text style={theme.style({ element: 'headerLogoText' })}>
@@ -83,7 +83,7 @@ class Header extends React.PureComponent {
                         element: 'headerLinkOuterContainer',
                       })}
                     >
-                      <Link to="/" rippleColor={theme.color('rippleHeader')}>
+                      <Link to="/" rippleColor={theme.color('headerRipple')}>
                         <Text
                           style={theme.style({
                             element: 'headerLinkText',
@@ -100,7 +100,7 @@ class Header extends React.PureComponent {
                     >
                       <Link
                         to="/about"
-                        rippleColor={theme.color('rippleHeader')}
+                        rippleColor={theme.color('headerRipple')}
                       >
                         <Text
                           style={theme.style({
@@ -118,7 +118,7 @@ class Header extends React.PureComponent {
                     >
                       <Link
                         to="/contact"
-                        rippleColor={theme.color('rippleHeader')}
+                        rippleColor={theme.color('headerRipple')}
                       >
                         <Text
                           style={theme.style({

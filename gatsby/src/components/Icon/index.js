@@ -19,7 +19,7 @@ const createStyleElement = (group, props, theme) => {
     ...props,
     style: [
       props.style,
-      props.element === 'undefined'
+      props.element === 'undefined' || props.element === undefined
         ? null
         : theme.style({ element: props.element, type: props.type || 'normal' }),
     ],
@@ -27,19 +27,16 @@ const createStyleElement = (group, props, theme) => {
   return React.createElement(group, styledProps);
 };
 
-const TextIcon = ({ theme, ...props }) => {
+const TextIcon = props => {
   const group = Object.values(Icon).find(group => group.hasIcon(props.name));
   if (group === undefined) {
     return null;
   }
-  if (theme === undefined) {
-    return (
-      <ThemeContext.Consumer>
-        {theme => createStyleElement(group, props, theme)}
-      </ThemeContext.Consumer>
-    );
-  }
-  return createStyleElement(group, props, theme);
+  return (
+    <ThemeContext.Consumer>
+      {theme => createStyleElement(group, props, theme)}
+    </ThemeContext.Consumer>
+  );
 };
 
 TextIcon.propTypes = {
