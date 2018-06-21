@@ -1,15 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
+import { navigateTo } from 'gatsby-link';
 import { View, StyleSheet } from 'react-native';
 import RippleFeedback from 'react-native-material-ui/src/RippleFeedback';
-
-const linkStyle = {
-  color: 'white',
-  textDecoration: 'none',
-  height: '100%',
-  width: '100%',
-};
 
 const styles = StyleSheet.create({
   contentView: {
@@ -20,18 +13,27 @@ const styles = StyleSheet.create({
   },
 });
 
+// <Link to={to} style={{ ...linkStyle, ...style }}>
+// </Link>
+
+const goTo = (to, delay) => {
+  setTimeout(() => navigateTo(to), delay);
+};
+
 class RippleLink extends React.PureComponent {
   constructor(props) {
     super(props);
   }
   render() {
-    const { to, style, rippleColor, contentStyle, children } = this.props;
+    const { to, rippleColor, contentStyle, children, delay = 300 } = this.props;
     return (
-      <Link to={to} style={{ ...linkStyle, ...style }}>
-        <RippleFeedback delayPressIn={50} color={rippleColor.string()}>
-          <View style={[styles.contentView, contentStyle]}>{children}</View>
-        </RippleFeedback>
-      </Link>
+      <RippleFeedback
+        onPress={() => goTo(to, delay)}
+        delayPressIn={50}
+        color={rippleColor.string()}
+      >
+        <View style={[styles.contentView, contentStyle]}>{children}</View>
+      </RippleFeedback>
     );
   }
 }
@@ -41,6 +43,7 @@ RippleLink.propTypes = {
   style: PropTypes.any,
   rippleColor: PropTypes.object,
   contentStyle: PropTypes.any,
+  delay: PropTypes.number,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

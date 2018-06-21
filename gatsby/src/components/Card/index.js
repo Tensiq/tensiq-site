@@ -19,7 +19,7 @@ const Card = ({ title, icon, children, site, anchor }) => (
       >
         <MaterialCard
           onPress={() =>
-            setTimeout(() => navigateTo(`/${site}#${anchor}`), 400)
+            setTimeout(() => navigateTo(`/${site}#${anchor}`), 300)
           }
           style={{
             container: {
@@ -35,6 +35,7 @@ const Card = ({ title, icon, children, site, anchor }) => (
                 width: '100%',
                 alignItems: 'center',
               }}
+              pointerEvents="none"
             >
               <Icon name={icon} element="aboutIcon" />
             </View>
@@ -42,6 +43,7 @@ const Card = ({ title, icon, children, site, anchor }) => (
               style={theme.style({
                 element: 'cardTitle',
               })}
+              pointerEvents="none"
             >
               <Header2 centered="true" theme={theme}>
                 {title}
@@ -51,6 +53,7 @@ const Card = ({ title, icon, children, site, anchor }) => (
               style={theme.style({
                 element: 'cardTextBody',
               })}
+              pointerEvents="none"
             >
               {children}
             </View>
@@ -58,6 +61,7 @@ const Card = ({ title, icon, children, site, anchor }) => (
               style={theme.style({
                 element: 'cardGoIcon',
               })}
+              pointerEvents="none"
             >
               <GoIcon />
             </View>

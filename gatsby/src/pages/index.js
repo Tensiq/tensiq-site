@@ -1,10 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import Box from '../components/Grid/Box';
+import PropTypes from 'prop-types';
+
 import { ThemeContext } from '../components/ThemeProvider';
+import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
+
+import { View } from 'react-native';
+import Box from '../components/Grid/Box';
 import { Header1 } from '../components/PageHeader';
 import { TextNormal, TextStrong } from '../components/Text';
-import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import rehypeReact from 'rehype-react';
 import cleanHtmlAst from '../utils/cleanHtmlAst';
 import Icon from '../components/Icon';
@@ -14,25 +17,12 @@ import Teaser, {
   Button as TeaserButton,
   Text as TeaserText,
 } from '../components/Teaser';
+import Footer from '../components/Footer';
 import Segment from '../components/Segment';
 import RowWrapper from '../components/RowWrapper';
 import Block from '../components/Block';
 import Image from '../components/Image';
 import Card from '../components/Card';
-
-const CrewIcon = () => <Icon name="users" element="aboutIcon" />;
-const MindIcon = () => <Icon name="heartbeat" element="aboutIcon" />;
-const ToolsIcon = () => <Icon name="toolbox" element="aboutIcon" />;
-const GoIcon = () => <Icon name="arrow-circle-right" element="goIcon" />;
-
-const renderFooter = new rehypeReact({
-  createElement: React.createElement,
-  components: {
-    view: View,
-    text: TextNormal,
-    icon: Icon,
-  },
-}).Compiler;
 
 const renderTeaser = new rehypeReact({
   createElement: React.createElement,
@@ -98,10 +88,10 @@ class IndexPage extends React.Component {
     Image.images['service'] = data.imgServices;
     return (
       <View>
-        <ThemeProvider uiTheme={{}}>
-          <ThemeContext.Consumer>
-            {theme => {
-              return (
+        <ThemeContext.Consumer>
+          {theme => {
+            return (
+              <ThemeProvider uiTheme={{}}>
                 <View>
                   <Segment type="first" gradient="darkBlock1">
                     <Teaser icon="rocket">
@@ -131,46 +121,20 @@ class IndexPage extends React.Component {
                       {renderCards(data.about.edges, renderAbout)}
                     </RowWrapper>
                   </Segment>
-                  <View
-                    style={[
-                      {
-                        paddingTop: theme.sp(3),
-                        paddingBottom: theme.sp(7),
-                        backgroundColor: theme.color('footnotes'),
-                        alignItems: 'center',
-                      },
-                    ]}
-                  >
-                    <View
-                      style={[
-                        {
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          paddingHorizontal: theme.sp(2),
-                          paddingBottom: theme.sp(1),
-                        },
-                      ]}
-                    >
-                      <Text
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
-                        {renderFooter(cleanHtmlAst(data.mdFootnotes.htmlAst))}
-                      </Text>
-                    </View>
-                  </View>
+                  <Footer htmlAst={data.mdFootnotes.htmlAst} />
                 </View>
-              );
-            }}
-          </ThemeContext.Consumer>
-        </ThemeProvider>
+              </ThemeProvider>
+            );
+          }}
+        </ThemeContext.Consumer>
       </View>
     );
   }
 }
+
+IndexPage.propTypes = {
+  data: PropTypes.object,
+};
 
 export default IndexPage;
 

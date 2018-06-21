@@ -9,4 +9,4 @@ icon: 'rocket'
 
 We master the bridge between cutting-edge technology and secure, resilient, performant solutions.
 
-!Button[Get in touch](){}
+!Button[Get in touch](){link="/contact"}

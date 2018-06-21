@@ -1,95 +1,61 @@
 import React from 'react';
-import Link from '../RippleLink';
 import PropTypes from 'prop-types';
-import { Animated, View, Text } from 'react-native';
-import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
+import { View, Text } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
-import Box from '../Grid/Box';
+import { TextNormal } from '../Text';
+import Icon from '../Icon';
+import rehypeReact from 'rehype-react';
+import cleanHtmlAst from '../../utils/cleanHtmlAst';
 
-const uiTheme = {};
+const renderFooter = new rehypeReact({
+  createElement: React.createElement,
+  components: {
+    view: View,
+    text: TextNormal,
+    icon: Icon,
+  },
+}).Compiler;
 
-class Footer extends React.PureComponent {
-  state = {
-    fade: new Animated.Value(0),
-  };
-  componentDidMount() {
-    Animated.timing(this.state.fade, {
-      toValue: 1,
-      duration: 1000,
-      delay: 100,
-    }).start();
-  }
-  render() {
-    const { fade } = this.state;
-    return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <ThemeProvider uiTheme={uiTheme}>
-            <Animated.View style={{ opacity: fade }}>
-              <Box
-                style={theme.style({ element: 'footerOuterContainer' })}
-                display={['flex', null, 'none']}
-              >
-                <View style={theme.style({ element: 'footerColor' })} />
-                <View style={theme.style({ element: 'footerInnerContainer' })}>
-                  <View
-                    style={theme.style({ element: 'footerLinkOuterContainer' })}
-                  >
-                    <Link
-                      to="/"
-                      contentStyle={theme.style({
-                        element: 'footerLinkContent',
-                      })}
-                      rippleColor={theme.color('footerRipple')}
-                    >
-                      <Text style={theme.style({ element: 'footerLinkText' })}>
-                        Services
-                      </Text>
-                    </Link>
-                  </View>
-                  <View
-                    style={theme.style({ element: 'footerLinkOuterContainer' })}
-                  >
-                    <Link
-                      to="/about"
-                      contentStyle={theme.style({
-                        element: 'footerLinkContent',
-                      })}
-                      rippleColor={theme.color('footerRipple')}
-                    >
-                      <Text style={theme.style({ element: 'footerLinkText' })}>
-                        About
-                      </Text>
-                    </Link>
-                  </View>
-                  <View
-                    style={theme.style({ element: 'footerLinkOuterContainer' })}
-                  >
-                    <Link
-                      to="/contact"
-                      contentStyle={theme.style({
-                        element: 'footerLinkContent',
-                      })}
-                      rippleColor={theme.color('footerRipple')}
-                    >
-                      <Text style={theme.style({ element: 'footerLinkText' })}>
-                        Contact
-                      </Text>
-                    </Link>
-                  </View>
-                </View>
-              </Box>
-            </Animated.View>
-          </ThemeProvider>
-        )}
-      </ThemeContext.Consumer>
-    );
-  }
-}
+const Footer = ({ htmlAst }) => (
+  <ThemeContext.Consumer>
+    {theme => (
+      <View
+        style={[
+          {
+            paddingTop: theme.sp(3),
+            paddingBottom: theme.sp(7),
+            backgroundColor: theme.color('footnotes'),
+            alignItems: 'center',
+          },
+        ]}
+      >
+        <View
+          style={[
+            {
+              flexDirection: 'column',
+              alignItems: 'center',
+              paddingHorizontal: theme.sp(2),
+              paddingBottom: theme.sp(1),
+            },
+          ]}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+              paddingVertical: theme.sp(0),
+              color: theme.color('lightText'),
+            }}
+          >
+            {renderFooter(cleanHtmlAst(htmlAst))}
+          </Text>
+        </View>
+      </View>
+    )}
+  </ThemeContext.Consumer>
+);
 
 Footer.propTypes = {
-  height: PropTypes.object,
-  opacity: PropTypes.number,
+  htmlAst: PropTypes.object,
 };
 
 export default Footer;

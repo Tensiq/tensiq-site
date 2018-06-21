@@ -15,17 +15,19 @@ export const Icon = {
 };
 
 const createStyleElement = (group, props, theme) => {
+  const element =
+    props.element === 'undefined' || props.element === undefined
+      ? 'icon'
+      : props.element;
   const styledProps = {
     ...props,
+    element,
     style: [
-      props.style,
       theme.style({
-        element:
-          props.element === 'undefined' || props.element === undefined
-            ? 'icon'
-            : props.element,
+        element,
         type: props.type || 'normal',
       }),
+      props.style,
     ],
   };
   return React.createElement(group, styledProps);

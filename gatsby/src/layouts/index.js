@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { Animated, View, ScrollView, Text, StyleSheet } from 'react-native';
+import { Animated, View, ScrollView, StyleSheet } from 'react-native';
 import solidIconFont from '../fonts/fa-solid-900.ttf';
 import brandIconFont from '../fonts/fa-brands-400.ttf';
 import tensiqFont from '../fonts/Tensiq.ttf';
 import openSansNormal from '../fonts/OpenSans-Regular.ttf';
 import openSansBold from '../fonts/OpenSans-Bold.ttf';
 import favicon from '../images/favicon.png';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import MenuTop from '../components/Menu/Top';
+import MenuBottom from '../components/Menu/Bottom';
 import { headerHeightMax, headerHeightMin } from '../utils/theme';
 
 const headerScrollDistance = headerHeightMax - headerHeightMin;
@@ -62,8 +62,8 @@ class TemplateWrapper extends React.PureComponent {
             {children()}
           </ScrollView>
         </View>
-        <Header height={headerHeight} opacity={opacity} />
-        <Footer />
+        <MenuTop height={headerHeight} opacity={opacity} />
+        <MenuBottom />
         <Helmet
           title="Gatsby Default Starter"
           meta={[

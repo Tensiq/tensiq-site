@@ -17,7 +17,7 @@ const tensiqIcon = theme => (
   <Icon name="tensiq" style={theme.style({ element: 'headerLogoIcon' })} />
 );
 
-class Header extends React.PureComponent {
+class Top extends React.PureComponent {
   state = {
     fade: new Animated.Value(0),
   };
@@ -34,8 +34,6 @@ class Header extends React.PureComponent {
     return (
       <ThemeContext.Consumer>
         {theme => {
-          // console.log(theme);
-          // console.log(theme.style({ element: 'headerContainer' }));
           return (
             <ThemeProvider uiTheme={{}}>
               <Animated.View
@@ -53,7 +51,7 @@ class Header extends React.PureComponent {
                   <View style={theme.style({ element: 'headerColor' })} />
                 </Animated.View>
                 <Box
-                  style={theme.style({ element: 'headerInnerContainer' })}
+                  element="headerInnerContainer"
                   {...theme.props.headerInnerContainer}
                 >
                   <View
@@ -75,7 +73,7 @@ class Header extends React.PureComponent {
                     </Link>
                   </View>
                   <Box
-                    style={theme.style({ element: 'headerMenuContainer' })}
+                    element="headerMenuContainer"
                     display={['none', null, 'flex']}
                   >
                     <View
@@ -140,9 +138,9 @@ class Header extends React.PureComponent {
   }
 }
 
-Header.propTypes = {
+Top.propTypes = {
   height: PropTypes.object,
   opacity: PropTypes.object,
 };
 
-export default Header;
+export default Top;

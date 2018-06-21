@@ -5,8 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Link from '../RippleLink';
 import { ThemeContext } from '../ThemeProvider';
 
-const TeaserButton = props => {
-  const { text } = props;
+const TeaserButton = ({ text, link }) => {
   return (
     <ThemeContext.Consumer>
       {theme => (
@@ -16,7 +15,7 @@ const TeaserButton = props => {
           })}
         >
           <Link
-            to="/"
+            to={link}
             style={{ flex: 1 }}
             contentStyle={theme.style({
               element: 'teaserButtonContent',
@@ -49,6 +48,7 @@ const TeaserButton = props => {
 
 TeaserButton.propTypes = {
   text: PropTypes.string,
+  link: PropTypes.string,
 };
 
 export default TeaserButton;

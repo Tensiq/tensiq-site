@@ -10,6 +10,7 @@ import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.rea
 import Card from 'react-native-material-ui/src/Card';
 import rehypeReact from 'rehype-react';
 import Icon from '../components/Icon';
+import Footer from '../components/Footer';
 
 const tensiqCardIcon = () => <Icon name="tensiq" element="cardWrapIcon" />;
 const CrewIcon = props => <Icon name="users" element="headerIcon" {...props} />;
@@ -57,13 +58,11 @@ const renderHtmlAst = new rehypeReact({
 class AboutPage extends React.Component {
   render() {
     const { data } = this.props;
-    // console.log(data);
     return (
       <View>
         <ThemeProvider uiTheme={{}}>
           <ThemeContext.Consumer>
             {theme => {
-              const footnotes = renderHtmlAst(data.astFootnotes.htmlAst);
               return (
                 <View>
                   <Text id="mission" />
@@ -913,37 +912,7 @@ class AboutPage extends React.Component {
                       </Box>
                     </View>
                   </LinearGradient>
-                  <View
-                    style={[
-                      {
-                        paddingTop: theme.sp(3),
-                        paddingBottom: theme.sp(7),
-                        backgroundColor: theme.color('footnotes'),
-                        alignItems: 'center',
-                      },
-                    ]}
-                  >
-                    <View
-                      style={[
-                        {
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          paddingHorizontal: theme.sp(2),
-                          paddingBottom: theme.sp(1),
-                        },
-                      ]}
-                    >
-                      <Text
-                        style={{
-                          textAlign: 'center',
-                          paddingVertical: theme.sp(0),
-                          color: theme.color('lightText'),
-                        }}
-                      >
-                        {footnotes}
-                      </Text>
-                    </View>
-                  </View>
+                  <Footer htmlAst={data.mdFootnotes.htmlAst} />
                 </View>
               );
             }}
@@ -958,9 +927,7 @@ export default AboutPage;
 
 export const query = graphql`
   query AboutPageQuery {
-    astFootnotes: markdownRemark(
-      frontmatter: { snippet: { eq: "footnotes" } }
-    ) {
+    mdFootnotes: markdownRemark(frontmatter: { snippet: { eq: "footnotes" } }) {
       htmlAst
     }
     imgTensiqIconShadow: file(
