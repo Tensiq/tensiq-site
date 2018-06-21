@@ -177,7 +177,114 @@ const props = {
   },
 };
 
+const segments = {
+  index: [
+    { type: 'first', gradient: 'darkBlock1' },
+    {
+      gradient: 'lightBlock',
+      innerType: 'column',
+      directions: ['column', 'column'],
+    },
+    {
+      gradient: 'darkBlock2',
+      innerType: 'thinColumn',
+      directions: ['column', 'column'],
+    },
+  ],
+  about: [
+    {
+      type: 'first',
+      gradient: 'darkBlock1',
+      directions: ['column', 'column'],
+      separate: true,
+    },
+    {
+      gradient: 'lightBlock',
+      directions: ['column', 'column'],
+      separate: true,
+    },
+    {
+      gradient: 'darkBlock2',
+      directions: ['column', 'column'],
+      separate: true,
+    },
+  ],
+};
+
 const styles = {
+  contentBlock: {
+    normal: props => {
+      return StyleSheet.create({
+        0: {
+          ...rawStyles.contentBlock.normal,
+          flexDirection: props.directions ? props.directions[0] : 'row',
+        },
+      });
+    },
+    first: props => {
+      return StyleSheet.create({
+        0: {
+          ...rawStyles.contentBlock.normal,
+          paddingTop: headerHeightMax,
+          flexDirection: props.directions ? props.directions[0] : 'row',
+        },
+      });
+    },
+  },
+  contentBlockOuterContainer: {
+    normal: props =>
+      StyleSheet.create({
+        0: {
+          width: '100%',
+          maxWidth: 960,
+          flexWrap: 'wrap',
+          flexDirection: props.directions ? props.directions[0] : 'row',
+        },
+      }),
+  },
+  contentBlockInnerContainer: {
+    normal: props =>
+      StyleSheet.create({
+        0: {
+          ...rawStyles.contentBlockInnerContainer.slim,
+          flexDirection: props.directions ? props.directions[1] : 'row',
+        },
+        1: {
+          ...rawStyles.contentBlockInnerContainer.tight,
+          flexDirection: props.directions ? props.directions[1] : 'row',
+        },
+        2: {
+          ...rawStyles.contentBlockInnerContainer.normal,
+          flexDirection: props.directions ? props.directions[1] : 'row',
+        },
+      }),
+    thinColumn: props =>
+      StyleSheet.create({
+        0: {
+          ...rawStyles.contentBlockInnerContainer.slim,
+          flexDirection: props.directions ? props.directions[1] : 'row',
+          paddingHorizontal: sp(4),
+        },
+        1: {
+          ...rawStyles.contentBlockInnerContainer.tight,
+          flexDirection: props.directions ? props.directions[1] : 'row',
+          paddingHorizontal: sp(4),
+        },
+        2: {
+          ...rawStyles.contentBlockInnerContainer.normal,
+          flexDirection: props.directions ? props.directions[1] : 'row',
+          paddingHorizontal: sp(4),
+        },
+      }),
+  },
+  cardOuterContainer: {
+    normal: StyleSheet.create({
+      0: { flex: 1 },
+    }),
+    withIcon: StyleSheet.create({
+      0: { flex: 1 },
+    }),
+  },
   icon: {
     normal: {},
     pr: StyleSheet.create({
@@ -209,14 +316,14 @@ const styles = {
       0: {
         marginRight: sp(2),
         fontSize: fs(1),
-        color: color('lightText'),
+        color: color('darkText'),
       },
     }),
-    dark: StyleSheet.create({
+    light: StyleSheet.create({
       0: {
         marginRight: sp(2),
         fontSize: fs(1),
-        color: color('darkText'),
+        color: color('lightText'),
       },
     }),
   },
@@ -256,8 +363,8 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         position: 'absolute',
-        top: -40,
-        left: 70,
+        top: -60,
+        left: 50,
         width: 200,
       },
     }),
@@ -267,8 +374,8 @@ const styles = {
       0: { height: 70 },
     }),
     withIcon: StyleSheet.create({
-      0: { alignItems: 'center', marginTop: 110 },
-      1: { paddingLeft: sp(5), marginTop: 110 },
+      0: { alignItems: 'center', marginTop: 96 },
+      1: { paddingLeft: sp(5), marginTop: 96 },
       2: { paddingLeft: 250, marginTop: sp(1) },
     }),
     withLongText: StyleSheet.create({
@@ -630,105 +737,6 @@ const styles = {
     }),
   },
   teaserButtonContent: { normal: StyleSheet.create({ 0: { flex: 1 } }) },
-  contentBlock: {
-    normal: StyleSheet.create({
-      0: rawStyles.contentBlock.normal,
-    }),
-    first: StyleSheet.create({
-      0: {
-        ...rawStyles.contentBlock.normal,
-        paddingTop: headerHeightMax,
-      },
-    }),
-  },
-  contentBlockCol: {
-    normal: StyleSheet.create({
-      0: { ...rawStyles.contentBlock.normal, flexDirection: 'column' },
-    }),
-    first: StyleSheet.create({
-      0: {
-        ...rawStyles.contentBlock.normal,
-        paddingTop: headerHeightMax,
-        flexDirection: 'column',
-      },
-    }),
-  },
-  contentBlockInnerContainer: {
-    normal: {
-      0: {
-        ...rawStyles.contentBlockInnerContainer.slim,
-      },
-      1: {
-        ...rawStyles.contentBlockInnerContainer.tight,
-      },
-      2: {
-        ...rawStyles.contentBlockInnerContainer.normal,
-      },
-    },
-    column: {
-      0: {
-        ...rawStyles.contentBlockInnerContainer.slim,
-        flexDirection: 'column',
-      },
-      1: {
-        ...rawStyles.contentBlockInnerContainer.tight,
-        flexDirection: 'column',
-      },
-      2: {
-        ...rawStyles.contentBlockInnerContainer.normal,
-        flexDirection: 'column',
-      },
-    },
-    thinColumn: {
-      0: {
-        ...rawStyles.contentBlockInnerContainer.slim,
-        flexDirection: 'column',
-        paddingHorizontal: sp(4),
-      },
-      1: {
-        ...rawStyles.contentBlockInnerContainer.tight,
-        flexDirection: 'column',
-        paddingHorizontal: sp(4),
-      },
-      2: {
-        ...rawStyles.contentBlockInnerContainer.normal,
-        flexDirection: 'column',
-        paddingHorizontal: sp(4),
-      },
-    },
-    leftCentered: {
-      0: {
-        ...rawStyles.contentBlockInnerContainer.normal,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-      },
-    },
-    rightCentered: {
-      0: {
-        ...rawStyles.contentBlockInnerContainer.normal,
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-      },
-    },
-    allCentered: {
-      0: {
-        flex: 1,
-        ...rawStyles.contentBlockInnerContainer.normal,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-    },
-  },
-  contentBlockOuterContainer: {
-    normal: {
-      0: {
-        width: '100%',
-        maxWidth: 960,
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-      },
-    },
-  },
   headerLogoLinkOuterContainer: {
     normal: StyleSheet.create({
       0: {
@@ -1217,6 +1225,7 @@ const theme = {
   gradient,
   headerHeightMax,
   headerHeightMin,
+  segments,
 };
 
 export default theme;

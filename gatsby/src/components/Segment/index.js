@@ -5,42 +5,66 @@ import { View } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
 import Box from '../Grid/Box';
 
-const Segment = ({
-  element = 'contentBlock',
-  type = 'normal',
-  outerType = 'normal',
-  innerType = 'normal',
-  gradient,
-  children,
-}) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <LinearGradient
-        {...theme.gradient(gradient)}
-        style={theme.style({
-          element,
-          type,
-        })}
-      >
-        <View
-          style={theme.style({
-            element: `${element}OuterContainer`,
-            type: outerType,
-          })}
-        >
-          <Box
-            style={theme.style({
-              element: `${element}InnerContainer`,
-              type: innerType,
-            })}
+const SegmentEntry = (props, child, theme) => {
+  const {
+    element = 'contentBlock',
+    type = 'normal',
+    innerType = 'normal',
+    gradient,
+    children,
+  } = props;
+  return (
+    <View
+      key={props.key}
+      style={theme.style({
+        ...props,
+        element: `${element}InnerContainer`,
+        type: innerType,
+      })}
+    >
+      {child}
+    </View>
+  );
+};
+
+const renderEntries = (props, theme) => {
+  if (Array.isArray(props.children) && props.separate) {
+    return props.children.map((child, index) =>
+      SegmentEntry({ ...props, key: index }, child, theme),
+    );
+  }
+  return SegmentEntry(props, props.children, theme);
+};
+
+const Segment = props => {
+  const { gradient } = props;
+  return (
+    <ThemeContext.Consumer>
+      {theme => {
+        // console.log(props);
+        return (
+          <LinearGradient
+            {...theme.gradient(gradient)}
+            style={theme.style(props)}
           >
-            {children}
-          </Box>
-        </View>
-      </LinearGradient>
-    )}
-  </ThemeContext.Consumer>
-);
+            <View
+              style={theme.style({
+                ...props,
+                element: 'contentBlockOuterContainer',
+              })}
+            >
+              {renderEntries(props, theme)}
+            </View>
+          </LinearGradient>
+        );
+      }}
+    </ThemeContext.Consumer>
+  );
+};
+Segment.defaultProps = {
+  element: 'contentBlock',
+  type: 'normal',
+};
 
 Segment.propTypes = {
   element: PropTypes.string,

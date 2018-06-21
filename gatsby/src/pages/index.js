@@ -85,7 +85,7 @@ const renderCards = (dataEdges, render) => {
 class IndexPage extends React.Component {
   render() {
     const { data } = this.props;
-    Image.images['service'] = data.imgServices;
+    Image.images['service'] = data.servicesImages;
     return (
       <View>
         <ThemeContext.Consumer>
@@ -93,18 +93,18 @@ class IndexPage extends React.Component {
             return (
               <ThemeProvider uiTheme={{}}>
                 <View>
-                  <Segment type="first" gradient="darkBlock1">
+                  <Segment {...theme.segments.index[0]}>
                     <Teaser icon="rocket">
-                      {renderTeaser(cleanHtmlAst(data.mdTeaser.htmlAst))}
+                      {renderTeaser(cleanHtmlAst(data.teaser.htmlAst))}
                     </Teaser>
                   </Segment>
-                  <Segment gradient="lightBlock" innerType="column">
+                  <Segment {...theme.segments.index[1]}>
                     <Header1 theme={theme}>Services</Header1>
                     <RowWrapper>
                       {renderBlocks(data.services.edges, renderService)}
                     </RowWrapper>
                   </Segment>
-                  <Segment gradient="darkBlock2" innerType="thinColumn">
+                  <Segment {...theme.segments.index[2]}>
                     <Header1 light="true" centered="true" theme={theme}>
                       Who is flying this rocket?
                     </Header1>
@@ -121,7 +121,7 @@ class IndexPage extends React.Component {
                       {renderCards(data.about.edges, renderAbout)}
                     </RowWrapper>
                   </Segment>
-                  <Footer htmlAst={data.mdFootnotes.htmlAst} />
+                  <Footer htmlAst={data.footer.htmlAst} />
                 </View>
               </ThemeProvider>
             );
@@ -153,7 +153,7 @@ export const query = graphql`
         }
       }
     }
-    imgServices: allFile(
+    servicesImages: allFile(
       filter: {
         sourceInstanceName: { eq: "images" }
         relativeDirectory: { eq: "services" }
@@ -187,13 +187,13 @@ export const query = graphql`
           }
         }
     }
-    mdTeaser: markdownRemark(frontmatter: { snippet: { eq: "teaser" } }) {
+    teaser: markdownRemark(frontmatter: { snippet: { eq: "teaser" } }) {
       frontmatter {
         icon
       }
       htmlAst
     }
-    mdFootnotes: markdownRemark(frontmatter: { snippet: { eq: "footnotes" } }) {
+    footer: markdownRemark(frontmatter: { snippet: { eq: "footnotes" } }) {
       htmlAst
     }
   }
