@@ -37,7 +37,7 @@ const renderEntries = (props, theme) => {
 };
 
 const Segment = props => {
-  const { gradient } = props;
+  const { gradient, style } = props;
   return (
     <ThemeContext.Consumer>
       {theme => {
@@ -45,7 +45,7 @@ const Segment = props => {
         return (
           <LinearGradient
             {...theme.gradient(gradient)}
-            style={theme.style(props)}
+            style={[theme.style(props), style]}
           >
             <Text
               id={props.anchor}
@@ -77,6 +77,7 @@ Segment.propTypes = {
   innerType: PropTypes.string,
   gradient: PropTypes.string,
   children: PropTypes.any,
+  style: PropTypes.any,
 };
 
 export default Segment;

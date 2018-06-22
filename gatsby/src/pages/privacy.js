@@ -85,7 +85,6 @@ const renderPolicy = type =>
 class PrivacyPage extends React.Component {
   render() {
     const { data } = this.props;
-    console.log(data.privacyPolicy.htmlAst);
     return (
       <View>
         <ThemeProvider uiTheme={{}}>

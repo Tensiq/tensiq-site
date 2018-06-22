@@ -224,6 +224,15 @@ const segments = {
       dark: false,
     },
   ],
+  contact: [
+    {
+      type: 'first',
+      gradient: 'darkBlock1',
+      directions: ['column', 'column'],
+      separate: true,
+      dark: false,
+    },
+  ],
 };
 
 const styles = {
