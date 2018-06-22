@@ -12,4 +12,6 @@ export default {
   terminal: parseInt('f120', 16),
   globe: parseInt('f0ac', 16),
   eye: parseInt('f06e', 16),
+  'user-secret': parseInt('f21b', 16),
+  'file-contract': parseInt('f56c', 16),
 };

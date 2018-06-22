@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
 import Box from '../Grid/Box';
 
@@ -47,6 +47,10 @@ const Segment = props => {
             {...theme.gradient(gradient)}
             style={theme.style(props)}
           >
+            <Text
+              id={props.anchor}
+              style={{ position: 'absolute', top: -40 }}
+            />
             <View
               style={theme.style({
                 ...props,

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
 import Box from '../Grid/Box';
 import { Header2 } from '../PageHeader';
@@ -71,5 +72,13 @@ const Card = ({ title, icon, children, site, anchor }) => (
     )}
   </ThemeContext.Consumer>
 );
+
+Card.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.string,
+  children: PropTypes.any,
+  site: PropTypes.string,
+  anchor: PropTypes.string,
+};
 
 export default Card;

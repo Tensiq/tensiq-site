@@ -43,7 +43,8 @@ const cleanHtmlAst = htmlAst => {
           !(child.tagName === 'text') &&
           !(child.tagName === 'strong') &&
           !(child.tagName === 'em') &&
-          !(child.tagName === 'icon'),
+          !(child.tagName === 'icon') &&
+          !(child.tagName === 'a'),
       ).length;
       if (!others && node.children.length > 1) {
         node.tagName = 'text';

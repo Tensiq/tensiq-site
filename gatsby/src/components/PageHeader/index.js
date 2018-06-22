@@ -1,25 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { ThemeContext } from '../ThemeProvider';
 
-const getChildrenWithStyle = (style, children) => {
-  if (typeof children == 'string') {
-    return children;
-  }
-  return React.Children.map(children, child => {
-    return React.cloneElement(child, {
-      style,
-    });
-  });
-};
-const Header = ({ children, style, ...props }) => {
-  const { theme } = props;
-  return (
-    <Text style={[theme.style(props), style]} {...props}>
-      {children}
-    </Text>
-  );
-};
+const Header = ({ children, style, ...props }) => (
+  <View {...props}>
+    <ThemeContext.Consumer>
+      {theme => (
+        <Text style={[theme.style(props), style]} {...props}>
+          {children}
+        </Text>
+      )}
+    </ThemeContext.Consumer>
+  </View>
+);
 Header.defaultProps = {
   element: 'textHeader',
 };
@@ -35,4 +28,8 @@ const Header3 = props => <Header {...props} />;
 Header3.defaultProps = {
   type: 3,
 };
-export default { Header1, Header2, Header3 };
+const Header4 = props => <Header {...props} />;
+Header4.defaultProps = {
+  type: 4,
+};
+export default { Header1, Header2, Header3, Header4 };

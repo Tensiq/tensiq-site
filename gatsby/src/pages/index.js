@@ -85,7 +85,7 @@ const renderCards = (dataEdges, render) => {
 class IndexPage extends React.Component {
   render() {
     const { data } = this.props;
-    Image.images['service'] = data.servicesImages;
+    Image.images['service'] = data.serviceImages;
     return (
       <View>
         <ThemeContext.Consumer>
@@ -153,7 +153,7 @@ export const query = graphql`
         }
       }
     }
-    servicesImages: allFile(
+    serviceImages: allFile(
       filter: {
         sourceInstanceName: { eq: "images" }
         relativeDirectory: { eq: "services" }

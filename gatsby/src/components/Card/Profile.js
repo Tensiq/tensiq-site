@@ -8,6 +8,8 @@ import { TextNormal } from '../Text';
 import LinearGradient from 'react-native-linear-gradient';
 import Img from 'gatsby-image';
 import { ThemeContext } from '../ThemeProvider';
+import Image from '../Image';
+const ProfileImage = props => <Image group="profile" {...props} />;
 
 const Profile = ({
   name,
@@ -16,6 +18,7 @@ const Profile = ({
   content,
   profileImage,
   shadowImage,
+  type,
 }) => {
   return (
     <ThemeContext.Consumer>
@@ -36,7 +39,7 @@ const Profile = ({
                 element: 'cardGradient',
                 type: 'withIcon',
               })}
-              {...theme.gradient('lightBlock')}
+              {...theme.gradient(type === 'dark' ? 'blackBlock' : 'lightBlock')}
               pointerEvents="none"
             >
               <View
@@ -46,7 +49,9 @@ const Profile = ({
                 })}
                 pointerEvents="none"
               >
-                <Header1 theme={theme}>{name}</Header1>
+                <Header1 light={(type === 'dark').toString()} theme={theme}>
+                  {name}
+                </Header1>
                 <View
                   style={theme.style({
                     element: 'socialBlock',
@@ -56,6 +61,7 @@ const Profile = ({
                     <Text
                       style={theme.style({
                         element: 'socialBlockEntry',
+                        type: type === 'dark' ? 'normal' : 'dark',
                       })}
                     >
                       <Icon name="twitter" />
@@ -68,6 +74,7 @@ const Profile = ({
                     <Text
                       style={theme.style({
                         element: 'socialBlockEntry',
+                        type: type === 'dark' ? 'normal' : 'dark',
                       })}
                     >
                       <Icon name="github" />
@@ -85,7 +92,7 @@ const Profile = ({
                 })}
                 pointerEvents="none"
               >
-                <TextNormal theme={theme}>{content}</TextNormal>
+                {content}
               </View>
             </LinearGradient>
           </Card>
@@ -93,6 +100,7 @@ const Profile = ({
             style={theme.style({
               element: 'cardIconContainer',
             })}
+            pointerEvents="none"
           >
             <View
               style={{
@@ -101,6 +109,7 @@ const Profile = ({
                 height: '99%',
                 width: '99%',
               }}
+              pointerEvents="none"
             >
               <Img sizes={shadowImage} />
             </View>
@@ -112,8 +121,9 @@ const Profile = ({
                 left: -2,
                 width: '100%',
               }}
+              pointerEvents="none"
             >
-              <Img sizes={profileImage} />
+              <ProfileImage src={profileImage} />
             </View>
           </View>
         </View>
@@ -127,8 +137,9 @@ Profile.propTypes = {
   twitterName: PropTypes.string,
   githubName: PropTypes.string,
   content: PropTypes.any,
-  profileImage: PropTypes.object,
+  profileImage: PropTypes.string,
   shadowImage: PropTypes.object,
+  type: PropTypes.string,
 };
 
 export default Profile;

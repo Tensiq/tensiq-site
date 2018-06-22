@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, Linking } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
 import { TextNormal } from '../Text';
 import Icon from '../Icon';
 import rehypeReact from 'rehype-react';
 import cleanHtmlAst from '../../utils/cleanHtmlAst';
+
+const LinkLight = props => (
+  <Text {...props} onPress={() => Linking.openURL(props.href)} />
+);
 
 const renderFooter = new rehypeReact({
   createElement: React.createElement,
@@ -13,6 +17,7 @@ const renderFooter = new rehypeReact({
     view: View,
     text: TextNormal,
     icon: Icon,
+    a: LinkLight,
   },
 }).Compiler;
 
