@@ -264,7 +264,8 @@ const styles = {
         0: {
           width: '100%',
           maxWidth: 960,
-          flexWrap: 'wrap',
+          flexWrap:
+            props.directions && props.directions[0] === 'row' ? 'wrap' : 'none',
           flexDirection: props.directions ? props.directions[0] : 'row',
         },
       }),

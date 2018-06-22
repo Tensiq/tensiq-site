@@ -92,42 +92,21 @@ class PrivacyPage extends React.Component {
           <ThemeContext.Consumer>
             {theme => (
               <View>
-                <LinearGradient
-                  {...theme.gradient('darkBlock1')}
-                  style={theme.style({
-                    element: 'contentBlock',
-                    type: 'first',
-                  })}
-                >
-                  <View
-                    style={theme.style({
-                      element: 'contentBlockOuterContainer',
-                    })}
-                  >
-                    <View
-                      style={theme.style({
-                        directions: ['column', 'column'],
-                        element: 'contentBlockInnerContainer',
-                      })}
-                    >
-                      <IconHeader
-                        icon={data.privacy.frontmatter.icon}
-                        title={data.privacy.frontmatter.title}
-                        content={renderHeader()(
-                          cleanHtmlAst(data.privacy.htmlAst),
-                        )}
-                      />
-                      <PlainCard
-                        icon={data.privacyPolicy.frontmatter.icon}
-                        title={data.privacyPolicy.frontmatter.title}
-                        content={renderPolicy()(
-                          cleanHtmlAst(data.privacyPolicy.htmlAst),
-                        )}
-                        style={{ marginTop: 30 }}
-                      />
-                    </View>
-                  </View>
-                </LinearGradient>
+                <Segment {...theme.segments.privacy[0]}>
+                  <IconHeader
+                    icon={data.privacy.frontmatter.icon}
+                    title={data.privacy.frontmatter.title}
+                    content={renderHeader()(cleanHtmlAst(data.privacy.htmlAst))}
+                  />
+                  <PlainCard
+                    icon={data.privacyPolicy.frontmatter.icon}
+                    title={data.privacyPolicy.frontmatter.title}
+                    content={renderPolicy()(
+                      cleanHtmlAst(data.privacyPolicy.htmlAst),
+                    )}
+                    style={{ marginTop: 30 }}
+                  />
+                </Segment>
                 <Footer htmlAst={data.footer.htmlAst} />
               </View>
             )}
