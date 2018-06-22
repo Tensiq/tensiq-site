@@ -8,7 +8,7 @@ import { ThemeContext } from '../ThemeProvider';
 const IconHeader = ({ icon, title, content, type = 'normal' }) => (
   <ThemeContext.Consumer>
     {theme => (
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+      <View style={{ flex: -1, flexDirection: 'row' }}>
         <Box
           style={theme.style({ element: 'headerIconLeft' })}
           {...theme.props.headerIcon.left}

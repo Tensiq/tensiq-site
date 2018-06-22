@@ -12,6 +12,7 @@ import rehypeReact from 'rehype-react';
 import cleanHtmlAst from '../utils/cleanHtmlAst';
 import { TextNormal } from '../components/Text';
 import { Header2, Header3, Header4 } from '../components/PageHeader';
+import LinearGradient from 'react-native-linear-gradient';
 
 const renderHeader = () =>
   new rehypeReact({
@@ -91,20 +92,42 @@ class PrivacyPage extends React.Component {
           <ThemeContext.Consumer>
             {theme => (
               <View>
-                <Segment {...theme.segments.privacy[0]}>
-                  <IconHeader
-                    icon={data.privacy.frontmatter.icon}
-                    title={data.privacy.frontmatter.title}
-                    content={renderHeader()(cleanHtmlAst(data.privacy.htmlAst))}
-                  />
-                  <PlainCard
-                    icon={data.privacyPolicy.frontmatter.icon}
-                    title={data.privacyPolicy.frontmatter.title}
-                    content={renderPolicy()(
-                      cleanHtmlAst(data.privacyPolicy.htmlAst),
-                    )}
-                  />
-                </Segment>
+                <LinearGradient
+                  {...theme.gradient('darkBlock1')}
+                  style={theme.style({
+                    element: 'contentBlock',
+                    type: 'first',
+                  })}
+                >
+                  <View
+                    style={theme.style({
+                      element: 'contentBlockOuterContainer',
+                    })}
+                  >
+                    <View
+                      style={theme.style({
+                        directions: ['column', 'column'],
+                        element: 'contentBlockInnerContainer',
+                      })}
+                    >
+                      <IconHeader
+                        icon={data.privacy.frontmatter.icon}
+                        title={data.privacy.frontmatter.title}
+                        content={renderHeader()(
+                          cleanHtmlAst(data.privacy.htmlAst),
+                        )}
+                      />
+                      <PlainCard
+                        icon={data.privacyPolicy.frontmatter.icon}
+                        title={data.privacyPolicy.frontmatter.title}
+                        content={renderPolicy()(
+                          cleanHtmlAst(data.privacyPolicy.htmlAst),
+                        )}
+                        style={{ marginTop: 30 }}
+                      />
+                    </View>
+                  </View>
+                </LinearGradient>
                 <Footer htmlAst={data.footer.htmlAst} />
               </View>
             )}

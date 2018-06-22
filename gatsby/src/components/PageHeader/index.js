@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
 
 const Header = ({ children, style, ...props }) => (
-  <View {...props}>
+  <View {...props} style={{ flex: -1 }}>
     <ThemeContext.Consumer>
       {theme => (
         <Text style={[theme.style(props), style]} {...props}>

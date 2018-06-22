@@ -102,19 +102,19 @@ const rawStyles = {
   contentBlockInnerContainer: {
     normal: {
       flex: 1,
-      flexDirection: 'row',
+      //   flexDirection: 'row',
       paddingVertical: sp(3),
       paddingHorizontal: sp(3),
     },
     tight: {
       flex: 1,
-      flexDirection: 'row',
+      //   flexDirection: 'row',
       paddingVertical: sp(2),
       paddingHorizontal: sp(2),
     },
     slim: {
       flex: 1,
-      flexDirection: 'row',
+      //   flexDirection: 'row',
       paddingVertical: sp(1),
       paddingHorizontal: sp(1),
     },
@@ -141,10 +141,10 @@ const props = {
   },
   headerIcon: {
     left: {
-      display: ['none', 'flex'],
+      display: ['none', null, 'flex'],
     },
     normal: {
-      display: ['flex', 'none'],
+      display: ['flex', null, 'none'],
     },
   },
   contentColumn3: {
@@ -309,7 +309,8 @@ const styles = {
       0: { flex: 1 },
     }),
     withIcon: StyleSheet.create({
-      0: { flex: 1 },
+      0: { marginTop: sp(3), flex: 1 },
+      2: { marginTop: sp(1), flex: 1 },
     }),
   },
   icon: {
@@ -407,12 +408,14 @@ const styles = {
     }),
     withLongText: StyleSheet.create({
       0: {
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: sp(2),
         marginTop: sp(1),
       },
       1: {
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: sp(5),
