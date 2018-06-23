@@ -12,7 +12,8 @@ import rehypeReact from 'rehype-react';
 import cleanHtmlAst from '../utils/cleanHtmlAst';
 import { TextNormal } from '../components/Text';
 import { Header2, Header3, Header4 } from '../components/PageHeader';
-import LinearGradient from 'react-native-linear-gradient';
+import Link from '../components/Link/Plain';
+import Paragraph from '../components/Paragraph';
 
 const renderHeader = () =>
   new rehypeReact({
@@ -24,11 +25,6 @@ const renderHeader = () =>
     },
   }).Compiler;
 
-const Paragraph = props => (
-  <ThemeContext.Consumer>
-    {theme => <View {...props} style={theme.style({ element: 'paragraph' })} />}
-  </ThemeContext.Consumer>
-);
 const LongParagraph = props => <Paragraph {...props} type="long" />;
 const TextNormalLight = props => <TextNormal {...props} type="light" />;
 const Header2Light = props => <Header2 {...props} light="true" />;
@@ -51,20 +47,6 @@ const ListEntry = props => {
     </ThemeContext.Consumer>
   );
 };
-const LinkLight = props => (
-  <Text
-    {...props}
-    onPress={() => Linking.openURL(props.href)}
-    style={{ textDecorationLine: 'underline' }}
-  />
-);
-const LinkNormal = props => (
-  <Text
-    {...props}
-    onPress={() => Linking.openURL(props.href)}
-    style={{ textDecorationLine: 'underline' }}
-  />
-);
 
 const renderPolicy = type =>
   new rehypeReact({
@@ -72,7 +54,7 @@ const renderPolicy = type =>
     components: {
       view: LongParagraph,
       text: type === 'dark' ? TextNormalLight : TextNormal,
-      a: type === 'dark' ? LinkLight : LinkNormal,
+      a: Link,
       icon: Icon,
       h1: type === 'dark' ? Header2Light : Header2,
       h2: type === 'dark' ? Header3Light : Header3,

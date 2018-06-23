@@ -2,7 +2,7 @@
 snippet: "footnotes"
 ---
 
-Copyright © 2018 !Icon[tensiq](){} Tensiq OÜ.
+© 2018 !Icon[tensiq](){} Tensiq OÜ.
 All rights reserved.
 [Our privacy policy](/privacy)
 Built with !Icon[heart](){} in Tallinn, Estonia.

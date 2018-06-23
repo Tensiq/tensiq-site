@@ -1,20 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View } from 'react-native';
+import { Text, View, Linking } from 'react-native';
 import { ThemeContext } from '../components/ThemeProvider';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import Footer from '../components/Footer';
 import Segment from '../components/Segment';
 import IconHeader from '../components/IconHeader';
-import Profile from '../components/Card/Profile';
-import Image from '../components/Image';
+import PlainCard from '../components/Card/Plain';
+import rehypeReact from 'rehype-react';
+import cleanHtmlAst from '../utils/cleanHtmlAst';
+import Icon from '../components/Icon';
+import { TextNormal } from '../components/Text';
+import Paragraph from '../components/Paragraph';
+import Link from '../components/Link/Plain';
 
-const titleText = <Text>Nice that you are interessted in us...</Text>;
-const contactText = <Text>Tensiq OÜ</Text>;
+const renderContent = () =>
+  new rehypeReact({
+    createElement: React.createElement,
+    components: {
+      view: Paragraph,
+      text: TextNormal,
+      icon: Icon,
+      a: Link,
+    },
+  }).Compiler;
+
 class ContactPage extends React.Component {
   render() {
     const { data } = this.props;
-    Image.images['profile'] = data.profileImages;
+    console.log(data);
     return (
       <View>
         <ThemeProvider uiTheme={{}}>
@@ -22,12 +36,19 @@ class ContactPage extends React.Component {
             {theme => (
               <View>
                 <Segment {...theme.segments.contact[0]}>
-                  <IconHeader icon="" title="Contact" content={titleText} />
-                  <Profile
-                    name="Tensiq"
-                    content={contactText}
-                    profileImage="tensiq-icon-with-shadow.png"
-                    shadowImage={data.imgTensiqIconShadow.childImageSharp.sizes}
+                  <IconHeader
+                    icon={data.contact.frontmatter.icon}
+                    title={data.contact.frontmatter.title}
+                    content={renderContent()(
+                      cleanHtmlAst(data.contact.htmlAst),
+                    )}
+                  />
+                  <PlainCard
+                    icon={data.contactInfo.frontmatter.icon}
+                    title={data.contactInfo.frontmatter.title}
+                    content={renderContent()(
+                      cleanHtmlAst(data.contactInfo.htmlAst),
+                    )}
                   />
                 </Segment>
                 <Footer htmlAst={data.footer.htmlAst} />
@@ -51,33 +72,21 @@ export const query = graphql`
     footer: markdownRemark(frontmatter: { snippet: { eq: "footnotes" } }) {
       htmlAst
     }
-    profileImages: allFile(
-      filter: {
-        sourceInstanceName: { eq: "images" }
-        relativeDirectory: { eq: "profiles" }
+    contact: markdownRemark(frontmatter: { snippet: { eq: "contact" } }) {
+      frontmatter {
+        icon
+        title
       }
-    ) {
-      edges {
-        node {
-          relativeDirectory
-          childImageSharp {
-            sizes(maxWidth: 960) {
-              originalName
-              ...GatsbyImageSharpSizes_withWebp_noBase64
-            }
-          }
-        }
-      }
+      htmlAst
     }
-    imgTensiqIconShadow: file(
-      relativePath: { eq: "profiles/tensiq-icon-shadow.png" }
-      sourceInstanceName: { eq: "images" }
+    contactInfo: markdownRemark(
+      frontmatter: { snippet: { eq: "contact-info" } }
     ) {
-      childImageSharp {
-        sizes(maxWidth: 960) {
-          ...GatsbyImageSharpSizes_withWebp_noBase64
-        }
+      frontmatter {
+        icon
+        title
       }
+      htmlAst
     }
   }
 `;

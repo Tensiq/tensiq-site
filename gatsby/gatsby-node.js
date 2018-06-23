@@ -78,16 +78,16 @@ exports.onPostBuild = (args, pluginOptions) =>
       const zipped = zlib.gzipSync(content);
       fs.writeFileSync(`${file}.gz`, zipped);
     });
-    const glyphMaps = glob.sync(`${__dirname}/src/fonts/(*.json|*.js)`);
+    const glyphMaps = glob.sync(`${__dirname}/src/fonts/?(*.json|*.js)`);
     const fontWithGlyphmap = glyphMaps.map(file => {
+      const filename = file.match(/\/([a-zA-Z0-9-_]*)\.js/)[1];
+      const fontFile = glob.sync(`${publicPath}/static/${filename}*.ttf`)[0];
       return {
         glyphmap: file,
-        font: `${publicPath}/static/${file.substring(
-          1,
-          file.lastIndexOf('.'),
-        )}.ttf`,
+        fontFile: fontFile,
       };
     });
+    console.log(fontWithGlyphmap);
     fontWithGlyphmap.forEach(({ glyphmap, fontFile }) => {
       const usedGlyphs = require(glyphmap);
       var content = fs.readFileSync(fontFile);

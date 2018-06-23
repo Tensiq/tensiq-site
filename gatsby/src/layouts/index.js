@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Animated, View, ScrollView, StyleSheet } from 'react-native';
 import solidIconFont from '../fonts/fa-solid-900.ttf';
+import regularIconFont from '../fonts/fa-regular-400.ttf';
 import brandIconFont from '../fonts/fa-brands-400.ttf';
 import tensiqFont from '../fonts/Tensiq.ttf';
 import openSansNormal from '../fonts/OpenSans-Regular.ttf';
@@ -76,6 +77,10 @@ class TemplateWrapper extends React.PureComponent {
                   @font-face {
                     font-family: FontAwesomeSolid;
                     src: url(${solidIconFont});
+                  }
+                  @font-face {
+                    font-family: FontAwesomeRegular;
+                    src: url(${regularIconFont});
                   }
                   @font-face {
                     font-family: FontAwesomeBrands;

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   rocket: parseInt('f135', 16),
   users: parseInt('f0c0', 16),
   heartbeat: parseInt('f21e', 16),
@@ -14,4 +14,6 @@ export default {
   eye: parseInt('f06e', 16),
   'user-secret': parseInt('f21b', 16),
   'file-contract': parseInt('f56c', 16),
+  at: parseInt('f1fa', 16),
+  building: parseInt('f1ad', 16),
 };

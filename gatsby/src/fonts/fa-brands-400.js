@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   react: parseInt('f41b', 16),
   github: parseInt('f09b', 16),
   twitter: parseInt('f099', 16),

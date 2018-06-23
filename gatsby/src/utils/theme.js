@@ -239,11 +239,6 @@ const styles = {
   paragraph: {
     normal: StyleSheet.create({
       0: {
-        paddingTop: 0,
-      },
-    }),
-    long: StyleSheet.create({
-      0: {
         paddingTop: sp(1),
       },
     }),
@@ -274,7 +269,9 @@ const styles = {
           width: '100%',
           maxWidth: 960,
           flexWrap:
-            props.directions && props.directions[0] === 'row' ? 'wrap' : 'none',
+            props.directions && props.directions[0] === 'row'
+              ? 'wrap'
+              : 'nowrap',
           flexDirection: props.directions ? props.directions[0] : 'row',
         },
       }),

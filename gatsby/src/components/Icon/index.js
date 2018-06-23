@@ -5,10 +5,12 @@ import { ThemeContext } from '../ThemeProvider';
 import { createIconSet } from 'react-native-vector-icons';
 
 import solidGlyphMap from '../../fonts/fa-solid-900';
+import regularGlyphMap from '../../fonts/fa-regular-400';
 import brandGlyphMap from '../../fonts/fa-brands-400';
 import customGlyphMap from '../../fonts/Tensiq';
 
 export const Icon = {
+  Regular: createIconSet(regularGlyphMap, 'FontAwesomeRegular'),
   Solid: createIconSet(solidGlyphMap, 'FontAwesomeSolid'),
   Brand: createIconSet(brandGlyphMap, 'FontAwesomeBrands'),
   Custom: createIconSet(customGlyphMap, 'Tensiq'),
