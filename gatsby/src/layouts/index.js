@@ -38,7 +38,11 @@ class TemplateWrapper extends React.PureComponent {
       scrollY: new Animated.Value(0),
     };
   }
+  componentDidUpdate() {
+    this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
+  }
   render() {
+    console.log(this.props);
     const opacity = this.state.scrollY.interpolate({
       inputRange: [0, headerScrollDistance],
       outputRange: [0.0, 1.0],
@@ -54,6 +58,7 @@ class TemplateWrapper extends React.PureComponent {
       <View>
         <View style={styles.scrollViewOuterContainer}>
           <ScrollView
+            ref={ref => (this.scrollView = ref)}
             contentContainerStyle={styles.scrollViewContent}
             scrollEventThrottle={1}
             onScroll={Animated.event([

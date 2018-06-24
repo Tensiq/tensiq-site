@@ -87,7 +87,6 @@ exports.onPostBuild = (args, pluginOptions) =>
         fontFile: fontFile,
       };
     });
-    console.log(fontWithGlyphmap);
     fontWithGlyphmap.forEach(({ glyphmap, fontFile }) => {
       const usedGlyphs = require(glyphmap);
       var content = fs.readFileSync(fontFile);
