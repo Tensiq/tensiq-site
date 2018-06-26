@@ -38,11 +38,8 @@ class TemplateWrapper extends React.PureComponent {
       scrollY: new Animated.Value(0),
     };
   }
-  componentDidUpdate() {
-    console.log(this.props);
-    //    this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
-  }
   render() {
+    console.log(this.props)
     const opacity = this.state.scrollY.interpolate({
       inputRange: [0, headerScrollDistance],
       outputRange: [0.0, 1.0],
@@ -53,7 +50,7 @@ class TemplateWrapper extends React.PureComponent {
       outputRange: [headerHeightMax, headerHeightMin],
       extrapolate: 'clamp',
     });
-    const { children } = this.props;
+    const { children, location } = this.props;
     return (
       <View>
         <View style={styles.scrollViewOuterContainer}>
@@ -68,8 +65,8 @@ class TemplateWrapper extends React.PureComponent {
             {children()}
           </ScrollView>
         </View>
-        <MenuTop height={headerHeight} opacity={opacity} />
-        <MenuBottom />
+        <MenuTop height={headerHeight} opacity={opacity} location={location}/>
+        <MenuBottom location={location}/>
         <Helmet
           title="Gatsby Default Starter"
           meta={[

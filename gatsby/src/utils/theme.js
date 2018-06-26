@@ -828,6 +828,15 @@ const styles = {
         justifyContent: 'center',
       },
     }),
+    active: StyleSheet.create({
+      0: {
+        width: 100,
+        height: 50,
+        justifyContent: 'center',
+        borderBottomWidth: 2,
+        borderColor: 'white',
+      },
+    }),
   },
   headerLogoContent: {
     normal: StyleSheet.create({
@@ -893,8 +902,18 @@ const styles = {
   footerLinkOuterContainer: {
     normal: StyleSheet.create({
       0: {
+        height: '100%',
         flex: 1,
         marginHorizontal: 0,
+      },
+    }),
+    active: StyleSheet.create({
+      0: {
+        height: '100%',
+        flex: 1,
+        marginHorizontal: 0,
+        borderTopWidth: 2,
+        borderColor: 'white',
       },
     }),
   },
@@ -1037,7 +1056,6 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        paddingHorizontal: sp(1),
       },
     }),
   },

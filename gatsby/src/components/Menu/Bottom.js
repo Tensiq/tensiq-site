@@ -21,6 +21,7 @@ class Bottom extends React.PureComponent {
   }
   render() {
     const { fade } = this.state;
+    const { location } = this.props;
     return (
       <ThemeContext.Consumer>
         {theme => (
@@ -33,7 +34,10 @@ class Bottom extends React.PureComponent {
                 <View style={theme.style({ element: 'footerColor' })} />
                 <View style={theme.style({ element: 'footerInnerContainer' })}>
                   <View
-                    style={theme.style({ element: 'footerLinkOuterContainer' })}
+                    style={theme.style({
+                      element: 'footerLinkOuterContainer',
+                      type: location.pathname === '/' ? 'active' : 'normal',
+                    })}
                   >
                     <Link
                       to="/"
@@ -48,7 +52,11 @@ class Bottom extends React.PureComponent {
                     </Link>
                   </View>
                   <View
-                    style={theme.style({ element: 'footerLinkOuterContainer' })}
+                    style={theme.style({
+                      element: 'footerLinkOuterContainer',
+                      type:
+                        location.pathname === '/about' ? 'active' : 'normal',
+                    })}
                   >
                     <Link
                       to="/about"
@@ -63,7 +71,11 @@ class Bottom extends React.PureComponent {
                     </Link>
                   </View>
                   <View
-                    style={theme.style({ element: 'footerLinkOuterContainer' })}
+                    style={theme.style({
+                      element: 'footerLinkOuterContainer',
+                      type:
+                        location.pathname === '/contact' ? 'active' : 'normal',
+                    })}
                   >
                     <Link
                       to="/contact"

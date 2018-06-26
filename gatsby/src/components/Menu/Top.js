@@ -20,7 +20,7 @@ class Top extends React.PureComponent {
   }
   render() {
     const { fade } = this.state;
-    const { height, opacity } = this.props;
+    const { height, opacity, location } = this.props;
     return (
       <ThemeContext.Consumer>
         {theme => {
@@ -69,6 +69,7 @@ class Top extends React.PureComponent {
                     <View
                       style={theme.style({
                         element: 'headerLinkOuterContainer',
+                        type: location.pathname === '/' ? 'active' : 'normal',
                       })}
                     >
                       <Link to="/" rippleColor={theme.color('headerRipple')}>
@@ -84,6 +85,8 @@ class Top extends React.PureComponent {
                     <View
                       style={theme.style({
                         element: 'headerLinkOuterContainer',
+                        type:
+                          location.pathname === '/about' ? 'active' : 'normal',
                       })}
                     >
                       <Link
@@ -102,6 +105,10 @@ class Top extends React.PureComponent {
                     <View
                       style={theme.style({
                         element: 'headerLinkOuterContainer',
+                        type:
+                          location.pathname === '/contact'
+                            ? 'active'
+                            : 'normal',
                       })}
                     >
                       <Link
