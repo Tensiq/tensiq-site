@@ -62,10 +62,18 @@ export default class ThemeProvider extends React.PureComponent {
   onDimensionsChangeHandler = event => {
     this.updateState(this.props);
   };
-  updateState = () => {
+  updateState = (force = false) => {
     const { width, height } = Dimensions.get('window');
+    //    console.log(
+    //      'width:',
+    //      width,
+    //      'bp-old:',
+    //      this.state.breakpoint,
+    //      'bp-new:',
+    //      this.getBreakpoint(width),
+    //    );
     const breakpoint = this.getBreakpoint(width);
-    if (breakpoint != this.state.breakpoint) {
+    if (breakpoint != this.state.breakpoint || force) {
       this.setState({
         ...this.setState,
         height,
@@ -74,7 +82,6 @@ export default class ThemeProvider extends React.PureComponent {
       });
       // console.log('width:', width, 'bp:', this.getBreakpoint(width));
     }
-    // console.log('width:', width, 'bp:', this.getBreakpoint(width));
   };
   componentWillMount() {
     Dimensions.addEventListener('change', this.onDimensionsChangeHandler);
@@ -83,7 +90,7 @@ export default class ThemeProvider extends React.PureComponent {
     Dimensions.removeEventListener('change', this.onDimensionsChangeHandler);
   }
   componentDidMount() {
-    this.updateState();
+    this.updateState(true);
   }
   componentDidUpdate() {
     this.updateState();

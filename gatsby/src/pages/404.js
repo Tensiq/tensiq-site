@@ -28,13 +28,14 @@ const renderContent = () =>
 class NotFoundPage extends React.Component {
   render() {
     const { data } = this.props;
-    console.log(data);
     return (
       <View>
         <ThemeProvider uiTheme={{}}>
           <ThemeContext.Consumer>
             {theme => (
-              <View style={{ width: '100%', height: theme.height }}>
+              <View
+                style={{ width: '100%', minHeight: Math.max(theme.height, 300) }}
+              >
                 <Segment {...theme.segments.contact[0]} style={{ flex: 1 }}>
                   <IconHeader
                     icon={data.notFound.frontmatter.icon}
@@ -42,7 +43,7 @@ class NotFoundPage extends React.Component {
                     content={renderContent()(
                       cleanHtmlAst(data.notFound.htmlAst),
                     )}
-                    boxType='center'
+                    boxType="center"
                   />
                 </Segment>
                 <Footer htmlAst={data.footer.htmlAst} />
