@@ -17,4 +17,5 @@ module.exports = {
   at: parseInt('f1fa', 16),
   building: parseInt('f1ad', 16),
   'quote-left': parseInt('f10d', 16),
+  'door-open': parseInt('f52b', 16),
 };

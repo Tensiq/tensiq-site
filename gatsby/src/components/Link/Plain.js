@@ -16,7 +16,7 @@ const LinkNormal = props => (
   <Text
     {...props}
     onPress={() => openURL(props.href)}
-    style={{ textDecorationLine: 'underline' }}
+    style={[{ textDecorationLine: 'underline' }, props.style]}
   />
 );
 

@@ -139,11 +139,19 @@ const props = {
       display: ['flex', null, 'none'],
     },
   },
-  headerIcon: {
-    left: {
+  headerIconLeft: {
+    normal: {
       display: ['none', null, 'flex'],
     },
+    center: {
+      display: ['none', null, 'flex'],
+    },
+  },
+  headerIconCenter: {
     normal: {
+      display: ['flex', null, 'none'],
+    },
+    center: {
       display: ['flex', null, 'none'],
     },
   },
@@ -367,9 +375,29 @@ const styles = {
       0: { paddingLeft: sp(0) },
     }),
   },
+  headerContent: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+      },
+    }),
+    center: StyleSheet.create({
+      0: {
+        marginLeft: sp(4),
+        flex: 2,
+      },
+    }),
+  },
   headerIconCenter: {
     normal: StyleSheet.create({
       0: {
+        marginVertical: sp(2),
+        alignItems: 'center',
+      },
+    }),
+    center: StyleSheet.create({
+      0: {
+        flex: 1,
         marginVertical: sp(2),
         alignItems: 'center',
       },
@@ -382,6 +410,13 @@ const styles = {
         marginLeft: sp(4),
         marginRight: sp(4),
         width: 125,
+      },
+    }),
+    center: StyleSheet.create({
+      0: {
+        alignItems: 'flex-end',
+        flex: 1,
+        marginRight: sp(4),
       },
     }),
   },
@@ -887,10 +922,10 @@ const styles = {
   headerOuterContainer: {
     normal: StyleSheet.create({
       0: {
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: 0,
-        right: 0,
+        width: '100%',
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -908,6 +943,17 @@ const styles = {
   headerInnerContainer: {
     normal: StyleSheet.create({
       0: {
+        width: '100%',
+        maxWidth: 960,
+        height: '100%',
+        flex: 1,
+        flexDirection: 'row',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 0,
+      },
+      2: {
         width: '100%',
         maxWidth: 960,
         height: '100%',

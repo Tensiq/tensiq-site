@@ -39,7 +39,7 @@ class TemplateWrapper extends React.PureComponent {
     };
   }
   componentDidUpdate() {
-    console.log(this.props)
+    console.log(this.props);
     //    this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
   }
   render() {

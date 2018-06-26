@@ -5,17 +5,25 @@ import Icon from '../Icon';
 import { View, Text } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
 
-const IconHeader = ({ icon, title, content, type = 'normal' }) => (
+const IconHeader = ({
+  icon,
+  title,
+  content,
+  type = 'normal',
+  boxType = 'normal',
+}) => (
   <ThemeContext.Consumer>
     {theme => (
       <View style={{ flex: -1, flexDirection: 'row' }}>
         <Box
-          style={theme.style({ element: 'headerIconLeft' })}
-          {...theme.props.headerIcon.left}
+          style={theme.style({ element: 'headerIconLeft', type: boxType })}
+          {...theme.props.headerIconLeft[boxType]}
         >
           <Icon name={icon} element="headerIcon" type={type} />
         </Box>
-        <View style={{ flex: 1 }}>
+        <View
+          style={theme.style({ element: 'headerContent', type: boxType })}
+        >
           <Text
             style={theme.style({
               element: 'headerTitleText',
@@ -27,8 +35,9 @@ const IconHeader = ({ icon, title, content, type = 'normal' }) => (
           <Box
             style={theme.style({
               element: 'headerIconCenter',
+              type: boxType,
             })}
-            {...theme.props.headerIcon.normal}
+            {...theme.props.headerIconCenter[boxType]}
           >
             <Icon name={icon} element="headerIcon" type={type} />
           </Box>

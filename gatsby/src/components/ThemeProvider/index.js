@@ -16,6 +16,7 @@ export default class ThemeProvider extends React.PureComponent {
   }
   state = {
     width: 0,
+    height: 0,
     breakpoint: 0,
     ...theme,
     style: props => this.getStyle(props),

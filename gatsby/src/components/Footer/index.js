@@ -6,9 +6,10 @@ import { TextNormal } from '../Text';
 import Icon from '../Icon';
 import rehypeReact from 'rehype-react';
 import cleanHtmlAst from '../../utils/cleanHtmlAst';
+import Link from '../Link/Plain';
 
-const LinkLight = props => (
-  <Text {...props} onPress={() => Linking.openURL(props.href)} />
+const PlainLink = props => (
+  <Link {...props} style={{ textDecorationLine: 'none' }} />
 );
 
 const renderFooter = new rehypeReact({
@@ -17,7 +18,7 @@ const renderFooter = new rehypeReact({
     view: View,
     text: TextNormal,
     icon: Icon,
-    a: LinkLight,
+    a: PlainLink,
   },
 }).Compiler;
 

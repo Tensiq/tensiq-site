@@ -10,9 +10,8 @@ module.exports = {
       options: {
         analyzerMode: 'static',
         openAnalyzer: false,
-        production: true,
-        generateStatsFile: true,
-        statsFilename: '../stats.json',
+        production: false,
+        generateStatsFile: false,
       },
     },
     'gatsby-transformer-yaml',
@@ -124,6 +123,14 @@ module.exports = {
             },
           },
           'gatsby-plugin-offline',
+          {
+            resolve: `gatsby-plugin-nprogress`,
+            options: {
+              color: `#48c4d9ff`,
+              showSpinner: false,
+            },
+          },
+          `gatsby-plugin-netlify`,
         ],
       },
     },

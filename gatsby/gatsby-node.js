@@ -75,14 +75,6 @@ exports.onPostBuild = (args, pluginOptions) =>
 
     const publicPath = path.join(__dirname, 'public');
 
-    // Zip static files
-    const gzippable = glob.sync(`${publicPath}/**/?(*.html|*.js|*.css)`);
-    gzippable.forEach(file => {
-      const content = fs.readFileSync(file);
-      const zipped = zlib.gzipSync(content);
-      fs.writeFileSync(`${file}.gz`, zipped);
-    });
-
     // Shrink icon fonts via glyphmaps
     const glyphMaps = glob.sync(`${__dirname}/src/fonts/icon/?(*.json|*.js)`);
     const fontWithGlyphmap = glyphMaps.map(file => {
@@ -93,7 +85,6 @@ exports.onPostBuild = (args, pluginOptions) =>
         fontFile: fontFile,
       };
     });
-    console.log('fontWithGlyphmap',fontWithGlyphmap);
     fontWithGlyphmap.forEach(({ glyphmap, fontFile }) => {
       const usedGlyphs = require(glyphmap);
       var content = fs.readFileSync(fontFile);
@@ -117,10 +108,7 @@ exports.onPostBuild = (args, pluginOptions) =>
       sync: true,
       appendAscii: false,
     });
-    console.log('textdirs',textdirs);
-    console.log('usedchars',usedChars.join());
     const textFonts = glob.sync(`${__dirname}/src/fonts/text/?(*.ttf)`);
-    console.log('textfonts',textFonts);
     textFonts.forEach(file => {
       const filename = file.match(/\/([a-zA-Z0-9-_]*)\.ttf/)[1];
       const fontFile = glob.sync(`${publicPath}/static/${filename}*.ttf`)[0]
@@ -137,6 +125,14 @@ exports.onPostBuild = (args, pluginOptions) =>
       })
       fs.writeFileSync(fontFile, content);
     })
+
+    // Zip static files
+    const gzippable = glob.sync(`${publicPath}/**/?(*.html|*.js|*.css|*.ttf)`);
+    gzippable.forEach(file => {
+      const content = fs.readFileSync(file);
+      const zipped = zlib.gzipSync(content);
+      fs.writeFileSync(`${file}.gz`, zipped);
+    });
 
     resolve();
   });
