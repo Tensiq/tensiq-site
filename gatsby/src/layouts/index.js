@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Animated, View, ScrollView, StyleSheet } from 'react-native';
-import solidIconFont from '../fonts/fa-solid-900.ttf';
-import regularIconFont from '../fonts/fa-regular-400.ttf';
-import brandIconFont from '../fonts/fa-brands-400.ttf';
-import tensiqFont from '../fonts/Tensiq.ttf';
-import openSansNormal from '../fonts/OpenSans-Regular.ttf';
-import openSansBold from '../fonts/OpenSans-Bold.ttf';
+import solidIconFont from '../fonts/icon/fa-solid-900.ttf';
+import regularIconFont from '../fonts/icon/fa-regular-400.ttf';
+import brandIconFont from '../fonts/icon/fa-brands-400.ttf';
+import tensiqFont from '../fonts/icon/Tensiq.ttf';
+import openSansNormal from '../fonts/text/OpenSans-Regular.ttf';
+import openSansBold from '../fonts/text/OpenSans-Bold.ttf';
 import favicon from '../images/favicon.png';
 import MenuTop from '../components/Menu/Top';
 import MenuBottom from '../components/Menu/Bottom';
@@ -39,10 +39,10 @@ class TemplateWrapper extends React.PureComponent {
     };
   }
   componentDidUpdate() {
-    this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
+    console.log(this.props)
+    //    this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
   }
   render() {
-    console.log(this.props);
     const opacity = this.state.scrollY.interpolate({
       inputRange: [0, headerScrollDistance],
       outputRange: [0.0, 1.0],

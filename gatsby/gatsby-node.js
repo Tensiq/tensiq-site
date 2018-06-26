@@ -13,6 +13,7 @@ const zlib = require('zlib');
 const glob = require('glob'); // https://www.npmjs.com/package/glob
 const path = require('path');
 const Font = require('fonteditor-core').Font;
+const Scan = require('charactor-scanner');
 
 const generateBabelConfig = require('gatsby/dist/utils/babel-config');
 const modulesToCompile = ['react-native-*', 'rehype-react'];
@@ -71,14 +72,19 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 
 exports.onPostBuild = (args, pluginOptions) =>
   new Promise(resolve => {
+
     const publicPath = path.join(__dirname, 'public');
+
+    // Zip static files
     const gzippable = glob.sync(`${publicPath}/**/?(*.html|*.js|*.css)`);
     gzippable.forEach(file => {
       const content = fs.readFileSync(file);
       const zipped = zlib.gzipSync(content);
       fs.writeFileSync(`${file}.gz`, zipped);
     });
-    const glyphMaps = glob.sync(`${__dirname}/src/fonts/?(*.json|*.js)`);
+
+    // Shrink icon fonts via glyphmaps
+    const glyphMaps = glob.sync(`${__dirname}/src/fonts/icon/?(*.json|*.js)`);
     const fontWithGlyphmap = glyphMaps.map(file => {
       const filename = file.match(/\/([a-zA-Z0-9-_]*)\.js/)[1];
       const fontFile = glob.sync(`${publicPath}/static/${filename}*.ttf`)[0];
@@ -87,6 +93,7 @@ exports.onPostBuild = (args, pluginOptions) =>
         fontFile: fontFile,
       };
     });
+    console.log('fontWithGlyphmap',fontWithGlyphmap);
     fontWithGlyphmap.forEach(({ glyphmap, fontFile }) => {
       const usedGlyphs = require(glyphmap);
       var content = fs.readFileSync(fontFile);
@@ -102,5 +109,34 @@ exports.onPostBuild = (args, pluginOptions) =>
       });
       fs.writeFileSync(fontFile, content);
     });
+
+    // Shrink text fonts via used characters in markdownfiles
+    const textdirs = glob.sync('./src/snippets/**/',{absolute: true});
+    const usedChars = Scan({
+      dir: textdirs,
+      sync: true,
+      appendAscii: false,
+    });
+    console.log('textdirs',textdirs);
+    console.log('usedchars',usedChars.join());
+    const textFonts = glob.sync(`${__dirname}/src/fonts/text/?(*.ttf)`);
+    console.log('textfonts',textFonts);
+    textFonts.forEach(file => {
+      const filename = file.match(/\/([a-zA-Z0-9-_]*)\.ttf/)[1];
+      const fontFile = glob.sync(`${publicPath}/static/${filename}*.ttf`)[0]
+      var content = fs.readFileSync(fontFile);
+      const font = Font.create(content, {
+        type: 'ttf',
+        subset: usedChars.map(char => char.charCodeAt(0)),
+        hinting: true,
+      });
+      font.optimize();
+      content = font.write({
+        type: 'ttf',
+        hinting: true,
+      })
+      fs.writeFileSync(fontFile, content);
+    })
+
     resolve();
   });

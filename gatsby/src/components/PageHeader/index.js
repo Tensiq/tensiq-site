@@ -2,17 +2,28 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
 
-const Header = ({ children, style, ...props }) => (
-  <View {...props} style={{ flex: -1 }}>
-    <ThemeContext.Consumer>
-      {theme => (
-        <Text style={[theme.style(props), style]} {...props}>
-          {children}
-        </Text>
-      )}
-    </ThemeContext.Consumer>
-  </View>
-);
+const Header = ({ children, style, ...props }) => {
+  let text = children;
+  if (Array.isArray(children)) {
+    text = children.join(' ');
+  }
+  text = text
+    .replace(/[^a-zA-Z ]/g, '')
+    .replace(/[ ]/g, '-')
+    .toLowerCase();
+  return (
+    <View {...props} style={{ flex: -1 }}>
+      <Text style={{ position: 'absolute', top: -50 }} id={text} />
+      <ThemeContext.Consumer>
+        {theme => (
+          <Text style={[theme.style(props), style]} {...props}>
+            {children}
+          </Text>
+        )}
+      </ThemeContext.Consumer>
+    </View>
+  );
+};
 Header.defaultProps = {
   element: 'textHeader',
 };

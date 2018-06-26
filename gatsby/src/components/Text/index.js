@@ -10,9 +10,11 @@ class TextNormal extends PureComponent {
       return (
         <ThemeContext.Consumer>
           {theme => (
-            <Text style={[theme.style(props), style]} {...props}>
-              {children}
-            </Text>
+              <Text style={theme.style(TextNormal.defaultProps)}>
+                <Text style={[theme.style(props), style]} {...props}>
+                  {children}
+                </Text>
+              </Text>
           )}
         </ThemeContext.Consumer>
       );

@@ -10,7 +10,7 @@ import IconHeader from '../components/IconHeader';
 import PlainCard from '../components/Card/Plain';
 import rehypeReact from 'rehype-react';
 import cleanHtmlAst from '../utils/cleanHtmlAst';
-import { TextNormal } from '../components/Text';
+import { TextNormal, TextStrong } from '../components/Text';
 import { Header2, Header3, Header4 } from '../components/PageHeader';
 import Link from '../components/Link/Plain';
 import Paragraph from '../components/Paragraph';
@@ -27,17 +27,18 @@ const renderHeader = () =>
 
 const LongParagraph = props => <Paragraph {...props} type="long" />;
 const TextNormalLight = props => <TextNormal {...props} type="light" />;
+const TextStrongLight = props => <TextStrong {...props} type="light" />;
 const Header2Light = props => <Header2 {...props} light="true" />;
 const Header3Light = props => <Header3 {...props} light="true" />;
 const Header4Light = props => <Header4 {...props} light="true" />;
 const ListEntry = props => {
-  const { children } = props;
+  const { children,type='dark' } = props;
   return (
     <ThemeContext.Consumer>
       {theme => (
-        <View {...props} style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <View style={{ justifyContent: 'center', marginHorizontal: 10 }}>
-            <Text style={{ fontSize: 10, color: theme.color('lightText') }}>
+        <View {...props} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+          <View style={{ alignItems: 'center', marginHorizontal: 10 }}>
+            <Text style={{ lineHeight: 38, fontSize: 10, color: type==='dark' ? theme.color('darkText') : theme.color('lightText') }}>
               <Icon name="tensiq" />
             </Text>
           </View>
@@ -47,6 +48,7 @@ const ListEntry = props => {
     </ThemeContext.Consumer>
   );
 };
+const ListEntryLight = props => <ListEntry {...props} type='light'/>
 
 const renderPolicy = type =>
   new rehypeReact({
@@ -54,13 +56,14 @@ const renderPolicy = type =>
     components: {
       view: LongParagraph,
       text: type === 'dark' ? TextNormalLight : TextNormal,
+      strong: type === 'dark' ? TextStrongLight : TextStrong,
       a: Link,
       icon: Icon,
       h1: type === 'dark' ? Header2Light : Header2,
       h2: type === 'dark' ? Header3Light : Header3,
       h3: type === 'dark' ? Header4Light : Header4,
       ul: View,
-      li: ListEntry,
+      li: type === 'dark' ? ListEntryLight : ListEntry,
     },
   }).Compiler;
 

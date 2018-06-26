@@ -113,7 +113,17 @@ const Profile = ({
             >
               <Img sizes={shadowImage} />
             </View>
-            <Icon name="tensiq" element="cardWrapIcon" />
+            <View
+              style={{
+                position: 'absolute',
+                top: 32,
+                left: -2,
+                width: '100%',
+              }}
+              pointerEvents="none"
+            >
+              <Icon name="tensiq" element="cardWrapIcon" />
+            </View>
             <View
               style={{
                 position: 'absolute',

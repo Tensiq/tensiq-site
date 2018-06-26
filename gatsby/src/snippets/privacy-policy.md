@@ -4,122 +4,111 @@ icon: file-contract
 title: Privacy Policy
 ---
 
-Proekspert AS, Sõpruse pst 157, Tallinn, Estonia, e-mail mailto:info@proekspert.ee, respects your privacy rights and recognises the importance of protecting your personal data.
+Personal data (usually referred to just as "data" below) will only be processed by us to the extent necessary and for the purpose of providing a functional and user-friendly website, including its contents, and the services offered there.
 
-This Proekspert´s privacy policy provides information relating to the collection, processing, use and privacy of information you submit through our website. The information will be collected by Proekspert. However, if you are in contact with us through social media channels: Facebook, Twitter, LinkedIN, information will be collected by these channels. Each of the channels shall solely be responsible for their own data processing activities under this Privacy Policy and they each be, with regard to their own data processing activities, the controller as defined by the General Data Protection Regulation (Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 – “GDPR”).
+Per Art. 4 No. 1 of Regulation (EU) 2016/679, i.e. the General Data Protection Regulation (hereinafter referred to as the "GDPR"), "processing" refers to any operation or set of operations such as collection, recording, organization, structuring, storage, adaptation, alteration, retrieval, consultation, use, disclosure by transmission, dissemination, or otherwise making available, alignment, or combination, restriction, erasure, or destruction performed on personal data, whether by automated means or not.
 
-#2. What Information We Collect and Process
-##2.1 Information about Your Person
+The following privacy policy is intended to inform you in particular about the type, scope, purpose, duration, and legal basis for the processing of such data either under our own control or in conjunction with others. We also inform you below about the third-party components we use to optimize our website and improve the user experience which may result in said third parties also processing data they collect and control.
 
-On our website you can:
+Our privacy policy is structured as follows:
 
-Subscribe to Proekspert newsletter Tech Tomorrow by registering your e-mail. You can unsubscribe either on the newsletter or sending an e-mail to mailto:marketing@proekspert.ee.
-Subscribe to new video notification on https://proekspert.ee/videos/. You can unsubscribe either on the notification e-mail or sending an e-mail to mailto:marketing@proekspert.ee.
-Book a meeting on one of our events by filling in a contact form with your name and e-mail. The contact form generates an e-mail to the person who is leading the event team.
-Leave your name and e-mail through our chatbox if it is in offline mode if you want to be contacted by Proekspert representative. If you want your information deleted from our chat history, you can notify mailto:marketing@proekspert.ee
-Leave your name, e-mail, company name and message if you order a consultation or a workshop.If you want your information deleted from our purchase history, you can notify mailto:marketing@proekspert.ee.
+I. [Information about us as controllers of your data](/privacy#i-information-about-us-as-controllers-of-your-data)
+II. [The rights of users and data subjects](/privacy#ii-the-rights-of-users-and-data-subjects)
+III. [Information about the data processing](/privacy#iii-information-about-the-data-processing)
 
-##2.6 Cookies and Similar Technology
-###2.6.1 General Information
+#I. Information about us as controllers of your data
+The party responsible for this website (the "controller") for purposes of data protection law is:
 
-Websites offered by Proekspert may use cookies and other similar technologies. Cookies are small files downloaded to your device. Cookies help us to ensure the safety and smooth functionality of our services (security cookies and session cookies) and to collect information about the preferences of users in order to make our online offers more attractive for users (tracking cookies).
+Tensiq OÜ
+Sepapaja 6
+15551 Tallinn
+Estonia (EU)
 
-Most browsers are automatically set to accept cookies. You can often set your browser to notify you when you are sent a cookie and you may also be able to elect not to accept cookies by changing the designated settings on your User Device. Proekspert digital content may use tracking cookies. If we use tracking cookies, we will inform you about the use of and details of such tracking cookies and describe the available options to enable or disable such tracking cookies in the respective privacy policies.
+Email: info@tensiq.com
 
-###2.6.2 Google Analytics
+The controller's data protection officer is:
 
-Our website uses Google Analytics, a web analysis service of Google Inc. (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA; “Google”). Google Analytics uses cookies that are stored on your computer and facilitate the analysis of your use of our website, the Digital Products and the online features. The information generated by the cookie about your use of our website, the Digital Products and the online features is transmitted to Google and stored by. If IP anonymisation has been activated, the IP address of users located within a country of the European Union or in other states contracting to the Agreement on the European Economic Area will be shortened. Only in exceptional cases will a complete IP address be transferred to a Google server and shortened there. IP anonymisation is activated. On our behalf, Google will use this information for the purpose of evaluating the website, the Digital Products and the online features for us, in order to compile reports on the activity on the website, the Digital Products and the online features, and to provide other services relating to the activity and internet usage for us. Google will not associate the IP address transferred in the context of Google Analytics with any other data held by Google.
+Jens Lemke 
 
-For further information please visit: https://support.google.com/analytics/answer/6004245?hl=en
+#II. The rights of users and data subjects
+With regard to the data processing to be described in more detail below, users and data subjects have the right
 
-###2.6.3 Google Remarketing Technology
+- to confirmation of whether data concerning them is being processed, information about the data being processed, further information about the nature of the data processing, and copies of the data (cf. also Art. 15 GDPR);
+- to correct or complete incorrect or incomplete data (cf. also Art. 16 GDPR);
+- to the immediate deletion of data concerning them (cf. also Art. 17 DSGVO), or, alternatively, if further processing is necessary as stipulated in Art. 17 Para. 3 GDPR, to restrict said processing per Art. 18 GDPR;
+- to receive copies of the data concerning them and/or provided by them and to have the same transmitted to other providers/controllers (cf. also Art. 20 GDPR);
+- to file complaints with the supervisory authority if they believe that data concerning them is being processed by the controller in breach of data protection provisions (see also Art. 77 GDPR).
 
-Some of our websites may use the Google Remarketing technology which is a service from Google. If our websites use Google Remarketing technology, we will inform you about the use of and details of Google Remarketing technology and describe the available options to enable or disable such use in the respective website privacy policy.
+In addition, the controller is obliged to inform all recipients to whom it discloses data of any such corrections, deletions, or restrictions placed on processing the same per Art. 16, 17 Para. 1, 18 GDPR. However, this obligation does not apply if such notification is impossible or involves a disproportionate effort. Nevertheless, users have a right to information about these recipients.
 
-#3. How Information Is Used – Purposes of Processing
-##3.1 Providing the Service
+**Likewise, under Art. 21 GDPR, users and data subjects have the right to object to the controller's future processing of their data pursuant to Art. 6 Para. 1 lit. f) GDPR. In particular, an objection to data processing for the purpose of direct advertising is permissible.**
 
-We collect and further process the information we collect in order to:
+#III. Information about the data processing
+Your data processed when using our website will be deleted or blocked as soon as the purpose for its storage ceases to apply, provided the deletion of the same is not in breach of any statutory storage obligations or unless otherwise stipulated below.
 
-Send you Proekspert newsletter Tech Tomorrow;
-Send you notification about a new video on our website;
-Book a meeting to an event;
-Contact you to arrange the consultation or a workshop you ordered;
-Process orders and requests that you make via the website.
+##Server data
+For technical reasons, the following data sent by your internet browser to us or to our server provider will be collected, especially to ensure a secure and stable website: These server log files record the type and version of your browser, operating system, the website from which you came (referrer URL), the webpages on our site visited, the date and time of your visit, as well as the IP address from which you visited our site.
 
-##3.4 Usage Information
+The data thus collected will be temporarily stored, but not in association with any other of your data.
 
-“Usage Information” as referred to in this Section 3.4 includes all information submitted through Proekspert website.
+The basis for this storage is Art. 6 Para. 1 lit. f) GDPR. Our legitimate interest lies in the improvement, stability, functionality, and security of our website.
 
-###3.4.3 Customised Offers and Recommendations
+The data will be deleted within no more than seven days, unless continued storage is required for evidentiary purposes. In which case, all or part of the data will be excluded from deletion until the investigation of the relevant incident is finally resolved.
 
-We may also process the Usage Information for purposes of customised marketing, so that content, products and services can be tailored to meet your needs and the recommendations and offers displayed to you via the website ice or other online activities can be customized accordingly.
+##Cookies
+###a) Session cookies
+We use cookies on our website. Cookies are small text files or other storage technologies stored on your computer by your browser. These cookies process certain specific information about you, such as your browser, location data, or IP address.  
 
-The legal basis for this processing is Art. 6 para. 1 (f) GDPR. Proekspert has a legitimate interest in processing your information for such purposes of customised marketing as it avoids displaying recommendations and offers that are irrelevant for the user. You have the right to object at any time to the processing of your information for such purposes of customised marketing. To exercise this right you may at any time contact us as provided in Section 9 of this Privacy Policy or you can opt out of the processing of your information for such purposes of customised marketing at any time if you contact mailto:marketing@proekspert.ee .
+This processing makes our website more user-friendly, efficient, and secure, allowing us, for example, to display our website in different languages or to offer a shopping cart function.
 
-##3.6 Cookies and Similar Technologies
+The legal basis for such processing is Art. 6 Para. 1 lit. b) GDPR, insofar as these cookies are used to collect data to initiate or process contractual relationships.
 
-###3.6.1 General Information
+If the processing does not serve to initiate or process a contract, our legitimate interest lies in improving the functionality of our website. The legal basis is then Art. 6 Para. 1 lit. f) GDPR.
 
-The legal basis for using security and session cookies as explained in Section 2.6.1 above is the provision of the service you have requested (Art. 6 para. 1 (b) GDPR).
+When you close your browser, these session cookies are deleted.
 
-When you access our websites that use tracking cookies and if you have not objected to the use of such tracking cookies, information received via such tracking cookies may be combined with your other information obtained through website t and used for the purposes as described in Section 3.4. above.
+###b) Third-party cookies
+If necessary, our website may also use cookies from companies with whom we cooperate for the purpose of advertising, analyzing, or improving the features of our website.
 
-###3.6.2 Google Analytics
+Please refer to the following information for details, in particular for the legal basis and purpose of such third-party collection and processing of data collected through cookies.
 
-The legal basis for using Google Analytics (see above Section 2.6.2) and for analysing usage of our service is Art. 6 para. 1 (f) GDPR. The legitimate interest we pursue is the improvement and optimization of our service for the benefit of our users. You have the right to object, on grounds relating to your particular situation, at any time to such processing. To exercise this right with regard to the use of Google Analytics for Digital Products you may at any time opt out of the processing of your information for product and service improvement purposes in your Nintendo Account settings. With regard to websites using Google Analytics, you can prevent the collection of data about the use of the website (including your IP address) generated by the cookie and the processing of data by Google, by downloading and installing the browser plug-in through the following link: http://tools.google.com/dlpage/gaoptout?hl=en
+###c) Disabling cookies
+You can refuse the use of cookies by changing the settings on your browser. Likewise, you can use the browser to delete cookies that have already been stored. However, the steps and measures required vary, depending on the browser you use. If you have any questions, please use the help function or consult the documentation for your browser or contact its maker for support. Browser settings cannot prevent so-called flash cookies from being set. Instead, you will need to change the setting of your Flash player. The steps and measures required for this also depend on the Flash player you are using. If you have any questions, please use the help function or consult the documentation for your Flash player or contact its maker for support.
 
-If you do not object to the use of Google Analytics, information received via Google Analytics may be combined with your other information obtained through Proekspert website and used for the purposes as described in Section 3.4 above.
+If you prevent or restrict the installation of cookies, not all of the functions on our site may be fully usable.
 
-#4. Marketing and Advertising Messages
-Subject to your separate consent, Proekspert may send you marketing and advertising messages to your email address. You can withdraw your consent to receive marketing and advertising messages as described above at any time either by unsubscribing the list via e-mail footer or by contacting mailto:marketing@proekspert.ee.
+##Contact
+If you contact us via email or the contact form, the data you provide will be used for the purpose of processing your request. We must have this data in order to process and answer your inquiry; otherwise we will not be able to answer it in full or at all.
 
-If you provided such separate consent, we may also use your collected information to customise such marketing and advertising messages as well as collect information on whether you opened such messages and which links in their text you followed.
+The legal basis for this data processing is Art. 6 Para. 1 lit. b) GDPR.
 
-The legal basis for using your information to customise the marketing messages and for processing information on whether you opened such messages and which links in their text you followed is Art. 6 para. 1 (f) GDPR. Proekspert has a legitimate interest in processing your information for customising marketing and advertising messages you agreed to receive as it avoids that you receive marketing and advertising messages that are not relevant for you. Collecting information on whether you opened such messages and which links you followed helps us to understand which messages and links are of increased relevance for you and to optimize any future marketing and advertising messages for your benefit.
+Your data will be deleted once we have fully answered your inquiry and there is no further legal obligation to store your data, such as if an order or contract resulted therefrom.
 
-You have the right to object at any time to the processing of your information for such customised marketing purposes. To exercise this right you may at any time contact us as provided in Section 9 of this Privacy Policy or you can opt out of the processing of your information for such customised marketing purposes at any time by contacting us via mailto:marketing@proekspert.ee .
+##Google Analytics
+We use Google Analytics on our website. This is a web analytics service provided by Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043 (hereinafter: Google).
 
-#5.User Communications
-When you send an email or other communication to Proekspert, we use those communications in order to process your inquiries and respond to your requests.
+Through certification according to the EU-US Privacy Shield
 
-The legal basis for this processing is the provision of the service you have requested (Art. 6 para. 1 (b) GDPR).
+https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active
 
-#6. Who Has Access to Your Information
+Google guarantees that it will follow the EU's data protection regulations when processing data in the United States.
 
-##6.1
-Proekspert employees who are responsible for marketing, sales, customer experience and business development functions.
+The Google Analytics service is used to analyze how our website is used. The legal basis is Art. 6 Para. 1 lit. f) GDPR. Our legitimate interest lies in the analysis, optimization, and economic operation of our site.
 
-We have a legitimate interest in sharing your information for internal administrative purposes, in particular to deal with any inquiries in an efficient and high-quality manner. You have the right to object, on grounds relating to your particular situation, at any time to such sharing. To exercise this right you may at any time contact us as provided in Section 9 of this Privacy Policy.
+Usage and user-related information, such as IP address, place, time, or frequency of your visits to our website will be transmitted to a Google server in the United States and stored there. However, we use Google Analytics with the so-called anonymization function, whereby Google truncates the IP address within the EU or the EEA before it is transmitted to the US.
 
-##6.3
-Depending on your country of residence, we may also share your information with our third party distributors that provide consumer experience support services in connection with Proekspert services for your country. Your information will be used in accordance with this Privacy Policy and only as far as this is necessary for performing consumer support services. The legal basis for sharing your information with our third party distributors is the performance of the consumer support services (Art. 6 para. 1 (b) GDPR).
+The data collected in this way is in turn used by Google to provide us with an evaluation of visits to our website and what visitors do once there. This data can also be used to provide other services related to the use of our website and of the internet in general.
 
-##6.4
-We may also share your information (including your IP address) with our third party content delivery network providers that provide content delivery network services. Our content delivery network providers enable faster video streaming and support the delivery of content you have requested,, by using a system of distributed servers that deliver the content to you, based on your geographic location. The legal basis for sharing your information with our third party content delivery network providers is Art. 6 para. 1 (f) GDPR. We have a legitimate interest in sharing your information to enable faster delivery and to optimize transportation of the content you have requested, in particular to provide requested content in a high-quality manner which is to the benefit of our users. You have the right to object, on grounds relating to your particular situation, at any time to such sharing. To exercise this right you may at any time contact us as provided in Section 9 of this Privacy Policy.
+Google states that it will not connect your IP address to other data. In addition, Google provides further information with regard to its data protection practices at
 
-#7. Storage Time
-We will only store your information as long as necessary to fulfil the purposes for which the information is collected and processed or – where the applicable law provides for longer storage and retention period – for the storage and retention period required by law. After that your personal data will be deleted.
+https://www.google.com/intl/de/policies/privacy/partners,
 
-In particular:
+including options you can exercise to prevent such use of your data.
 
-If you unsubscribe from our newsletter or video list.
-If you contact mailto:marketing@proekspert to delete your data from our chatbox history or from registering to a consultation or a workshop history.
-If you exercise a right to object to the processing of your personal data, we will delete your personal data that we processed for the purpose to which you objected without undue delay, unless another legal basis for processing and retaining this data exists or unless applicable law requires us to retain the data.
+In addition, Google offers an opt-out add-on at
 
-#8.Your rights under GDPR
-In particular, but without limitation, you may have the following rights under applicable European data protection law:
+https://tools.google.com/dlpage/gaoptout?hl=en
 
-Right of access: You have the right to obtain confirmation from us as to whether or not we process personal data from you and you also have the right to at any time obtain access to our personal data stored by us. To exercise this right you may at any time contact mailto:marketing@proekspert.ee.
+in addition with further information. This add-on can be installed on the most popular browsers and offers you further control over the data that Google collects when you visit our website. The add-on informs Google Analytics' JavaScript (ga.js) that no information about the website visit should be transmitted to Google Analytics. However, this does not prevent information from being transmitted to us or to other web analytics services we may use as detailed herein.
 
-Right to rectification of your personal data: If we process your personal data, we shall endeavour to ensure by implementing suitable measures that your personal data is accurate and up-to-date for the purposes for which we collected your personal data was collected. If your personal data is inaccurate or incomplete, you have the right to obtain the rectification of such data. To exercise this right you may at any time contact us at mailto:marketing@proekspert.ee.
-
-Right to erasure of your personal data or right to restriction of processing: You may have the right to obtain the erasure of your personal data or the restriction of processing of your personal data. To exercise this right you may at any time contact us at mailto:marketing@proekspert.ee.
-
-Right to withdraw your consent: If you have given your consent to the processing of your personal data or of the personal data of your child below the age of 16 years, you have the right to withdraw your consent at any time, without affecting the lawfulness of processing based on the consent before the withdrawal. To exercise this right you may at any time contact us mailto:marketing@proekspert.ee .
-
-Right to data portability: You may have the right to receive the personal data concerning you and which you have provided to us, in a structured, commonly used and machine-readable format or to transmit those data to another controller. To exercise this right you may at any time contact us at mailto:marketing@proekspert.ee.
-
-Right to object: You may have the right to object to the processing of your personal data as further specified in this Privacy Policy.
-
-Right to lodge a complaint with supervisory authority: You have the right to lodge a complaint with a data protection supervisory authority located in the European Union.
+[Model Data Protection Statement](https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html) for [Anwaltskanzlei Weiß & Partner](https://www.ratgeberrecht.eu/)
