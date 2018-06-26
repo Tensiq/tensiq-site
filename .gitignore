@@ -1,2 +1,13 @@
-/stats.log
-/stats.json
+# Project dependencies
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+.cache
+node_modules
+yarn-error.log
+
+# Build directory
+/public
+reports-index.html
+/plugins/*
+stats.log
+stats.json
+report.html
