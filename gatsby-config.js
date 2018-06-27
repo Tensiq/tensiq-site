@@ -123,7 +123,19 @@ module.exports = {
               showSpinner: false,
             },
           },
-          `gatsby-plugin-netlify`,
+          {
+            resolve: `gatsby-plugin-netlify`,
+            options: {
+              allPageHeaders: [
+                "Link: </static/OpenSans-Bold.ttf>; rel=preload; as=font",
+                "Link: </static/OpenSans-Regular.ttf>; rel=preload; as=font",
+                "Link: </static/Tensiq.ttf>; rel=preload; as=font",
+                "Link: </static/fa-brands-400.ttf>; rel=preload; as=font",
+                "Link: </static/fa-regular-400.ttf>; rel=preload; as=font",
+                "Link: </static/fa-solid-900.ttf>; rel=preload; as=font",
+              ],
+            },
+          },
         ],
       },
     },
