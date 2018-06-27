@@ -68,10 +68,10 @@ class TemplateWrapper extends React.PureComponent {
         <MenuTop height={headerHeight} opacity={opacity} location={location}/>
         <MenuBottom location={location}/>
         <Helmet
-          title="Gatsby Default Starter"
+          title="Tensiq"
           meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            { name: 'description', content: 'Tensiq' },
+            { name: 'keywords', content: 'Tensiq' },
           ]}
         >
           <style type="text/css">
