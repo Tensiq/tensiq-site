@@ -1,6 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Tensiq',
+    title: 'Tensiq technology spaceport',
+    content:
+      'We master the bridge between cutting-edge technology and secure, resilient, performant solutions.',
+    url: 'https://tensiq.com',
   },
   plugins: [
     'gatsby-plugin-react-native-web',
@@ -127,12 +130,12 @@ module.exports = {
             resolve: `gatsby-plugin-netlify`,
             options: {
               allPageHeaders: [
-                "Link: </static/OpenSans-Bold.ttf>; rel=preload; as=font",
-                "Link: </static/OpenSans-Regular.ttf>; rel=preload; as=font",
-                "Link: </static/Tensiq.ttf>; rel=preload; as=font",
-                "Link: </static/fa-brands-400.ttf>; rel=preload; as=font",
-                "Link: </static/fa-regular-400.ttf>; rel=preload; as=font",
-                "Link: </static/fa-solid-900.ttf>; rel=preload; as=font",
+                'Link: </static/OpenSans-Bold.ttf>; rel=preload; as=font',
+                'Link: </static/OpenSans-Regular.ttf>; rel=preload; as=font',
+                'Link: </static/Tensiq.ttf>; rel=preload; as=font',
+                'Link: </static/fa-brands-400.ttf>; rel=preload; as=font',
+                'Link: </static/fa-regular-400.ttf>; rel=preload; as=font',
+                'Link: </static/fa-solid-900.ttf>; rel=preload; as=font',
               ],
             },
           },

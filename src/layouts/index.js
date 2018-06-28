@@ -8,6 +8,7 @@ import brandIconFont from '../fonts/icon/fa-brands-400.ttf';
 import tensiqFont from '../fonts/icon/Tensiq.ttf';
 import openSansNormal from '../fonts/text/OpenSans-Regular.ttf';
 import openSansBold from '../fonts/text/OpenSans-Bold.ttf';
+import socialImage from '../images/site.png';
 import favicon from '../images/favicon.png';
 import MenuTop from '../components/Menu/Top';
 import MenuBottom from '../components/Menu/Bottom';
@@ -51,7 +52,7 @@ class TemplateWrapper extends React.PureComponent {
       outputRange: [headerHeightMax, headerHeightMin],
       extrapolate: 'clamp',
     });
-    const { children, location } = this.props;
+    const { children, location, data} = this.props;
     return (
       <View>
         <View style={styles.scrollViewOuterContainer}>
@@ -77,10 +78,17 @@ class TemplateWrapper extends React.PureComponent {
         <Helmet
           title="Tensiq"
           meta={[
-            { name: 'description', content: 'Tensiq' },
-            { name: 'keywords', content: 'Tensiq' },
+            { name: 'description', content: data.site.siteMetadata.description },
+            { name: 'keywords', content: data.site.siteMetadata.keywords },
           ]}
         >
+          <meta property="og:title" content="Tensiq technology spaceport" />
+          <meta
+            property="og:description"
+            content={data.site.siteMetadata.description}
+          />
+          <meta property="og:image" content={socialImage} />
+          <meta property="og:url" content={data.site.siteMetadata.url} />
           <style type="text/css">
             {`
                   @font-face {
@@ -123,3 +131,15 @@ TemplateWrapper.propTypes = {
 };
 
 export default TemplateWrapper;
+
+export const query = graphql`
+  query LayoutQuery {
+    site {
+      siteMetadata {
+        title
+        content
+        url
+      }
+    }
+  }
+`
