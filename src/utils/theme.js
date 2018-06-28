@@ -101,19 +101,19 @@ const rawStyles = {
   },
   contentBlockInnerContainer: {
     normal: {
-      flex: 1,
+      flex: -1,
       //   flexDirection: 'row',
       paddingVertical: sp(3),
       paddingHorizontal: sp(3),
     },
     tight: {
-      flex: 1,
+      flex: -1,
       //   flexDirection: 'row',
       paddingVertical: sp(2),
       paddingHorizontal: sp(2),
     },
     slim: {
-      flex: 1,
+      flex: -1,
       //   flexDirection: 'row',
       paddingVertical: sp(1),
       paddingHorizontal: sp(1),
