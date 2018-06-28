@@ -9,6 +9,15 @@ import LinearGradient from 'react-native-linear-gradient';
 import Img from 'gatsby-image';
 import { ThemeContext } from '../ThemeProvider';
 import Image from '../Image';
+import Link from '../Link/Plain';
+
+const PlainLink = props => (
+  <Link
+    {...props}
+    style={{ textDecorationLine: 'underline' }}
+  />
+);
+
 const ProfileImage = props => <Image group="profile" {...props} />;
 
 const Profile = ({
@@ -40,14 +49,12 @@ const Profile = ({
                 type: 'withIcon',
               })}
               {...theme.gradient(type === 'dark' ? 'blackBlock' : 'lightBlock')}
-              pointerEvents="none"
             >
               <View
                 style={theme.style({
                   element: 'cardTitle',
                   type: 'withIcon',
                 })}
-                pointerEvents="none"
               >
                 <Header1 light={(type === 'dark').toString()} theme={theme}>
                   {name}
@@ -79,7 +86,7 @@ const Profile = ({
                     >
                       <Icon name="github" />
                       <TextNormal theme={theme} element="socialBlockEntryText">
-                        {githubName}
+                        <PlainLink href={`https://github.com/${githubName}`}>{githubName}</PlainLink>
                       </TextNormal>
                     </Text>
                   )}

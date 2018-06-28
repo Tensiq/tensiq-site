@@ -9,7 +9,10 @@ import cleanHtmlAst from '../../utils/cleanHtmlAst';
 import Link from '../Link/Plain';
 
 const PlainLink = props => (
-  <Link {...props} style={{ textDecorationLine: 'none' }} />
+  <Link
+    {...props}
+    style={{ textDecorationLine: 'underline', textDecorationStyle: 'dotted' }}
+  />
 );
 
 const renderFooter = new rehypeReact({

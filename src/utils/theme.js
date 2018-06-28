@@ -522,7 +522,7 @@ const styles = {
         paddingHorizontal: sp(5),
       },
       2: {
-        marginTop: sp(6),
+        marginTop: sp(3),
         paddingHorizontal: sp(5),
       },
     }),

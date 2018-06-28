@@ -72,6 +72,7 @@ const renderIconCards = (data, edges, theme, dark) => {
     <Profile
       key={edge.node.frontmatter.title.toLowerCase()}
       name={edge.node.frontmatter.title}
+      githubName={edge.node.frontmatter.github}
       content={renderAbout(dark ? 'dark' : 'normal')(
         cleanHtmlAst(edge.node.htmlAst),
       )}
@@ -215,6 +216,7 @@ export const query = graphql`
             image
             icon
             type
+            github
           }
           htmlAst
         }
