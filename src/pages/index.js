@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { ThemeContext } from '../components/ThemeProvider';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
-
 import { View } from 'react-native';
 import Box from '../components/Grid/Box';
 import { Header1 } from '../components/PageHeader';
@@ -88,10 +87,10 @@ class IndexPage extends React.Component {
     Image.images['service'] = data.serviceImages;
     return (
       <View>
-        <ThemeContext.Consumer>
-          {theme => {
-            return (
-              <ThemeProvider uiTheme={{}}>
+        <ThemeProvider uiTheme={{}}>
+          <ThemeContext.Consumer>
+            {theme => {
+              return (
                 <View>
                   <Segment {...theme.segments.index[0]}>
                     <Teaser icon="rocket">
@@ -123,10 +122,10 @@ class IndexPage extends React.Component {
                   </Segment>
                   <Footer htmlAst={data.footer.htmlAst} />
                 </View>
-              </ThemeProvider>
-            );
-          }}
-        </ThemeContext.Consumer>
+              );
+            }}
+          </ThemeContext.Consumer>
+        </ThemeProvider>
       </View>
     );
   }
