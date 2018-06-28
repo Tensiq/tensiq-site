@@ -2,7 +2,6 @@ import React from 'react';
 import Link from '../RippleLink';
 import PropTypes from 'prop-types';
 import { Animated, View, Text } from 'react-native';
-import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import { ThemeContext } from '../ThemeProvider';
 import Box from '../Grid/Box';
 import Icon from '../Icon';
@@ -25,7 +24,6 @@ class Top extends React.PureComponent {
       <ThemeContext.Consumer>
         {theme => {
           return (
-            <ThemeProvider uiTheme={{}}>
               <Animated.View
                 style={[
                   theme.style({ element: 'headerOuterContainer' }),
@@ -127,7 +125,6 @@ class Top extends React.PureComponent {
                   </Box>
                 </Box>
               </Animated.View>
-            </ThemeProvider>
           );
         }}
       </ThemeContext.Consumer>

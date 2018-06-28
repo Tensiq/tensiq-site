@@ -12,6 +12,7 @@ import favicon from '../images/favicon.png';
 import MenuTop from '../components/Menu/Top';
 import MenuBottom from '../components/Menu/Bottom';
 import { headerHeightMax, headerHeightMin } from '../utils/theme';
+import ScrollProvider from '../components/ScrollProvider';
 
 const headerScrollDistance = headerHeightMax - headerHeightMin;
 
@@ -37,9 +38,9 @@ class TemplateWrapper extends React.PureComponent {
     this.state = {
       scrollY: new Animated.Value(0),
     };
+    this.scrollView = React.createRef();
   }
   render() {
-    console.log(this.props)
     const opacity = this.state.scrollY.interpolate({
       inputRange: [0, headerScrollDistance],
       outputRange: [0.0, 1.0],
@@ -54,19 +55,25 @@ class TemplateWrapper extends React.PureComponent {
     return (
       <View>
         <View style={styles.scrollViewOuterContainer}>
-          <ScrollView
-            ref={ref => (this.scrollView = ref)}
-            contentContainerStyle={styles.scrollViewContent}
-            scrollEventThrottle={1}
-            onScroll={Animated.event([
-              { nativeEvent: { contentOffset: { y: this.state.scrollY } } },
-            ])}
+          <ScrollProvider
+            scrollView={this.scrollView}
+            location={location.pathname}
+            hash={location.hash}
           >
-            {children()}
-          </ScrollView>
+            <ScrollView
+              ref={this.scrollView}
+              contentContainerStyle={styles.scrollViewContent}
+              scrollEventThrottle={1}
+              onScroll={Animated.event([
+                { nativeEvent: { contentOffset: { y: this.state.scrollY } } },
+              ])}
+            >
+              {children()}
+            </ScrollView>
+          </ScrollProvider>
         </View>
-        <MenuTop height={headerHeight} opacity={opacity} location={location}/>
-        <MenuBottom location={location}/>
+        <MenuTop height={headerHeight} opacity={opacity} location={location} />
+        <MenuBottom location={location} />
         <Helmet
           title="Tensiq"
           meta={[
