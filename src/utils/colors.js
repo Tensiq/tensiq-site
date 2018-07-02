@@ -9,6 +9,9 @@ const colors = {
   headerRipple: '#f5f5f580',
   footerRipple: '#f5f5f580',
   teaserButtonRipple: '#3a3a3aff',
+  cookie: Color('#3a3a3aff')
+    .lighten(0.7)
+    .toString(),
 };
 
 const gradients = {
@@ -16,11 +19,13 @@ const gradients = {
     start: { x: 0.0, y: 0.25 },
     end: { x: 1.0, y: 0.9 },
     colors: ['#632e96ff', '#125aa5ff', '#48c4d9ff'],
+    fallback: '#000000ff',
   },
   darkBlock2: {
     start: { x: 0.7, y: 0.0 },
     end: { x: 0.3, y: 1.0 },
     colors: ['#632e96ff', '#125aa5ff', '#48c4d9ff'],
+    fallback: '#000000ff',
   },
   lightBlock: {
     start: { x: 0.0, y: 0.25 },
@@ -31,6 +36,7 @@ const gradients = {
     start: { x: 0.0, y: 0.25 },
     end: { x: 1.0, y: 0.9 },
     colors: ['#323232ff', '#666666ff'],
+    fallback: '#000000ff',
   },
 };
 

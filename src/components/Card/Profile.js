@@ -12,10 +12,7 @@ import Image from '../Image';
 import Link from '../Link/Plain';
 
 const PlainLink = props => (
-  <Link
-    {...props}
-    style={{ textDecorationLine: 'underline' }}
-  />
+  <Link {...props} style={{ textDecorationLine: 'underline' }} />
 );
 
 const ProfileImage = props => <Image group="profile" {...props} />;
@@ -29,6 +26,7 @@ const Profile = ({
   shadowImage,
   type,
 }) => {
+  const gradient = type === 'dark' ? 'blackBlock' : 'lightBlock';
   return (
     <ThemeContext.Consumer>
       {theme => (
@@ -44,11 +42,14 @@ const Profile = ({
             }}
           >
             <LinearGradient
-              style={theme.style({
-                element: 'cardGradient',
-                type: 'withIcon',
-              })}
-              {...theme.gradient(type === 'dark' ? 'blackBlock' : 'lightBlock')}
+              style={
+                [theme.style({
+                  element: 'cardGradient',
+                  type: 'withIcon',
+                }),
+                { backgroundColor: theme.gradient(gradient).fallback }]
+              }
+              {...theme.gradient(gradient)}
             >
               <View
                 style={theme.style({
@@ -86,7 +87,9 @@ const Profile = ({
                     >
                       <Icon name="github" />
                       <TextNormal theme={theme} element="socialBlockEntryText">
-                        <PlainLink href={`https://github.com/${githubName}`}>{githubName}</PlainLink>
+                        <PlainLink href={`https://github.com/${githubName}`}>
+                          {githubName}
+                        </PlainLink>
                       </TextNormal>
                     </Text>
                   )}

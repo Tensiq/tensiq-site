@@ -1013,46 +1013,87 @@ const styles = {
         bottom: 0,
         left: 0,
         right: 0,
-        height: 35,
         backgroundColor: 'transparent',
         justifyContent: 'center',
-        ...Platform.select({
-          default: {
-            paddingBottom: sp(0),
-          },
-          web: {
-            paddingBottom: sp(0),
-          },
-        }),
+        flexDirection: 'column',
       },
     }),
   },
   footerColor: {
     normal: StyleSheet.create({
       0: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
         width: '100%',
         height: '100%',
-        flex: 1,
-        backgroundColor: color('footer'),
         opacity: 1,
-        ...shadow,
       },
     }),
   },
   footerInnerContainer: {
     normal: StyleSheet.create({
       0: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
+        flex: 1,
+        backgroundColor: 'transparent',
+        ...shadow,
+      },
+    }),
+  },
+  footerCookieContainer: {
+    normal: StyleSheet.create({
+      0: {
+        backgroundColor: color('cookie'),
+        width: '100%',
+        flex: -1,
+        paddingHorizontal: sp(2),
+        paddingVertical: sp(2),
+        flexDirection: 'row',
+      },
+    }),
+  },
+  footerCookieTextContainer: {
+    normal: StyleSheet.create({
+      0: {
+        flex: 1,
+        paddingHorizontal: sp(3),
+        justifyContent: 'center',
+      }
+    }),
+  },
+  footerCookieText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.normal,
+        fontSize: fs(1),
+        color: color('lightText')
+      }
+    })
+  },
+  footerCookieButton: {
+    normal: StyleSheet.create({
+      0: {
+        backgroundColor: color('lightText').toString(),
+        borderWidth: 0,
+        ...shadow
+      }
+    })
+  },
+  footerCookieButtonText: {
+    normal: StyleSheet.create({
+      0: {
+        ...fonts.bold,
+        fontSize: fs(1),
+        color: color('darkText')
+      }
+    })
+  },
+  footerMenuContainer: {
+    normal: StyleSheet.create({
+      0: {
+        ...shadow,
+        backgroundColor: color('footer'),
         width: '100%',
         maxWidth: 960,
         height: '100%',
-        flex: 1,
-        alignSelf: 'center',
+        flex: -1,
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',

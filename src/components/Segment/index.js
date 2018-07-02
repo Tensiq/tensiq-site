@@ -45,7 +45,11 @@ const Segment = props => {
         return (
           <LinearGradient
             {...theme.gradient(gradient)}
-            style={[theme.style(props), style]}
+            style={[
+              theme.style(props),
+              { backgroundColor: theme.gradient(gradient).fallback },
+              style,
+            ]}
           >
             <Text
               id={props.anchor}

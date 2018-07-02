@@ -18,4 +18,5 @@ module.exports = {
   building: parseInt('f1ad', 16),
   'quote-left': parseInt('f10d', 16),
   'door-open': parseInt('f52b', 16),
+  'cookie-bite': parseInt('f564', 16),
 };
