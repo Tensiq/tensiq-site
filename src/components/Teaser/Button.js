@@ -29,6 +29,7 @@ const TeaserButton = ({ text, link }) => {
                 height: '100%',
                 justifyContent: 'center',
                 alignItems: 'center',
+                backgroundColor: theme.gradient('lightBlock').fallback,
               }}
             >
               <Text

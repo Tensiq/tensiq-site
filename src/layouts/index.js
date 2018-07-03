@@ -12,7 +12,11 @@ import socialImage from '../images/site.png';
 import favicon from '../images/favicon.png';
 import MenuTop from '../components/Menu/Top';
 import MenuBottom from '../components/Menu/Bottom';
-import { headerHeightMax, headerHeightMin } from '../utils/theme';
+import {
+  headerHeightMax,
+  headerHeightMin,
+  cookieAcceptDistance,
+} from '../utils/theme';
 import ScrollProvider from '../components/ScrollProvider';
 
 const headerScrollDistance = headerHeightMax - headerHeightMin;
@@ -38,9 +42,23 @@ class TemplateWrapper extends React.PureComponent {
     super(props);
     this.state = {
       scrollY: new Animated.Value(0),
+      cookieAccepted: false,
     };
     this.scrollView = React.createRef();
   }
+  scrollHandler = ({
+    nativeEvent: {
+      contentOffset: { y: scrollY },
+    },
+  }) => {
+    if (!this.state.cookieAccepted && scrollY > cookieAcceptDistance * 2) {
+      console.log('accepted');
+      this.setState(prevState => ({
+        ...prevState,
+        cookieAccepted: true,
+      }));
+    }
+  };
   render() {
     const opacity = this.state.scrollY.interpolate({
       inputRange: [0, headerScrollDistance],
@@ -52,9 +70,14 @@ class TemplateWrapper extends React.PureComponent {
       outputRange: [headerHeightMax, headerHeightMin],
       extrapolate: 'clamp',
     });
-    const { children, location, data} = this.props;
+    const cookieScroll = this.state.scrollY.interpolate({
+      inputRange: [0, cookieAcceptDistance, cookieAcceptDistance * 2],
+      outputRange: [0.0, 0.0, 100.0],
+      extrapolate: 'clamp',
+    });
+    const { children, location, data } = this.props;
     return (
-      <View>
+      <View style={{ height: '100%' }}>
         <View style={styles.scrollViewOuterContainer}>
           <ScrollProvider
             scrollView={this.scrollView}
@@ -65,20 +88,24 @@ class TemplateWrapper extends React.PureComponent {
               ref={this.scrollView}
               contentContainerStyle={styles.scrollViewContent}
               scrollEventThrottle={1}
-              onScroll={Animated.event([
-                { nativeEvent: { contentOffset: { y: this.state.scrollY } } },
-              ])}
+              onScroll={Animated.event(
+                [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+                { listener: event => this.scrollHandler(event) },
+              )}
             >
               {children()}
             </ScrollView>
           </ScrollProvider>
         </View>
         <MenuTop height={headerHeight} opacity={opacity} location={location} />
-        <MenuBottom location={location} />
+        <MenuBottom cookieAccepted={this.state.cookieAccepted} cookieScroll={cookieScroll} location={location} />
         <Helmet
           title="Tensiq"
           meta={[
-            { name: 'description', content: data.site.siteMetadata.description },
+            {
+              name: 'description',
+              content: data.site.siteMetadata.description,
+            },
             { name: 'keywords', content: data.site.siteMetadata.keywords },
           ]}
         >
@@ -142,4 +169,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

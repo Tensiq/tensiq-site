@@ -21,14 +21,16 @@ class Bottom extends React.PureComponent {
   }
   render() {
     const { fade } = this.state;
-    const { location } = this.props;
+    const { cookieAccepted, cookieScroll, location } = this.props;
     return (
       <ThemeContext.Consumer>
         {theme => (
           <Animated.View style={{ opacity: fade }}>
             <Box element="footerOuterContainer">
               <View style={theme.style({ element: 'footerInnerContainer' })}>
-                <CookieContainer />
+                {!cookieAccepted && (
+                  <CookieContainer cookieScroll={cookieScroll} />
+                )}
                 <Box style={{ height: 36 }} display={['flex', null, 'none']}>
                   <View style={theme.style({ element: 'footerMenuContainer' })}>
                     <View

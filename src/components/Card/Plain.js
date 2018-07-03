@@ -17,10 +17,13 @@ const PlainCard = ({ icon, title, content, style }) => (
         }}
       >
         <LinearGradient
-          style={theme.style({
-            element: 'cardGradient',
-            type: 'withLongText',
-          })}
+          style={[
+            theme.style({
+              element: 'cardGradient',
+              type: 'withLongText',
+            }),
+            { backgroundColor: theme.gradient('lightBlock').fallback },
+          ]}
           {...theme.gradient('lightBlock')}
         >
           <View

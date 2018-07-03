@@ -29,7 +29,13 @@ const Card = ({ title, icon, children, site, anchor }) => (
             },
           }}
         >
-          <LinearGradient style={{ flex: 1 }} {...theme.gradient('lightBlock')}>
+          <LinearGradient
+            style={{
+              flex: 1,
+              backgroundColor: theme.gradient('lightBlock').fallback,
+            }}
+            {...theme.gradient('lightBlock')}
+          >
             <View
               style={{
                 marginTop: theme.sp(4),

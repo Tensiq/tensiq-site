@@ -30,6 +30,7 @@ export const fonts = {
 
 export const headerHeightMax = 120;
 export const headerHeightMin = 50;
+export const cookieAcceptDistance = 500;
 
 // 1em = 16px
 const EM = 16;
@@ -1033,19 +1034,19 @@ const styles = {
       0: {
         flex: 1,
         backgroundColor: 'transparent',
-        ...shadow,
       },
     }),
   },
   footerCookieContainer: {
     normal: StyleSheet.create({
       0: {
+        position: 'relative',
         backgroundColor: color('cookie'),
         width: '100%',
-        flex: -1,
         paddingHorizontal: sp(2),
         paddingVertical: sp(2),
         flexDirection: 'row',
+        ...shadow,
       },
     }),
   },
