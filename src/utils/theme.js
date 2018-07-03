@@ -1046,7 +1046,7 @@ const styles = {
         paddingHorizontal: sp(2),
         paddingVertical: sp(2),
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         ...shadow,
       },
     }),
@@ -1055,8 +1055,8 @@ const styles = {
     normal: StyleSheet.create({
       0: {
         flex: 1,
-        paddingHorizontal: sp(3),
-        justifyContent: 'center',
+        marginLeft: sp(2),
+        flexDirection: 'row',
       }
     }),
   },

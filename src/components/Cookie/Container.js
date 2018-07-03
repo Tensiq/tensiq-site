@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Animated } from 'react-native';
 import Icon from '../Icon';
+import Box from '../Grid/Box';
 import ThemeProvider from 'react-native-material-ui/src/styles/ThemeProvider.react';
 import Button from 'react-native-material-ui/src/Button';
 import { ThemeContext } from '../ThemeProvider';
@@ -25,6 +26,23 @@ const renderText = new rehypeReact({
   },
 }).Compiler;
 
+const AcceptButton = ({ theme, acceptCookies }) => (
+  <Button
+    raised={true}
+    upperCase={false}
+    text="I agree"
+    style={{
+      container: theme.style({
+        element: 'footerCookieButton',
+      }),
+      text: theme.style({
+        element: 'footerCookieButtonText',
+      }),
+    }}
+    onPress={() => acceptCookies({ animate: true })}
+  />
+);
+
 class CookieContainer extends React.PureComponent {
   constructor(props) {
     super();
@@ -35,6 +53,7 @@ class CookieContainer extends React.PureComponent {
       acceptingCookie,
       scrollYCookie,
       cookieAccepted: cookies.get('cookieAccepted') || false,
+      height: 100,
     };
   }
   scrollHandler = scrollY => {
@@ -67,12 +86,19 @@ class CookieContainer extends React.PureComponent {
       cookieAccepted: true,
     }));
   };
+  onLayout({
+    nativeEvent: {
+      layout: { x, y, width, height },
+    },
+  }) {
+    this.setState(prevState => ({ ...prevState, height: height }));
+  }
   render() {
     console.log(this.props);
     const { data } = this.props;
     const cookieScroll = this.state.scrollYCookie.interpolate({
       inputRange: [0, cookieAcceptDistance, cookieAcceptDistance * 2],
-      outputRange: [0.0, 0.0, 100.0],
+      outputRange: [0.0, 0.0, this.state.height],
       extrapolate: 'clamp',
     });
     if (this.state.cookieAccepted) {
@@ -87,35 +113,56 @@ class CookieContainer extends React.PureComponent {
                 theme.style({ element: 'footerCookieContainer' }),
                 { top: cookieScroll },
               ]}
+              onLayout={this.onLayout.bind(this)}
             >
-              <Icon
-                size={36}
-                style={{ color: theme.color('lightText') }}
-                name={data.frontmatter.icon}
-              />
-              <View
-                style={theme.style({
-                  element: 'footerCookieTextContainer',
-                })}
-              >
-                <Text style={theme.style({ element: 'footerCookieText' })}>
-                  {renderText(cleanHtmlAst(data.htmlAst))}
-                </Text>
+              <View style={{ flexDirection: 'column', flex: 1 }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <View
+                    style={{ alignSelf: 'flex-start', paddingTop: theme.sp(1) }}
+                  >
+                    <Icon
+                      size={36}
+                      style={{
+                        color: theme.color('lightText'),
+                      }}
+                      name={data.frontmatter.icon}
+                    />
+                  </View>
+                  <View
+                    style={theme.style({
+                      element: 'footerCookieTextContainer',
+                    })}
+                  >
+                    <Text style={theme.style({ element: 'footerCookieText' })}>
+                      {renderText(cleanHtmlAst(data.htmlAst))}
+                    </Text>
+                  </View>
+                  <Box
+                    display={['none', 'none', 'flex']}
+                    style={{ marginLeft: theme.sp(2) }}
+                  >
+                    <AcceptButton
+                      theme={theme}
+                      acceptCookies={this.acceptCookies}
+                    />
+                  </Box>
+                </View>
+                <Box
+                  display={['flex', 'flex', 'none']}
+                  style={{ marginTop: theme.sp(2) }}
+                >
+                  <AcceptButton
+                    theme={theme}
+                    acceptCookies={this.acceptCookies}
+                  />
+                </Box>
               </View>
-              <Button
-                raised={true}
-                upperCase={false}
-                text="I agree"
-                style={{
-                  container: theme.style({
-                    element: 'footerCookieButton',
-                  }),
-                  text: theme.style({
-                    element: 'footerCookieButtonText',
-                  }),
-                }}
-                onPress={() => this.acceptCookies({ animate: true })}
-              />
             </Animated.View>
           )}
         </ThemeContext.Consumer>
