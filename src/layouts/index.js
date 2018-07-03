@@ -12,12 +12,9 @@ import socialImage from '../images/site.png';
 import favicon from '../images/favicon.png';
 import MenuTop from '../components/Menu/Top';
 import MenuBottom from '../components/Menu/Bottom';
-import {
-  headerHeightMax,
-  headerHeightMin,
-  cookieAcceptDistance,
-} from '../utils/theme';
+import { headerHeightMax, headerHeightMin } from '../utils/theme';
 import ScrollProvider from '../components/ScrollProvider';
+import { CookiesProvider } from 'react-cookie';
 
 const headerScrollDistance = headerHeightMax - headerHeightMin;
 
@@ -40,9 +37,9 @@ const styles = StyleSheet.create({
 class TemplateWrapper extends React.PureComponent {
   constructor(props) {
     super(props);
+    const scrollY = new Animated.Value(0);
     this.state = {
-      scrollY: new Animated.Value(0),
-      cookieAccepted: false,
+      scrollY,
     };
     this.scrollView = React.createRef();
   }
@@ -51,13 +48,7 @@ class TemplateWrapper extends React.PureComponent {
       contentOffset: { y: scrollY },
     },
   }) => {
-    if (!this.state.cookieAccepted && scrollY > cookieAcceptDistance * 2) {
-      console.log('accepted');
-      this.setState(prevState => ({
-        ...prevState,
-        cookieAccepted: true,
-      }));
-    }
+    this.menuBottom.scrollHandler(scrollY);
   };
   render() {
     const opacity = this.state.scrollY.interpolate({
@@ -70,54 +61,63 @@ class TemplateWrapper extends React.PureComponent {
       outputRange: [headerHeightMax, headerHeightMin],
       extrapolate: 'clamp',
     });
-    const cookieScroll = this.state.scrollY.interpolate({
-      inputRange: [0, cookieAcceptDistance, cookieAcceptDistance * 2],
-      outputRange: [0.0, 0.0, 100.0],
-      extrapolate: 'clamp',
-    });
     const { children, location, data } = this.props;
     return (
       <View style={{ height: '100%' }}>
-        <View style={styles.scrollViewOuterContainer}>
-          <ScrollProvider
-            scrollView={this.scrollView}
-            location={location.pathname}
-            hash={location.hash}
-          >
-            <ScrollView
-              ref={this.scrollView}
-              contentContainerStyle={styles.scrollViewContent}
-              scrollEventThrottle={1}
-              onScroll={Animated.event(
-                [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-                { listener: event => this.scrollHandler(event) },
-              )}
+        <CookiesProvider>
+          <View style={styles.scrollViewOuterContainer}>
+            <ScrollProvider
+              scrollView={this.scrollView}
+              location={location.pathname}
+              hash={location.hash}
             >
-              {children()}
-            </ScrollView>
-          </ScrollProvider>
-        </View>
-        <MenuTop height={headerHeight} opacity={opacity} location={location} />
-        <MenuBottom cookieAccepted={this.state.cookieAccepted} cookieScroll={cookieScroll} location={location} />
-        <Helmet
-          title="Tensiq"
-          meta={[
-            {
-              name: 'description',
-              content: data.site.siteMetadata.description,
-            },
-            { name: 'keywords', content: data.site.siteMetadata.keywords },
-          ]}
-        >
-          <meta property="og:title" content="Tensiq technology spaceport" />
-          <meta
-            property="og:description"
-            content={data.site.siteMetadata.description}
+              <ScrollView
+                ref={this.scrollView}
+                contentContainerStyle={styles.scrollViewContent}
+                scrollEventThrottle={10}
+                onScroll={Animated.event(
+                  [
+                    {
+                      nativeEvent: { contentOffset: { y: this.state.scrollY } },
+                    },
+                  ],
+                  { listener: event => this.scrollHandler(event) },
+                )}
+              >
+                {children()}
+              </ScrollView>
+            </ScrollProvider>
+          </View>
+          <MenuTop
+            height={headerHeight}
+            opacity={opacity}
+            location={location}
           />
-          <meta property="og:image" content={socialImage} />
-          <meta property="og:url" content={data.site.siteMetadata.url} />
-          <style type="text/css">
-            {`
+          <MenuBottom
+            ref={ref => (this.menuBottom = ref)}
+            scrollY={this.state.scrollY}
+            cookieData={data.cookieBanner}
+            location={location}
+          />
+          <Helmet
+            title="Tensiq"
+            meta={[
+              {
+                name: 'description',
+                content: data.site.siteMetadata.description,
+              },
+              { name: 'keywords', content: data.site.siteMetadata.keywords },
+            ]}
+          >
+            <meta property="og:title" content="Tensiq technology spaceport" />
+            <meta
+              property="og:description"
+              content={data.site.siteMetadata.description}
+            />
+            <meta property="og:image" content={socialImage} />
+            <meta property="og:url" content={data.site.siteMetadata.url} />
+            <style type="text/css">
+              {`
                   @font-face {
                     font-family: FontAwesomeSolid;
                     src: url(${solidIconFont});
@@ -145,9 +145,10 @@ class TemplateWrapper extends React.PureComponent {
                     font-weight: 700;
                   }
                 `}
-          </style>
-          <link rel="shortcut icon" type="image/png" href={favicon} />
-        </Helmet>
+            </style>
+            <link rel="shortcut icon" type="image/png" href={favicon} />
+          </Helmet>
+        </CookiesProvider>
       </View>
     );
   }
@@ -167,6 +168,14 @@ export const query = graphql`
         content
         url
       }
+    }
+    cookieBanner: markdownRemark(
+      frontmatter: { snippet: { eq: "cookieBanner" } }
+    ) {
+      frontmatter {
+        icon
+      }
+      htmlAst
     }
   }
 `;

@@ -9,6 +9,10 @@ import CookieContainer from '../Cookie/Container';
 const uiTheme = {};
 
 class Bottom extends React.PureComponent {
+  constructor(props) {
+    super();
+    this.cookieBanner = React.createRef();
+  }
   state = {
     fade: new Animated.Value(0),
   };
@@ -19,18 +23,23 @@ class Bottom extends React.PureComponent {
       delay: 100,
     }).start();
   }
+  scrollHandler = scrollY => {
+    this.cookieBanner.current.scrollHandler(scrollY);
+  };
   render() {
     const { fade } = this.state;
-    const { cookieAccepted, cookieScroll, location } = this.props;
+    const { cookieData, scrollY, location } = this.props;
     return (
       <ThemeContext.Consumer>
         {theme => (
           <Animated.View style={{ opacity: fade }}>
             <Box element="footerOuterContainer">
               <View style={theme.style({ element: 'footerInnerContainer' })}>
-                {!cookieAccepted && (
-                  <CookieContainer cookieScroll={cookieScroll} />
-                )}
+                <CookieContainer
+                  wrappedComponentRef={this.cookieBanner}
+                  data={cookieData}
+                  scrollY={scrollY}
+                />
                 <Box style={{ height: 36 }} display={['flex', null, 'none']}>
                   <View style={theme.style({ element: 'footerMenuContainer' })}>
                     <View

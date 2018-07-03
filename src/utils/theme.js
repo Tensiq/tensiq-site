@@ -1046,6 +1046,7 @@ const styles = {
         paddingHorizontal: sp(2),
         paddingVertical: sp(2),
         flexDirection: 'row',
+        alignItems: 'center',
         ...shadow,
       },
     }),
