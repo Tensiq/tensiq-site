@@ -39,18 +39,15 @@ class Bottom extends React.PureComponent {
             <Box element="footerOuterContainer">
               <View style={theme.style({ element: 'footerInnerContainer' })}>
                 <CookieContext.Consumer>
-                  {cookies => {
-                    if (!cookies.get('cookieAccepted'))
-                      return (
-                        <CookieContainer
-                          location={location}
-                          cookies={cookies}
-                          ref={ref => this.cookieBanner}
-                          data={cookieData}
-                          scrollY={scrollY}
-                        />
-                      );
-                  }}
+                  {cookies => (
+                    <CookieContainer
+                      location={location}
+                      cookies={cookies}
+                      ref={ref => this.cookieBanner}
+                      data={cookieData}
+                      scrollY={scrollY}
+                    />
+                  )}
                 </CookieContext.Consumer>
                 <Box style={{ height: 36 }} display={['flex', null, 'none']}>
                   <View style={theme.style({ element: 'footerMenuContainer' })}>
