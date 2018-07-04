@@ -10,7 +10,6 @@ import cleanHtmlAst from '../../utils/cleanHtmlAst';
 import { TextNormal, TextStrong } from '../Text';
 import Link from '../Link/Plain';
 import { cookieAcceptDistance } from '../../utils/theme';
-import { withCookies } from 'react-cookie';
 
 const TextNormalLight = props => <TextNormal {...props} type="light" />;
 const TextStrongLight = props => <TextStrong {...props} type="light" />;
@@ -53,7 +52,7 @@ class CookieContainer extends React.PureComponent {
       acceptingCookie,
       scrollYCookie,
       cookieAccepted: cookies.get('cookieAccepted') || false,
-      height: 100,
+      height: 0,
     };
   }
   scrollHandler = scrollY => {
@@ -94,7 +93,6 @@ class CookieContainer extends React.PureComponent {
     this.setState(prevState => ({ ...prevState, height: height }));
   }
   render() {
-    console.log(this.props);
     const { data } = this.props;
     const cookieScroll = this.state.scrollYCookie.interpolate({
       inputRange: [0, cookieAcceptDistance, cookieAcceptDistance * 2],
@@ -171,4 +169,4 @@ class CookieContainer extends React.PureComponent {
   }
 }
 
-export default withCookies(CookieContainer);
+export default CookieContainer;
