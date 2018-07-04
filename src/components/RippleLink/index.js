@@ -13,9 +13,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// <Link to={to} style={{ ...linkStyle, ...style }}>
-// </Link>
-
 const goTo = (to, delay) => {
   setTimeout(() => navigateTo(to), delay);
 };
@@ -32,7 +29,7 @@ class RippleLink extends React.PureComponent {
         delayPressIn={50}
         color={rippleColor.string()}
       >
-        <View style={[styles.contentView, contentStyle]}>{children}</View>
+        <View style={styles.contentView}>{children}</View>
       </RippleFeedback>
     );
   }

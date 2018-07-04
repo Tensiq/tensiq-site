@@ -38,7 +38,7 @@ class Bottom extends React.PureComponent {
           <CookieContext.Consumer>
             {cookies => (
               <Animated.View style={{ opacity: fade }}>
-                <Box element="footerOuterContainer">
+                <View style={theme.style({ element: 'footerOuterContainer' })}>
                   <View
                     style={theme.style({ element: 'footerInnerContainer' })}
                   >
@@ -58,13 +58,7 @@ class Bottom extends React.PureComponent {
                           type: location.pathname === '/' ? 'active' : 'normal',
                         })}
                       >
-                        <Link
-                          to="/"
-                          contentStyle={theme.style({
-                            element: 'footerLinkContent',
-                          })}
-                          rippleColor={theme.color('footerRipple')}
-                        >
+                        <Link to="/" rippleColor={theme.color('footerRipple')}>
                           <Text
                             style={theme.style({ element: 'footerLinkText' })}
                           >
@@ -83,9 +77,6 @@ class Bottom extends React.PureComponent {
                       >
                         <Link
                           to="/about"
-                          contentStyle={theme.style({
-                            element: 'footerLinkContent',
-                          })}
                           rippleColor={theme.color('footerRipple')}
                         >
                           <Text
@@ -106,9 +97,6 @@ class Bottom extends React.PureComponent {
                       >
                         <Link
                           to="/contact"
-                          contentStyle={theme.style({
-                            element: 'footerLinkContent',
-                          })}
                           rippleColor={theme.color('footerRipple')}
                         >
                           <Text
@@ -120,7 +108,7 @@ class Bottom extends React.PureComponent {
                       </View>
                     </View>
                   </View>
-                </Box>
+                </View>
               </Animated.View>
             )}
           </CookieContext.Consumer>

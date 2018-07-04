@@ -2,33 +2,18 @@ import React from 'react';
 
 export const ScrollContext = React.createContext();
 
-class ScrollProvider extends React.Component {
+const getCleanUrl = url => /(\/[A-Za-z0-9_-]*)\/?/.exec(url)[1];
+
+class ScrollProvider extends React.PureComponent {
   state = {
     anchor: {},
-    lastAdded: '',
     addAnchor: (text, pos) => {
-      this.setState(prevState => ({
-        ...prevState,
-        lastAdded: `${this.props.location}#${text}`,
-        anchor: {
-          ...prevState.anchor,
-          [this.props.location]: {
-            ...prevState.anchor[this.props.location],
-            [text]: pos,
-          },
-        },
-      }));
+      this.state.anchor[getCleanUrl(this.props.location)][text] = pos;
+      if (this.props.hash && this.props.hash.substring(1) === text) {
+        this.forceUpdate();
+      }
     },
   };
-  shouldComponentUpdate(nextProps, nextState) {
-    if (
-      nextProps.hash !== this.props.hash ||
-      nextState.lastAdded === `${this.props.location}${this.props.hash}`
-    ) {
-      return true;
-    }
-    return false;
-  }
   processHash() {
     const {
       props: { scrollView, location, hash },
@@ -36,26 +21,22 @@ class ScrollProvider extends React.Component {
     } = this;
     if (!scrollView) return;
     if (!hash || hash === '') return;
-    const pos = anchor[location][hash.substring(1)] || 0;
+    const pos = anchor[getCleanUrl(location)][hash.substring(1)] || 0;
     scrollView.current.scrollTo({ x: 0, y: pos - 50, animated: true });
   }
   componentDidUpdate(prevProps, prevState) {
-    this.props.scrollView.current.scrollTo({ x: 0, y: 0, animated: false });
-    if (
-      prevProps.hash !== this.props.hash ||
-      this.state.lastAdded === `${this.props.location}${this.props.hash}`
-    ) {
-      this.processHash();
-    }
+    this.props.scrollView.current.scrollTo({ x: 0, y: 0, animated: false })
+    this.processHash();
   }
   componentDidMount() {
     this.props.scrollView.current.scrollTo({ x: 0, y: 0, animated: false });
     this.processHash();
   }
   render() {
+    console.log('render')
     const { children, hash } = this.props;
-    if (!this.state.anchor[this.props.location]) {
-      this.state.anchor[this.props.location] = {};
+    if (!this.state.anchor[getCleanUrl(this.props.location)]) {
+      this.state.anchor[getCleanUrl(this.props.location)] = {};
     }
     return (
       <ScrollContext.Provider value={this.state}>

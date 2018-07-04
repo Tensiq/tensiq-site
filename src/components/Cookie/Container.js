@@ -48,13 +48,17 @@ class CookieContainer extends React.PureComponent {
   constructor(props) {
     super();
     const { cookies } = props;
-    const acceptingCookie = new Animated.Value(0);
+    const initialValue = cookies.get('cookieAccepted')
+      ? cookieAcceptDistance * 2
+      : 0;
+    const acceptingCookie = new Animated.Value(initialValue);
     const scrollYCookie = Animated.add(props.scrollY, acceptingCookie);
     this.state = {
       acceptingCookie,
       scrollYCookie,
       cookieAccepted: cookies.get('cookieAccepted') || false,
       height: 0,
+      top: 0,
     };
   }
   scrollHandler = scrollY => {
@@ -102,10 +106,14 @@ class CookieContainer extends React.PureComponent {
     const { data } = this.props;
     const cookieScroll = this.state.scrollYCookie.interpolate({
       inputRange: [0, cookieAcceptDistance, cookieAcceptDistance * 2],
-      outputRange: [0.0, 0.0, this.state.height],
+      outputRange: [-this.state.height, -this.state.height, 0.0],
       extrapolate: 'clamp',
     });
-    if (this.state.cookieAccepted) return null;
+    const cookieScrollLocal = this.state.acceptingCookie.interpolate({
+      inputRange: [0, cookieAcceptDistance, cookieAcceptDistance * 2],
+      outputRange: [-this.state.height, -this.state.height, 0.0],
+      extrapolate: 'clamp',
+    });
     return (
       <ThemeProvider uiTheme={{}}>
         <ThemeContext.Consumer>
@@ -115,7 +123,7 @@ class CookieContainer extends React.PureComponent {
                 theme.style({ element: 'footerCookieContainer' }),
                 this.props.location.pathname !== PRIVACY_PATH
                   ? { top: cookieScroll }
-                  : null,
+                  : { top: cookieScrollLocal },
               ]}
               onLayout={this.onLayout.bind(this)}
             >

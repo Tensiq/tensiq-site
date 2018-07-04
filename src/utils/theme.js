@@ -1040,7 +1040,7 @@ const styles = {
   footerCookieContainer: {
     normal: StyleSheet.create({
       0: {
-        position: 'relative',
+        position: 'absolute',
         backgroundColor: color('cookie'),
         width: '100%',
         paddingHorizontal: sp(2),
