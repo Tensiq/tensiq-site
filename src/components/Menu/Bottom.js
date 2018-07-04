@@ -37,6 +37,7 @@ class Bottom extends React.PureComponent {
               <View style={theme.style({ element: 'footerInnerContainer' })}>
                 <CookieContainer
                   wrappedComponentRef={this.cookieBanner}
+                  location={location}
                   data={cookieData}
                   scrollY={scrollY}
                 />

@@ -12,6 +12,8 @@ import Link from '../Link/Plain';
 import { cookieAcceptDistance } from '../../utils/theme';
 import { withCookies } from 'react-cookie';
 
+const PRIVACY_PATH = '/privacy';
+
 const TextNormalLight = props => <TextNormal {...props} type="light" />;
 const TextStrongLight = props => <TextStrong {...props} type="light" />;
 
@@ -57,7 +59,11 @@ class CookieContainer extends React.PureComponent {
     };
   }
   scrollHandler = scrollY => {
-    if (!this.state.cookieAccepted && scrollY > cookieAcceptDistance * 2) {
+    if (
+      this.props.location.pathname !== PRIVACY_PATH &&
+      !this.state.cookieAccepted &&
+      scrollY > cookieAcceptDistance * 2
+    ) {
       this.acceptCookies();
     }
   };
@@ -94,7 +100,6 @@ class CookieContainer extends React.PureComponent {
     this.setState(prevState => ({ ...prevState, height: height }));
   }
   render() {
-    console.log(this.props);
     const { data } = this.props;
     const cookieScroll = this.state.scrollYCookie.interpolate({
       inputRange: [0, cookieAcceptDistance, cookieAcceptDistance * 2],
@@ -111,7 +116,9 @@ class CookieContainer extends React.PureComponent {
             <Animated.View
               style={[
                 theme.style({ element: 'footerCookieContainer' }),
-                { top: cookieScroll },
+                this.props.location.pathname !== PRIVACY_PATH
+                  ? { top: cookieScroll }
+                  : null,
               ]}
               onLayout={this.onLayout.bind(this)}
             >
