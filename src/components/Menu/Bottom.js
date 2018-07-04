@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Animated, View, Text } from 'react-native';
 import { ThemeContext } from '../ThemeProvider';
 import Box from '../Grid/Box';
+import { CookieContext } from '../CookieProvider';
 import CookieContainer from '../Cookie/Container';
 
 const uiTheme = {};
@@ -24,7 +25,9 @@ class Bottom extends React.PureComponent {
     }).start();
   }
   scrollHandler = scrollY => {
-    this.cookieBanner.current.scrollHandler(scrollY);
+    if (this.cookieBanner) {
+      //    this.cookieBanner.scrollHandler(scrollY);
+    }
   };
   render() {
     const { fade } = this.state;
@@ -35,12 +38,20 @@ class Bottom extends React.PureComponent {
           <Animated.View style={{ opacity: fade }}>
             <Box element="footerOuterContainer">
               <View style={theme.style({ element: 'footerInnerContainer' })}>
-                <CookieContainer
-                  wrappedComponentRef={this.cookieBanner}
-                  location={location}
-                  data={cookieData}
-                  scrollY={scrollY}
-                />
+                <CookieContext.Consumer>
+                  {cookies => {
+                    if (!cookies.get('cookieAccepted'))
+                      return (
+                        <CookieContainer
+                          location={location}
+                          cookies={cookies}
+                          ref={ref => this.cookieBanner}
+                          data={cookieData}
+                          scrollY={scrollY}
+                        />
+                      );
+                  }}
+                </CookieContext.Consumer>
                 <Box style={{ height: 36 }} display={['flex', null, 'none']}>
                   <View style={theme.style({ element: 'footerMenuContainer' })}>
                     <View

@@ -10,7 +10,6 @@ import cleanHtmlAst from '../../utils/cleanHtmlAst';
 import { TextNormal, TextStrong } from '../Text';
 import Link from '../Link/Plain';
 import { cookieAcceptDistance } from '../../utils/theme';
-import { withCookies } from 'react-cookie';
 
 const PRIVACY_PATH = '/privacy';
 
@@ -55,7 +54,7 @@ class CookieContainer extends React.PureComponent {
       acceptingCookie,
       scrollYCookie,
       cookieAccepted: cookies.get('cookieAccepted') || false,
-      height: 100,
+      height: 0,
     };
   }
   scrollHandler = scrollY => {
@@ -178,4 +177,4 @@ class CookieContainer extends React.PureComponent {
   }
 }
 
-export default withCookies(CookieContainer);
+export default CookieContainer;

@@ -14,7 +14,7 @@ import MenuTop from '../components/Menu/Top';
 import MenuBottom from '../components/Menu/Bottom';
 import { headerHeightMax, headerHeightMin } from '../utils/theme';
 import ScrollProvider from '../components/ScrollProvider';
-import { CookiesProvider } from 'react-cookie';
+import CookiesProvider from '../components/CookieProvider';
 
 const headerScrollDistance = headerHeightMax - headerHeightMin;
 
