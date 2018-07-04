@@ -105,6 +105,7 @@ class CookieContainer extends React.PureComponent {
       outputRange: [0.0, 0.0, this.state.height],
       extrapolate: 'clamp',
     });
+    if (this.state.cookieAccepted) return null;
     return (
       <ThemeProvider uiTheme={{}}>
         <ThemeContext.Consumer>
@@ -115,7 +116,6 @@ class CookieContainer extends React.PureComponent {
                 this.props.location.pathname !== PRIVACY_PATH
                   ? { top: cookieScroll }
                   : null,
-                { display: this.state.cookieAccepted ? 'none' : 'flex' },
               ]}
               onLayout={this.onLayout.bind(this)}
             >

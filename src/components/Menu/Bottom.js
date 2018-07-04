@@ -12,7 +12,7 @@ const uiTheme = {};
 class Bottom extends React.PureComponent {
   constructor(props) {
     super();
-    this.cookieBanner = React.createRef();
+    //this.cookieBanner = React.createRef();
   }
   state = {
     fade: new Animated.Value(0),
@@ -26,7 +26,7 @@ class Bottom extends React.PureComponent {
   }
   scrollHandler = scrollY => {
     if (this.cookieBanner) {
-      //    this.cookieBanner.scrollHandler(scrollY);
+      this.cookieBanner.scrollHandler(scrollY);
     }
   };
   render() {
@@ -35,91 +35,101 @@ class Bottom extends React.PureComponent {
     return (
       <ThemeContext.Consumer>
         {theme => (
-          <Animated.View style={{ opacity: fade }}>
-            <Box element="footerOuterContainer">
-              <View style={theme.style({ element: 'footerInnerContainer' })}>
-                <CookieContext.Consumer>
-                  {cookies => (
+          <CookieContext.Consumer>
+            {cookies => (
+              <Animated.View style={{ opacity: fade }}>
+                <Box element="footerOuterContainer">
+                  <View
+                    style={theme.style({ element: 'footerInnerContainer' })}
+                  >
                     <CookieContainer
                       location={location}
                       cookies={cookies}
-                      ref={ref => this.cookieBanner}
+                      ref={ref => (this.cookieBanner = ref)}
                       data={cookieData}
                       scrollY={scrollY}
                     />
-                  )}
-                </CookieContext.Consumer>
-                <Box style={{ height: 36 }} display={['flex', null, 'none']}>
-                  <View style={theme.style({ element: 'footerMenuContainer' })}>
-                    <View
-                      style={theme.style({
-                        element: 'footerLinkOuterContainer',
-                        type: location.pathname === '/' ? 'active' : 'normal',
-                      })}
+                    <Box
+                      style={{ height: 36 }}
+                      display={['flex', null, 'none']}
                     >
-                      <Link
-                        to="/"
-                        contentStyle={theme.style({
-                          element: 'footerLinkContent',
-                        })}
-                        rippleColor={theme.color('footerRipple')}
+                      <View
+                        style={theme.style({ element: 'footerMenuContainer' })}
                       >
-                        <Text
-                          style={theme.style({ element: 'footerLinkText' })}
+                        <View
+                          style={theme.style({
+                            element: 'footerLinkOuterContainer',
+                            type:
+                              location.pathname === '/' ? 'active' : 'normal',
+                          })}
                         >
-                          Services
-                        </Text>
-                      </Link>
-                    </View>
-                    <View
-                      style={theme.style({
-                        element: 'footerLinkOuterContainer',
-                        type:
-                          location.pathname === '/about' ? 'active' : 'normal',
-                      })}
-                    >
-                      <Link
-                        to="/about"
-                        contentStyle={theme.style({
-                          element: 'footerLinkContent',
-                        })}
-                        rippleColor={theme.color('footerRipple')}
-                      >
-                        <Text
-                          style={theme.style({ element: 'footerLinkText' })}
+                          <Link
+                            to="/"
+                            contentStyle={theme.style({
+                              element: 'footerLinkContent',
+                            })}
+                            rippleColor={theme.color('footerRipple')}
+                          >
+                            <Text
+                              style={theme.style({ element: 'footerLinkText' })}
+                            >
+                              Services
+                            </Text>
+                          </Link>
+                        </View>
+                        <View
+                          style={theme.style({
+                            element: 'footerLinkOuterContainer',
+                            type:
+                              location.pathname === '/about'
+                                ? 'active'
+                                : 'normal',
+                          })}
                         >
-                          About
-                        </Text>
-                      </Link>
-                    </View>
-                    <View
-                      style={theme.style({
-                        element: 'footerLinkOuterContainer',
-                        type:
-                          location.pathname === '/contact'
-                            ? 'active'
-                            : 'normal',
-                      })}
-                    >
-                      <Link
-                        to="/contact"
-                        contentStyle={theme.style({
-                          element: 'footerLinkContent',
-                        })}
-                        rippleColor={theme.color('footerRipple')}
-                      >
-                        <Text
-                          style={theme.style({ element: 'footerLinkText' })}
+                          <Link
+                            to="/about"
+                            contentStyle={theme.style({
+                              element: 'footerLinkContent',
+                            })}
+                            rippleColor={theme.color('footerRipple')}
+                          >
+                            <Text
+                              style={theme.style({ element: 'footerLinkText' })}
+                            >
+                              About
+                            </Text>
+                          </Link>
+                        </View>
+                        <View
+                          style={theme.style({
+                            element: 'footerLinkOuterContainer',
+                            type:
+                              location.pathname === '/contact'
+                                ? 'active'
+                                : 'normal',
+                          })}
                         >
-                          Contact
-                        </Text>
-                      </Link>
-                    </View>
+                          <Link
+                            to="/contact"
+                            contentStyle={theme.style({
+                              element: 'footerLinkContent',
+                            })}
+                            rippleColor={theme.color('footerRipple')}
+                          >
+                            <Text
+                              style={theme.style({ element: 'footerLinkText' })}
+                            >
+                              Contact
+                            </Text>
+                          </Link>
+                        </View>
+                      </View>
+                    </Box>
                   </View>
                 </Box>
-              </View>
-            </Box>
-          </Animated.View>
+              </Animated.View>
+            )}
+          </CookieContext.Consumer>
         )}
       </ThemeContext.Consumer>
     );
