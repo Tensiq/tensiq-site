@@ -49,82 +49,76 @@ class Bottom extends React.PureComponent {
                       data={cookieData}
                       scrollY={scrollY}
                     />
-                    <Box
-                      style={{ height: 36 }}
-                      display={['flex', null, 'none']}
+                    <View
+                      style={theme.style({ element: 'footerMenuContainer' })}
                     >
                       <View
-                        style={theme.style({ element: 'footerMenuContainer' })}
+                        style={theme.style({
+                          element: 'footerLinkOuterContainer',
+                          type: location.pathname === '/' ? 'active' : 'normal',
+                        })}
                       >
-                        <View
-                          style={theme.style({
-                            element: 'footerLinkOuterContainer',
-                            type:
-                              location.pathname === '/' ? 'active' : 'normal',
+                        <Link
+                          to="/"
+                          contentStyle={theme.style({
+                            element: 'footerLinkContent',
                           })}
+                          rippleColor={theme.color('footerRipple')}
                         >
-                          <Link
-                            to="/"
-                            contentStyle={theme.style({
-                              element: 'footerLinkContent',
-                            })}
-                            rippleColor={theme.color('footerRipple')}
+                          <Text
+                            style={theme.style({ element: 'footerLinkText' })}
                           >
-                            <Text
-                              style={theme.style({ element: 'footerLinkText' })}
-                            >
-                              Services
-                            </Text>
-                          </Link>
-                        </View>
-                        <View
-                          style={theme.style({
-                            element: 'footerLinkOuterContainer',
-                            type:
-                              location.pathname === '/about'
-                                ? 'active'
-                                : 'normal',
-                          })}
-                        >
-                          <Link
-                            to="/about"
-                            contentStyle={theme.style({
-                              element: 'footerLinkContent',
-                            })}
-                            rippleColor={theme.color('footerRipple')}
-                          >
-                            <Text
-                              style={theme.style({ element: 'footerLinkText' })}
-                            >
-                              About
-                            </Text>
-                          </Link>
-                        </View>
-                        <View
-                          style={theme.style({
-                            element: 'footerLinkOuterContainer',
-                            type:
-                              location.pathname === '/contact'
-                                ? 'active'
-                                : 'normal',
-                          })}
-                        >
-                          <Link
-                            to="/contact"
-                            contentStyle={theme.style({
-                              element: 'footerLinkContent',
-                            })}
-                            rippleColor={theme.color('footerRipple')}
-                          >
-                            <Text
-                              style={theme.style({ element: 'footerLinkText' })}
-                            >
-                              Contact
-                            </Text>
-                          </Link>
-                        </View>
+                            Services
+                          </Text>
+                        </Link>
                       </View>
-                    </Box>
+                      <View
+                        style={theme.style({
+                          element: 'footerLinkOuterContainer',
+                          type:
+                            location.pathname === '/about'
+                              ? 'active'
+                              : 'normal',
+                        })}
+                      >
+                        <Link
+                          to="/about"
+                          contentStyle={theme.style({
+                            element: 'footerLinkContent',
+                          })}
+                          rippleColor={theme.color('footerRipple')}
+                        >
+                          <Text
+                            style={theme.style({ element: 'footerLinkText' })}
+                          >
+                            About
+                          </Text>
+                        </Link>
+                      </View>
+                      <View
+                        style={theme.style({
+                          element: 'footerLinkOuterContainer',
+                          type:
+                            location.pathname === '/contact'
+                              ? 'active'
+                              : 'normal',
+                        })}
+                      >
+                        <Link
+                          to="/contact"
+                          contentStyle={theme.style({
+                            element: 'footerLinkContent',
+                          })}
+                          rippleColor={theme.color('footerRipple')}
+                        >
+                          <Text
+                            style={theme.style({ element: 'footerLinkText' })}
+                          >
+                            Contact
+                          </Text>
+                        </Link>
+                      </View>
+                    </View>
                   </View>
                 </Box>
               </Animated.View>

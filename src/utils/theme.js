@@ -1100,6 +1100,9 @@ const styles = {
         justifyContent: 'space-around',
         flexDirection: 'row',
       },
+      2: {
+        display: 'none',
+      },
     }),
   },
   textHeader: {
