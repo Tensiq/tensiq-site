@@ -8,4 +8,5 @@ module.exports = {
   windows: parseInt('f17a',16),
   apple: parseInt('f179',16),
   js: parseInt('f3b8',16),
+  linux: parseInt('f17c',16),
 };
