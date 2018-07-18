@@ -4,10 +4,10 @@ import { ThemeContext } from '../ThemeProvider';
 
 import { createIconSet } from 'react-native-vector-icons';
 
-import solidGlyphMap from '../../fonts/icon/fa-solid-900';
-import regularGlyphMap from '../../fonts/icon/fa-regular-400';
-import brandGlyphMap from '../../fonts/icon/fa-brands-400';
-import customGlyphMap from '../../fonts/icon/Tensiq';
+import solidGlyphMap from '../../fonts/raw/icon/fa-solid-900';
+import regularGlyphMap from '../../fonts/raw/icon/fa-regular-400';
+import brandGlyphMap from '../../fonts/raw/icon/fa-brands-400';
+import customGlyphMap from '../../fonts/raw/icon/Tensiq';
 
 export const Icon = {
   Regular: createIconSet(regularGlyphMap, 'FontAwesomeRegular'),
