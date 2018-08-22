@@ -17,6 +17,15 @@ module.exports = {
         generateStatsFile: false,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-124392276-1',
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
     'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-source-filesystem',
