@@ -1,6 +1,6 @@
 ---
 snippet: service
-order: 20
+order: 35
 title: Cross-Platform 2D Games
 ---
 

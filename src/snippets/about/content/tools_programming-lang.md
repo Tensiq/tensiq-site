@@ -5,4 +5,4 @@ icon: code
 type: tools
 ---
 
-Our preferred programming languages to support our projects are !Icon[js](){} Javascript, !Icon[java](){} Java, !Icon[python](){} Python, Lua (OpenResty), GDScript (!Icon[godot](){} Godot Engine), ABAP/ABAP-OO (SAP).
+Our preferred programming languages to support our projects are Go, !Icon[js](){} Javascript, !Icon[java](){} Java, !Icon[python](){} Python, Lua (OpenResty), GDScript (!Icon[godot](){} Godot Engine), ABAP/ABAP-OO (SAP).

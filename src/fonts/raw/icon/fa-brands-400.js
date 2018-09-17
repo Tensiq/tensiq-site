@@ -9,4 +9,7 @@ module.exports = {
   apple: parseInt('f179',16),
   js: parseInt('f3b8',16),
   linux: parseInt('f17c',16),
+  docker: parseInt('f395',16),
+  aws: parseInt('f375',16),
+  google: parseInt('f1a0',16),
 };

@@ -1,6 +1,6 @@
 ---
 snippet: service
-order: 30
+order: 40
 title: Data Analysis
 ---
 

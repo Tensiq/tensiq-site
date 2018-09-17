@@ -100,7 +100,7 @@ class IndexPage extends React.Component {
                   <Segment {...theme.segments.index[1]}>
                     <Header1 theme={theme}>Services</Header1>
                     <RowWrapper>
-                      {renderBlocks(data.services.edges, renderService)}
+                      {renderBlocks(data.services.edges.filter((v,i) => i < 3), renderService)}
                     </RowWrapper>
                   </Segment>
                   <Segment {...theme.segments.index[2]}>
